@@ -24,6 +24,7 @@ module load python/3.6-conda5.2
 # VARIABLES
 # general variables
 RunName='2023_02_20_Symmetric_Run'	
+Design=HPol			# antenna type
 TotalGens=100		# number of generations (after initial) to run through
 NPOP=50					# number of individuals per generation; keep below 99
 Seeds=10				# number of AraSim jobs per individual; see Julie's dissertation
@@ -33,12 +34,12 @@ ScaleFactor=1.0	# factor used to punish antennas larger than the drilling holes
 GeoFactor=1			# factor used to scale DOWN antennas. 
 
 # GA variables
-REPRODUCTION=3	# number (not fraction!) of individuals formed by reproduction
-CROSSOVER=36		# number (not fraction!) of individuals formed by crossover
-MUTATION=25			# probability of mutation (percent)
+REPRODUCTION=5	# number (not fraction!) of individuals formed by reproduction
+CROSSOVER=0		# number (not fraction!) of individuals formed by crossover
+MUTATION=0			# probability of mutation (percent)
 SIGMA=6					# standard deviation for the mutation operation (percent)
-ROULETTE=8			# percent of individuals selected by roulette (divided by 10)
-TOURNAMENT=2		# percent of individuals selected by tournament (divided by 10)
+ROULETTE=5			# percent of individuals selected by roulette (divided by 10)
+TOURNAMENT=0		# percent of individuals selected by tournament (divided by 10)
 RANK=0					# percent of individuals selected by rank (divided by 10)
 ELITE=0					# Elite function on/off (1/0)
 
@@ -143,7 +144,7 @@ if [[ $gen -eq 0 && $state -eq 0 ]]; then
 	mkdir -m775 $WorkingDir/Run_Outputs/$RunName/Evolution_Plots
 	mkdir -m775 $WorkingDir/Run_Outputs/$RunName/Root_Files
 
-	head -n 42 Loop_Scripts/main.sh | tail -n 33 > \
+	head -n 62 Loop_Scripts/main.sh | tail -n 37 > \
 		$WorkingDir/Run_Outputs/$RunName/run_details.txt
 	# Create the run's date and save it in the run's directory
 	python Data_Generators/dateMaker.py
@@ -155,9 +156,9 @@ fi
 
 # PART A: running GA (output: .csv)
 if [ $state -eq 1 ]; then
-	./Loop_Parts/Part_A/Part_A_HPol.sh \
+	./Loop_Parts/Part_A/Part_A.sh \
 		$gen $NPOP $WorkingDir $RunName $GeoFactor $RANK $ROULETTE $TOURNAMENT \
-		$REPRODUCTION $CROSSOVER $MUTATION $SIGMA
+		$REPRODUCTION $CROSSOVER $MUTATION $SIGMA $Design
 	state=2
 	./SaveState_Prototype.sh $gen $state $RunName $indiv
 fi

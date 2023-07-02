@@ -8,7 +8,7 @@
 #  Programmer: OSU GENETIS Team
 #
 #  Revision history:
-#     06/30/23  Started modifying from Part_A.sh to Part_A_HPol.sh
+#     07/02/23  Original version
 #
 #  Notes:
 # 		* vertical ruler at column 80
@@ -30,17 +30,18 @@ reproduction_no=$9
 crossover_no=${10}
 mutationRate=${11}
 sigma=${12}
+design=${13}
 
-cd $WorkingDir
+cd ${WorkingDir}/Shared-Code/GA
 
-g++ -std=c++11 GA/Shared-Code/GA/SourceFiles/New_GA.cpp -o GA/New_GA.exe
-./GA/New_GA.exe PUEO $gen $NPOP $rank_no $roulette_no $tournament_no $reproduction_no $crossover_no $mutationRate $sigma
+g++ -std=c++11 SourceFiles/New_GA.cpp -o New_GA.x
+./New_GA.x $design $gen $NPOP $rank_no $roulette_no \
+  $tournament_no $reproduction_no $crossover_no $mutationRate $sigma
 
-cp Generation_Data/generationDNA.csv Run_Outputs/$RunName/Generation_Data/${gen}_generationDNA.csv
-mv Generation_Data/generators.csv Run_Outputs/$RunName/Generation_Data/${gen}_generators.csv
+cp generationDNA.csv\
+  $WorkingDir/Run_Outputs/$RunName/Generation_Data/${gen}_generationDNA.csv
 
-if [ $gen -gt 0 ]
-then
-	mv Generation_Data/parents.csv Run_Outputs/$RunName/Generation_Data/${gen}_parents.csv
+if [ $gen -gt 0 ]; then
+	mv parents.csv\
+    $WorkingDir/Run_Outputs/$RunName/Generation_Data/${gen}_parents.csv
 fi
-chmod -R 775 Generation_Data/
