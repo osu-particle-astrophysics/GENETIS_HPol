@@ -51,11 +51,10 @@ CURVED=0				# 0 for straight sides; 1 for curved
 A=0							# If 1, A is asymmetric (A x^2 + B describes the curve of sides)
 B=0							# If 1, B is asymmetric
 SEPARATION=0    # 0 for constant separation. If 1, separation evolves.
-NSECTIONS=1 		# number of chromosomes
+NSECTIONS=1 		# number of sections (1 for symmetric bicone; 2 for asymmetric.)
 
 # flags
 DEBUG_MODE=0		# 0 for real runs; 1 for testing (ex: send specific seeds)
-database_flag=0	# 0 if not using the database, 1 if using the database
 # XF variables
 num_keys=4			# number of XF keys
 FREQ=60					# number of frequencies being iterated over in XF 
@@ -63,7 +62,7 @@ FREQ=60					# number of frequencies being iterated over in XF
 
 
 # DIRECTORY INITIALIZATION
-# HPol location on OSC: /fs/ess/PAS1960/GENETIS_HPol/Evolutionary_loop
+# HPol location on OSC: 
 # WorkingDir=/fs/ess/PAS1960/GENETIS_HPol/Evolutionary_loop
 # XmacrosDir=/fs/ess/PAS1960/GENETIS_HPol/Xmacros
 # AraSimExec=/fs/ess/PAS1960/BiconeEvolutionOSC/Original_GENETIS_AraSim/AraSim 
@@ -144,17 +143,19 @@ if [[ $gen -eq 0 && $state -eq 0 ]]; then
 	mkdir -m775 $WorkingDir/Run_Outputs/$RunName/Evolution_Plots
 	mkdir -m775 $WorkingDir/Run_Outputs/$RunName/Root_Files
 
-	head -n 62 Loop_Scripts/main.sh | tail -n 37 > \
-		$WorkingDir/Run_Outputs/$RunName/run_details.txt
-	# Create the run's date and save it in the run's directory
+	# Recording run date and run detail
 	python Data_Generators/dateMaker.py
-	mv -f "runDate.txt" "$WorkingDir/Run_Outputs/$RunName/"
+	mv -f runDate.txt \
+		 $WorkingDir/Run_Outputs/$RunName/run_details.txt
+	echo "\n" >> $WorkingDir/Run_Outputs/$RunName/run_details.txt
+	head -n 62 Loop_Scripts/main.sh | tail -n 37 >> \
+		$WorkingDir/Run_Outputs/$RunName/run_details.txt
 	state=1
 	./SaveState_Prototype.sh $gen $state $RunName $indiv
 fi
 
 
-# PART A: running GA (output: .csv)
+# PART A: running GA (output: generationDNA.csv and parents.csv)
 if [ $state -eq 1 ]; then
 	./Loop_Parts/Part_A/Part_A.sh \
 		$gen $NPOP $WorkingDir $RunName $GeoFactor $RANK $ROULETTE $TOURNAMENT \
@@ -164,60 +165,22 @@ if [ $state -eq 1 ]; then
 fi
 
 
-# ## Part B1 ##
-# if [ $state -eq 2 ]
-# then
-# 	if [ $CURVED -eq 0 ]
-# 	then
-# 		if [ $NSECTIONS -eq 1 ]
-# 		then
-# 			if [ $database_flag -eq 0 ]
-# 			then
-# 				./Loop_Parts/Part_B/Part_B_GPU_job1.sh\
-# 					$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir $XFProj $GeoFactor $num_keys
-
-# 			else
-# 				./Loop_Parts/Part_B/Part_B_GPU_job1_database.sh\
-# 					$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir $XFProj $GeoFactor $num_keys
-# 			fi
-
-# 		else
-# 			if [ $database_flag -eq 0 ]
-# 			then
-# 				./Loop_Parts/Part_B/Part_B_job1_sep.sh\
-# 					$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir $XFProj $GeoFactor $num_keys 
-
-# 			else
-# 				./Loop_Parts/Part_B/Part_B_GPU_job1_asym_database.sh\
-# 					$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir $XFProj $GeoFactor $num_keys
-# 			fi
-# 		fi
-
-# 	else
-# 		./Loop_Parts/Part_B/Part_B_Curved_1.sh \
-# 			$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir $XFProj $GeoFactor $num_keys
-# 		#./Loop_Parts/Part_B/Part_B_Curved_Constant_Quadratic_1.sh \
-# 		# $indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir $XFProj $GeoFactor $num_keys
-# 	fi
-# 	state=3
-# 	./SaveState_Prototype.sh $gen $state $RunName $indiv
-# fi
+# PART B1
+if [ $state -eq 2 ]; then
+	./Loop_Parts/Part_B/Part_B_VPol_job1.sh\
+		$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir \
+		$XFProj $GeoFactor $num_keys $CURVED $NSECTIONS
+	state=3
+	./SaveState_Prototype.sh $gen $state $RunName $indiv
+fi
 	
 
 # ## Part B2 ##
 # if [ $state -eq 3 ]
 # then
-
-# 	if [ $database_flag -eq 0 ]
-# 	then
-# 	#./Loop_Parts/Part_B/Part_B_GPU_job2_asym.sh \
-# 	#$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir $XFProj $GeoFactor $num_keys $NSECTIONS
-# 	./Loop_Parts/Part_B/Part_B_GPU_job2_asym_array.sh \
-# 		$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir $XFProj $GeoFactor $num_keys $NSECTIONS
-# 	else
 # 	./Loop_Parts/Part_B/Part_B_GPU_job2_asym_database.sh \
-# 		$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir $XFProj $GeoFactor $num_keys $NSECTIONS
-# 	fi
+# 		$indiv $gen $NPOP $WorkingDir $RunName \
+# 		$XmacrosDir $XFProj $GeoFactor $num_keys $NSECTIONS
 
 # 	state=4
 # 	./SaveState_Prototype.sh $gen $state $RunName $indiv

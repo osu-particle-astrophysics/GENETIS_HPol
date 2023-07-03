@@ -9,8 +9,8 @@
 #SBATCH -N 1
 #SBATCH -n 40
 #SBATCH -G 2
-#SBATCH --output=/fs/ess/PAS1960/BiconeEvolutionOSC/BiconeEvolution/current_antenna_evo_build/XF_Loop/Evolutionary_Loop/Run_Outputs/%x/XF_Outputs/XF_%a.output
-#SBATCH --error=/fs/ess/PAS1960/BiconeEvolutionOSC/BiconeEvolution/current_antenna_evo_build/XF_Loop/Evolutionary_Loop/Run_Outputs/%x/XF_Errors/XF_%a.error
+#SBATCH --output=/fs/ess/PAS1960/GENETIS_HPol/Evolutionary_Loop/Run_Outputs/%x/XF_Outputs/XF_%a.output
+#SBATCH --error=/fs/ess/PAS1960/GENETIS_HPol/Evolutionary_Loop/Run_Outputs/%x/XF_Errors/XF_%a.error
 ##SBATCH --mem-per-gpu=178gb
 
 ## make sure we're in the right directory
@@ -44,11 +44,9 @@ fi
 
 ## Now we need to get into the Run0001 directory inside the parent directory
 indiv_dir=$indiv_dir_parent/Run0001
-
 cd $indiv_dir
+
 xfsolver --use-xstream=true --xstream-use-number=2 --num-threads=2 -v
 
-cd $WorkingDir
-cd Run_Outputs/$RunName/GPUFlags
-
+cd $WorkingDir/Run_Outputs/$RunName/GPUFlags
 echo "The GPU job is done!" >> Part_B_GPU_Flag_${individual_number}.txt 

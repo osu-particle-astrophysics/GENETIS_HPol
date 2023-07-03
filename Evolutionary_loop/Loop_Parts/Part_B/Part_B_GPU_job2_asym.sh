@@ -1,5 +1,28 @@
 #!/bin/bash
 
+#*******************************************************************************
+#  File: Part_B_GPU_job1.sh
+#
+#	 This part of the loop:
+#     1. Prepares output.xmacro with generic parameters such as :
+#             I.   Antenna type
+#             II.  Population number
+#             III. Grid size
+#     2. Prepares simulation_PEC.xmacro with information such as:
+#             I.   Each generation antenna parameters
+#     3. Runs XF and loads XF with both xmacros. 
+#
+#  Programmer: OSU GENETIS Team
+#
+#  Revision history:
+#     07/11/23  Started modifying from the VPol version
+#
+#  Notes:
+# 		* vertical ruler at column 80
+#
+#  TODO:
+#
+#*******************************************************************************
 ########    XF Simulation Software (B)     ########################################################################################## 
 #
 #

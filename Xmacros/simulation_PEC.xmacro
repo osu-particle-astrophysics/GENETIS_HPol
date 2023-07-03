@@ -2,14 +2,13 @@ var NPOP = 50;
 var indiv = 1;
 //Factor of 1 frequency
 var freq = [83.33, 100.00, 116.67, 133.33, 150.00, 166.67, 183.34, 200.00, 216.67, 233.34, 250.00, 266.67, 283.34, 300.00, 316.67, 333.34, 350.00, 366.67, 383.34, 400.01, 416.67, 433.34, 450.01, 466.67, 483.34, 500.01, 516.68, 533.34, 550.01, 566.68, 583.34, 600.01, 616.68, 633.34, 650.01, 666.68, 683.35, 700.01, 716.68, 733.35, 750.01, 766.68, 783.35, 800.01, 816.68, 833.35, 850.02, 866.68, 883.35, 900.02, 916.68, 933.35, 950.02, 966.68, 983.35, 1000.00, 1016.70, 1033.40, 1050.00, 1066.70] 
-var path = "/fs/ess/PAS1960/BiconeEvolutionOSC/BiconeEvolution/current_antenna_evo_build/XF_Loop/Evolutionary_Loop/Generation_Data/generationDNA.csv";
+if(indiv==1){
+App.saveCurrentProjectAs("/Users/Jason/Documents/OSU/GENETIS/GENETIS_HPol/Evolutionary_loop/Run_Outputs/2023_02_20_Symmetric_Run/2023_02_20_Symmetric_Run");
+}
+var path = "/Users/Jason/Documents/OSU/GENETIS/GENETIS_HPol/Evolutionary_loop/Generation_Data/generationDNA.csv";
 
 //Factor of 1 frequency
 //var freq = [83.33, 100.00, 116.67, 133.33, 150.00, 167.67, 183.34, 200.00, 216.67, 233.34, 250.00, 266.67, 283.34, 300.00, 316.67, 333.33, 350.00, 367.67, 383.34, 400.01, 416.67, 433.33, 450.01, 467.67, 483.34, 500.01, 516.68, 533.34, 550.01, 567.68, 583.34, 600.01, 616.68, 633.34, 650.01, 667.68, 683.34, 700.01, 716.67, 733.34, 750.01, 767.68, 783.34, 800.01, 816.68, 833.35, 850.02, 866.68, 883.35, 900.02, 916.68, 933.35, 950.02, 966.68, 983.35, 1000.00, 1016.70, 1033.40, 1050.00, 1066.70]
-
-// testing out the progrid
-// to revert, uncomment the sepDist on line 22
-// remember to also fix simulationPECmacroskeleton2_GPU.txt
 
 for(var j = 1;j<=NPOP;j++){
 var m = j;
@@ -20,49 +19,66 @@ var antennaLines = 9 // This is how many lines come before the antenna data
 var file = new File(path);
 file.open(1);
 var generationDNA = file.readAll();
-var radii=[];
-var lengths=[];
-var angles=[];
+var radii1=[];
+var lengths1=[];
+var A1=[];
+var B1=[];
+var radii2=[];
+var lengths2=[];
+var A2=[];
+var B2=[];
 var units = " cm";
 var sepDist = 3.0;
-
-
 
 // This macro imports data from generationDNA.csv to XF.
 // It then generates simulations.
 // OSU GENETIS team, last revision 2/5/2019
 
 //Only take the lines with functions
+//The following loop should iterate by NSECTIONS(currently 2)
+//(i-antennaLines)/2 -> (i-antennaLines)/NSECTIONS
 var lines = generationDNA.split('\n');
-for(var i = 0;i < lines.length;i++){
+for(var i = 0;i < lines.length;i += 2){
 	if(i==headerLines)
 	{
 		var frequencies = lines[i].split(",");
 	}
+	i--;
     if(i>=antennaLines)
         {
         var params = lines[i].split(",");
-        radii[i-antennaLines]=params[0];
-        lengths[i-antennaLines]=params[1];
-		angles[i-antennaLines]=params[2];
-        Output.println(radii[i-antennaLines]);
-        Output.println(lengths[i-antennaLines]);
-		Output.println(angles[i-antennaLines]);
+        radii1[(i-antennaLines)/2]=params[0];
+        lengths1[(i-antennaLines)/2]=params[1];
+	A1[(i-antennaLines)/2]=params[2];
+		B1[(i-antennaLines)/2]=params[3];
+        Output.println(radii1[(i-antennaLines)/2]);
+        Output.println(lengths1[(i-antennaLines)/2]);
+	Output.println(A1[(i-antennaLines)/2]);
+		Output.println(B1[(i-antennaLines)/2]);
+	var params2 = lines[i+1].split(",");
+	radii2[(i-antennaLines)/2]=params2[0];
+	lengths2[(i-antennaLines)/2]=params2[1];
+	A2[(i-antennaLines)/2]=params2[2];
+		B2[(i-antennaLines)/2]=params2[3];
+	Output.println(radii2[(i-antennaLines)/2]);
+	Output.println(lengths2[(i-antennaLines)/2]);
+	Output.println(A2[(i-antennaLines)/2]);
+		Output.println(B2[(i-antennaLines)/2]);
         }
 }
 file.close();
-//testing progrid
-//to revert, comment out the useProGridCellSizes command on line 165
-//to revert, uncomment the sepDist commands on line 63 and 154
-//to revert, uncomment the target cell size command on line 172
-
 // make simulations for each individual for each frequency
 for(var i = 0;i < NPOP;i++)
 {
 	if(i==m-1){
-        	var antennaLength = lengths[i];
-        	var antennaRadius = radii[i];
-		var antennaAngle = angles[i];
+        	var antennaLength1 = lengths1[i];
+        	var antennaRadius1 = radii1[i];
+		var antennaA1 = A1[i];
+		var antennaB1 = B1[i];
+		var antennaLength2 = lengths2[i];
+		var antennaRadius2 = radii2[i];
+		var antennaA2 = A2[i];
+		var antennaB2 = B2[i]; 
 		//Actually create the material and then the antenna
         	CreatePEC();
         	CreateAntenna(i);
@@ -80,15 +96,18 @@ function CreateAntenna(i)
 	App.getActiveProject().getGeometryAssembly().clear();
 
         //create a new sketch - this is the base of the antenna
-	var segment = new Sketch();
-	var base = new Ellipse( new Cartesian3D(0,0,0), new Cartesian3D( antennaRadius + units,0,0 ), 1.0, 0.0, Math.PI*2 );
-	segment.addEdge(base);
+	var segment1 = new Sketch();
+	var segment2 = new Sketch();
+	var base1 = new Ellipse( new Cartesian3D(0,0,0), new Cartesian3D( antennaRadius1 + units,0,0 ), 1.0, 0.0, Math.PI*2 );
+	var base2 = new Ellipse( new Cartesian3D(0,0,0), new Cartesian3D( antennaRadius2 + units,0,0 ), 1.0, 0.0, Math.PI*2 );
+	segment1.addEdge(base1);
+	segment2.addEdge(base2);
 
-        //extrude function with a draft - this extends the antenna outward, with its edges shifted at angle defined by DraftAngle
-	var extrudeLeft = new Extrude( segment, antennaLength + units );
+        //extrude function with a draft - 
+	var extrudeLeft = new Extrude( segment1, antennaLength1 + units );
 	var newOptionsLeft = extrudeLeft.getOptions();
-	newOptionsLeft.draftAngle = antennaAngle;
-	newOptionsLeft.draftOption = 1;
+	newOptionsLeft.draftLaw = "10*("+antennaA1+"*(x/10)^2+"+antennaB1+"*(x/10))";
+	newOptionsLeft.draftOption = 4;
 	extrudeLeft.setOptions ( newOptionsLeft );
 
         //create a recipe and model
@@ -100,10 +119,10 @@ function CreateAntenna(i)
 
 		//add depth to the circle - right side
 	extrudeRightDirection = CoordinateSystemDirection(0,0,-1);
-	var extrudeRight = new Extrude( segment, antennaLength + units, extrudeRightDirection );
-	var newOptionsRight = extrudeLeft.getOptions();
-	newOptionsRight.draftAngle = antennaAngle;
-	newOptionsRight.draftOption = 1;
+	var extrudeRight = new Extrude( segment2, antennaLength2 + units, extrudeRightDirection );
+	var newOptionsRight = extrudeRight.getOptions();
+	newOptionsRight.draftLaw = "10*("+antennaA2+"*(x/10)^2+"+antennaB2+"*(x/10))";
+	newOptionsRight.draftOption = 4;
 	extrudeRight.setOptions ( newOptionsRight );
 
         //create a recipe and model
@@ -114,7 +133,7 @@ function CreateAntenna(i)
 	segmentRightModel.name = "Antenna Test Segment - Right " + (i+1);
 
         //set locations of the left and right segments
-	segmentLeftModel.getCoordinateSystem().translate( new Cartesian3D(0,0,sepDist + units)); 
+	segmentLeftModel.getCoordinateSystem().translate(new Cartesian3D(0,0,sepDist + units));
 	var segmentInProject1 = App.getActiveProject().getGeometryAssembly().append(segmentLeftModel);
 	segmentRightModel.getCoordinateSystem().translate(new Cartesian3D(0,0,0));
 	var segmentInProject2 = App.getActiveProject().getGeometryAssembly().append(segmentRightModel);
@@ -205,7 +224,7 @@ function CreateAntennaSource()
     component.setAsPort( true );
     // Define the endpoints of this feed - these are defined in world position, but you can also attach them to edges, faces, etc.
     var coordinate1 = new CoordinateSystemPosition( 0, 0, 0 );
-    var coordinate2 = new CoordinateSystemPosition( 0, 0, sepDist + units); 
+    var coordinate2 = new CoordinateSystemPosition( 0, 0, sepDist + units );
     component.setCircuitComponentDefinition( feedInList );
     component.setEndpoint1( coordinate1 );
     component.setEndpoint2( coordinate2 );
@@ -214,19 +233,14 @@ function CreateAntennaSource()
 
 function CreateGrid()
 {
-
-		// testing progrid
-		useProGridCellSizes = true;
-
-
     // Set up the grid spacing for the antenna
     var grid = App.getActiveProject().getGrid();
     var cellSizes = grid.getCellSizesSpecification();
 
-    //cellSizes.setTargetSizes( Cartesian3D( sepDist + units, sepDist + units, sepDist + units ) );
+    cellSizes.setTargetSizes( Cartesian3D( sepDist + units, sepDist + units, sepDist + units ) );
     // And we need to set the Minimum Sizes - these are the minimum deltas that we will allow in this project.
     // We'll use the scalar ratio of 20% here.
-    cellSizes.setMinimumSizes( Cartesian3D( "0.5", "0.5", "0.5" ) );
+    cellSizes.setMinimumSizes( Cartesian3D( ".5", ".5", ".5" ) );
     cellSizes.setMinimumIsRatioX( true );
     cellSizes.setMinimumIsRatioY( true );
     cellSizes.setMinimumIsRatioZ( true );
