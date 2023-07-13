@@ -35,7 +35,7 @@ design=${13}
 cd ${WorkingDir}/Shared-Code/GA
 
 g++ -std=c++11 SourceFiles/New_GA.cpp -o New_GA.x
-./New_GA.x $design $gen $NPOP $rank_no $roulette_no \
+./New_GA.x "${design}" $gen $NPOP $rank_no $roulette_no \
   $tournament_no $reproduction_no $crossover_no $mutationRate $sigma
 
 cp generationDNA.csv\

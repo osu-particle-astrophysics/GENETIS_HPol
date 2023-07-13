@@ -1,5 +1,5 @@
 *del.sh
-Evolutionary_loop/Shared-Code/*
+Evolutionary_loop/Shared-Code/
 Evolutionary_loop/SaveStates/*
 Evolutionary_loop/Run_Outputs/*
 Evolutionary_Loop/*.txt

@@ -24,7 +24,7 @@ module load python/3.6-conda5.2
 # VARIABLES
 # general variables
 RunName='2023_02_20_Symmetric_Run'	
-Design=HPol			# antenna type
+Design="Symmetric Dipole" # antenna type
 TotalGens=100		# number of generations (after initial) to run through
 NPOP=50					# number of individuals per generation; keep below 99
 Seeds=10				# number of AraSim jobs per individual; see Julie's dissertation
@@ -169,7 +169,8 @@ fi
 if [ $state -eq 1 ]; then
 	./Loop_Parts/Part_A/Part_A.sh \
 		$gen $NPOP $WorkingDir $RunName $GeoFactor $RANK $ROULETTE $TOURNAMENT \
-		$REPRODUCTION $CROSSOVER $MUTATION $SIGMA $Design
+		$REPRODUCTION $CROSSOVER $MUTATION $SIGMA "$Design" 
+		# Note that the double quote around $Design is required to call the GA
 	state=2
 	./SaveState_Prototype.sh $gen $state $RunName $indiv
 fi
@@ -183,12 +184,12 @@ if [ $state -eq 2 ]; then
 			$XFProj $GeoFactor $num_keys $SYMMETRY $XFCOUNT
 
 	elif [ "${Design}" = "HPol" ]; then			# HPol
-		echo "Hpol Job1 Skeleton Here"
+		echo "Put Hpol Job1 Skeleton Here!"
 
 	else																		# Bicones (symm, asymm, curved, etc.)
-	./Loop_Parts/Part_B/Part_B_VPol_job1.sh\
-		$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir \
-		$XFProj $GeoFactor $num_keys $CURVED $NSECTIONS
+		./Loop_Parts/Part_B/Part_B_VPol_job1.sh\
+			$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir \
+			$XFProj $GeoFactor $num_keys $CURVED $NSECTIONS
 	fi
 
 	state=3
