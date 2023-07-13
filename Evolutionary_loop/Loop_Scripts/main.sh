@@ -35,13 +35,23 @@ GeoFactor=1			# factor used to scale DOWN antennas.
 
 # GA variables
 REPRODUCTION=5	# number (not fraction!) of individuals formed by reproduction
-CROSSOVER=0		# number (not fraction!) of individuals formed by crossover
+CROSSOVER=0			# number (not fraction!) of individuals formed by crossover
 MUTATION=0			# probability of mutation (percent)
 SIGMA=6					# standard deviation for the mutation operation (percent)
 ROULETTE=5			# percent of individuals selected by roulette (divided by 10)
 TOURNAMENT=0		# percent of individuals selected by tournament (divided by 10)
 RANK=0					# percent of individuals selected by rank (divided by 10)
 ELITE=0					# Elite function on/off (1/0)
+
+# PUEO variables
+SYMMETRY=1
+if [ "${Design}" = "PUEO" ]; then
+	if [ $SYMMETRY -eq 0 ]; then
+		XFCOUNT=$((NPOP*2))
+	else
+		XFCOUNT=$NPOP
+	fi
+fi
 
 # bicone variables
 RADIUS=0				# 0 for symmetric radius
@@ -167,9 +177,20 @@ fi
 
 # PART B1
 if [ $state -eq 2 ]; then
+	if [ "${Design}" = "PUEO" ]; then			  # PUEO
+		./Loop_Parts/Part_B/Part_B_PUEO.sh \
+			$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir \
+			$XFProj $GeoFactor $num_keys $SYMMETRY $XFCOUNT
+
+	elif [ "${Design}" = "HPol" ]; then			# HPol
+		echo "Hpol Job1 Skeleton Here"
+
+	else																		# Bicones (symm, asymm, curved, etc.)
 	./Loop_Parts/Part_B/Part_B_VPol_job1.sh\
 		$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir \
 		$XFProj $GeoFactor $num_keys $CURVED $NSECTIONS
+	fi
+
 	state=3
 	./SaveState_Prototype.sh $gen $state $RunName $indiv
 fi
