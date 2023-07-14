@@ -7,6 +7,8 @@
 #
 #  Revision history:
 #     07/11/23  Jason Yao, third pass over the loop for training purposes
+#			07/14/23	Jason Yao, merging Part_B_Curved_Constant_Quadratic_1.sh into
+#								this file as a comment (see "CAT SECTION", line 148)
 #
 #  Notes:
 # 		* vertical ruler at column 80; tab size 2
@@ -143,6 +145,13 @@ then
 	echo "}" >> simulation_PEC.xmacro
 fi
 
+## CAT SECTION ##
+# If we want to run Part_B_Curved_Constant_Quadratic_1.sh (now deleted),
+#	uncomment the following two cat commands instead.
+# cat simulationPECmacroskeleton_curved_constant_quadratic.txt \
+# 		>> simulation_PEC.xmacro
+# cat simulationPECmacroskeleton2_curved_constant_quadratic.txt \
+# 		>> simulation_PEC.xmacro
 if [ $curved -eq 0 ]; then
 	if [ $nsections -eq 1 ]; then # straight side symmetric bicone
 		cat simulationPECmacroskeleton_GPU.txt >> simulation_PEC.xmacro
@@ -155,6 +164,7 @@ else 														# curved bicone
 	cat simulationPECmacroskeleton_curved.txt >> simulation_PEC.xmacro
 	cat simulationPECmacroskeleton2_curved.txt >> simulation_PEC.xmacro
 fi
+## END OF CAT SECTION ##
 
 ## We need to change the gridsize by the same factor as the antenna size
 ## The gridsize in the macro skeleton is currently set to 0.1
