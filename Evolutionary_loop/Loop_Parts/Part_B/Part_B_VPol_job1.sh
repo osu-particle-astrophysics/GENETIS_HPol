@@ -9,7 +9,7 @@
 #     07/11/23  Jason Yao, third pass over the loop for training purposes
 #
 #  Notes:
-# 		* vertical ruler at column 80
+# 		* vertical ruler at column 80; tab size 2
 #
 #  TODO:
 #

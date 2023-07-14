@@ -197,16 +197,23 @@ if [ $state -eq 2 ]; then
 fi
 	
 
-# ## Part B2 ##
-# if [ $state -eq 3 ]
-# then
-# 	./Loop_Parts/Part_B/Part_B_GPU_job2_asym_database.sh \
-# 		$indiv $gen $NPOP $WorkingDir $RunName \
-# 		$XmacrosDir $XFProj $GeoFactor $num_keys $NSECTIONS
+## Part B2 ##
+if [ $state -eq 3 ]; then
+	if [ "${Design}" = "PUEO" ]; then			  # PUEO
+		echo "pueo!"
+	
+	elif [ "${Design}" = "HPol" ]; then			# HPol
+		echo "Put Hpol Job2 Skeleton Here!"
+	
+	else																		# Bicones (symm, asymm, curved, etc.)
+	./Loop_Parts/Part_B/Part_B_VPol_job2_sh\
+		$indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir\
+		$XFProj $GeoFactor $num_keys $NSECTIONS
+	fi
 
-# 	state=4
-# 	./SaveState_Prototype.sh $gen $state $RunName $indiv
-# fi
+	state=4
+	./SaveState_Prototype.sh $gen $state $RunName $indiv
+fi
 
 # ## Part C ##
 # if [ $state -eq 4 ]

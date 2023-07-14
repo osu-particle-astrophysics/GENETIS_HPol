@@ -1,21 +1,20 @@
+#*******************************************************************************
+#  Original file name: Part_B_GPU_Curved_Constant_Quadratic_1.sh
+#	 		This is Part B1 of the loop, which prepares and runs simulation_PEC.xmacro
+#  		with information such as the parameters of the antennas.
+#
+#  Programmer: OSU GENETIS Team
+#
+#  Revision history:
+#
+#
+#  Notes:
+#
+#
+#  TODO:
+#
+#*******************************************************************************
 
-########    XF Simulation Software (B)     ########################################################################################## 
-#
-#
-#     1. Prepares output.xmacro with generic parameters such as :: 
-#             I. Antenna type
-#             II. Population number
-#             III. Grid size
-#
-#
-#     2. Prepares simulation_PEC.xmacro with information such as:
-#             I. Each generation antenna parameters
-#
-#
-#     3. Runs XF and loads XF with both xmacros. 
-#
-#
-###################################################################################################################################### 
 # varaibles
 indiv=$1
 gen=$2

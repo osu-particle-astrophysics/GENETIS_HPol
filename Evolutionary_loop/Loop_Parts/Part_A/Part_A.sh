@@ -11,7 +11,7 @@
 #     07/02/23  Original version
 #
 #  Notes:
-# 		* vertical ruler at column 80
+# 		* vertical ruler at column 80; tab size 2
 #
 #  TODO:
 #
