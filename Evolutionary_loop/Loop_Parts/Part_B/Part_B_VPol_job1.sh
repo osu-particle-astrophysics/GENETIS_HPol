@@ -8,16 +8,15 @@
 #  Revision history:
 #     07/11/23  Jason Yao, third pass over the loop for training purposes
 #			07/14/23	Jason Yao, merging Part_B_Curved_Constant_Quadratic_1.sh into
-#								this file as a comment (see "CAT SECTION", line 148)
+#								this file as a comment (see "CAT SECTION", line 147)
 #
 #  Notes:
-# 		* vertical ruler at column 80; tab size 2
+# 		* vertical ruler at column 80
 #
 #  TODO:
 #
 #*******************************************************************************
 
-# varaibles
 indiv=$1
 gen=$2
 NPOP=$3
@@ -86,8 +85,8 @@ freqlist=\
 73335 75001 76668 78335 80001 81668 83335 85002 86668 88335 90002 91668 93335 
 95002 96668 98335 100000 101670 103340 105000 106670"
 
-# get rid of the simulation_PEC.xmacro that already exists
-rm -f simulation_PEC.xmacro
+# empty the file without changing the permission
+> simulation_PEC.xmacro
 
 echo "var NPOP = $NPOP;" > simulation_PEC.xmacro
 echo "var indiv = $indiv;" >> simulation_PEC.xmacro

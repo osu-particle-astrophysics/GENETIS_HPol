@@ -11,14 +11,13 @@
 #     07/13/23  Jason Yao, third pass over the loop for training purposes
 #
 #  Notes:
-# 		* vertical ruler at column 80; tab size 2
+# 		* vertical ruler at column 80
 #     * This file differes from Part_B_GPU_job2_asym_array.sh in the way it
 #       counts GPU flag files (from line 52 to line 122)
 #  TODO:
 #
 #*******************************************************************************
 
-# varaibles
 indiv=$1
 gen=$2
 NPOP=$3
@@ -126,12 +125,9 @@ rm -f $WorkingDir/Run_Outputs/$RunName/GPUFlags/*
 echo $flag_files
 echo "Done!"
 
-# First, remove the old .xmacro files
-# When we do that, we end up making the files only readable;
-# we should just overwrite them.
-# Alternatively, we can just set them as rwe when the script makes them
+# First, empty the file without chaning permission
 cd $XmacrosDir
-rm -f output.xmacro
+> output.xmacro
 
 # echo "var m = $i;" >> output.xmacro
 echo "var NPOP = $NPOP;" >> output.xmacro
@@ -145,11 +141,9 @@ else
 	cat shortened_outputmacroskeleton_Asym.txt >> output.xmacro
 fi
 
-sed -i "s+fileDirectory+${WorkingDir}+" output.xmacro
-# When we use the sed command, anything can be the delimiter between each of the
-# arguments; usually, we use /, but since there are / in the thing we are trying
-# to substitute in ($WorkingDir), we need to use a different delimiter that
-# doesn't appear there
+# use | as delimiter for sed sice WorkingDir contains /
+# (any symbol following "s" can be used as the delimiter)
+sed -i "s|fileDirectory|${WorkingDir}|" output.xmacro
 
 module load xfdtd/7.9.2.2
 xfdtd $XFProj \
@@ -157,7 +151,7 @@ xfdtd $XFProj \
 #Xvnc :5 &  DISPLAY=:5 xfdtd $XFProj --execute-macro-script=$XmacrosDir/simulation_PEC.xmacro || true
 
 cd $WorkingDir/Antenna_Performance_Metric
-for i in `seq $(($gen*$NPOP + $indiv)) $(($gen*$NPOP+$NPOP))`
+for i in `seq $(($gen*$NPOP + $indiv)) $(($gen*$NPOP + $NPOP))`
 do
 	pop_ind_num=$(($i - $gen*$NPOP))
 	for freq in `seq 1 60`

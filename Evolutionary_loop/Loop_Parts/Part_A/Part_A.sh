@@ -11,13 +11,12 @@
 #     07/02/23  Original version
 #
 #  Notes:
-# 		* vertical ruler at column 80; tab size 2
+# 		* vertical ruler at column 80
 #
 #  TODO:
 #
 #*******************************************************************************
 
-# VARIABLES
 gen=$1
 NPOP=$2
 WorkingDir=$3
