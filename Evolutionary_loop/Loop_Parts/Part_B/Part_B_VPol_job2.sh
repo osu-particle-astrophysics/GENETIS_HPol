@@ -1,9 +1,9 @@
 #!/bin/bash
 #*******************************************************************************
 #  Original file name: Part_B_GPU_job2_asym_array.sh
-#	 		This is Part B2 of the loop, which prepares and runs output.xmacro with 
-#			the relevant parameter (antenna type, population number, grid size, etc)
-#			Output.xmacro writes the XFDtd simulation data to an output file (.uan)
+#      This is Part B2 of the loop, which prepares and runs output.xmacro with 
+#      the relevant parameter (antenna type, population number, grid size, etc)
+#      Output.xmacro writes the XFDtd simulation data to an output file (.uan)
 #
 #  Programmer: OSU GENETIS Team
 #
@@ -11,7 +11,7 @@
 #     07/13/23  Jason Yao, third pass over the loop for training purposes
 #
 #  Notes:
-# 		* vertical ruler at column 80
+#     * vertical ruler at column 80
 #
 #
 #  TODO:
@@ -51,9 +51,9 @@ cd $WorkingDir/Run_Outputs/$RunName/GPUFlags/
 flag_files=$(ls | wc -l) 
 while [[ $flag_files -lt $NPOP ]] 
 do
-	sleep 1m
-	echo $flag_files
-	flag_files=$(ls | wc -l) #$(ls -l --file-type | grep -v '/$' | wc -l)
+  sleep 1m
+  echo $flag_files
+  flag_files=$(ls | wc -l) #$(ls -l --file-type | grep -v '/$' | wc -l)
 done
 
 rm -f $WorkingDir/Run_Outputs/$RunName/GPUFlags/*
@@ -67,13 +67,13 @@ cd $XmacrosDir
 # echo "var m = $i;" >> output.xmacro
 echo "var NPOP = $NPOP;" >> output.xmacro
 echo "for (var k = $(($gen*$NPOP + 1)); k <= $(($gen*$NPOP+$NPOP)); k++){" \
-			>> output.xmacro
+      >> output.xmacro
 
 if [ $NSECTIONS -eq 1 ] # if 1, then the cone is symmetric
 then
-	cat shortened_outputmacroskeleton.txt >> output.xmacro
+  cat shortened_outputmacroskeleton.txt >> output.xmacro
 else
-	cat shortened_outputmacroskeleton_Asym.txt >> output.xmacro
+  cat shortened_outputmacroskeleton_Asym.txt >> output.xmacro
 fi
 
 # use | as delimiter for sed sice WorkingDir contains /
@@ -82,16 +82,16 @@ sed -i "s|fileDirectory|${WorkingDir}|" output.xmacro
 
 module load xfdtd/7.9.2.2
 xfdtd $XFProj \
-	--execute-macro-script=$XmacrosDir/output.xmacro || true --splash=false
+  --execute-macro-script=$XmacrosDir/output.xmacro || true --splash=false
 #Xvnc :5 &  DISPLAY=:5 xfdtd $XFProj --execute-macro-script=$XmacrosDir/simulation_PEC.xmacro || true
 
 cd $WorkingDir/Antenna_Performance_Metric
 for i in `seq $(($gen*$NPOP + $indiv)) $(($gen*$NPOP + $NPOP))`
 do
-	pop_ind_num=$(($i - $gen*$NPOP))
-	for freq in `seq 1 60`
-	do
-		mv ${i}_${freq}.uan\
-			"$WorkingDir"/Run_Outputs/$RunName/uan_files/${gen}_${pop_ind_num}_${freq}.uan
-	done
+  pop_ind_num=$(($i - $gen*$NPOP))
+  for freq in `seq 1 60`
+  do
+    mv ${i}_${freq}.uan\
+      "$WorkingDir"/Run_Outputs/$RunName/uan_files/${gen}_${pop_ind_num}_${freq}.uan
+  done
 done
