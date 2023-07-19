@@ -1,10 +1,20 @@
-########  XF output conversion code (C)  ######################################################
+#*******************************************************************************
+#  file: Part_C.sh
+#     This is Part C of the loop, which is responsible for converting the .uan
+#     files (made in Part B by XF) into AraSim-readable .dat files.
 #
-#         1. Converts .uan file from XF into a readable .dat file that Arasim can take in.
+#  Programmer: OSU GENETIS Team
 #
-###############################################################################################
+#  Revision history:
+#     07/19/23  Jason Yao, removed the part that's contained in Part B2. 
+#
+#  Notes:
+#     * vertical ruler at column 80
+#
+#  TODO:
+#
+#*******************************************************************************
 
-# variables
 NPOP=$1
 WorkingDir=$2
 RunName=$3

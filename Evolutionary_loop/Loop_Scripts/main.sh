@@ -176,7 +176,8 @@ if [ $state -eq 1 ]; then
 fi
 
 
-# PART B1
+# PART B (output: .uan files)
+# Part b1
 if [ $state -eq 2 ]; then
   if [ "${Design}" = "PUEO" ]; then       # PUEO
     ./Loop_Parts/Part_B/Part_B_PUEO.sh \
@@ -196,11 +197,10 @@ if [ $state -eq 2 ]; then
   ./SaveState_Prototype.sh $gen $state $RunName $indiv
 fi
   
-
-## Part B2 ##
+# Part b2
 if [ $state -eq 3 ]; then
   if [ "${Design}" = "PUEO" ]; then       # PUEO
-    echo "pueo!"
+    echo "pueo part b2 stuff here!"
   
   elif [ "${Design}" = "HPol" ]; then     # HPol
     echo "Put Hpol Job2 Skeleton Here!"
@@ -215,15 +215,24 @@ if [ $state -eq 3 ]; then
   ./SaveState_Prototype.sh $gen $state $RunName $indiv
 fi
 
-# ## Part C ##
-# if [ $state -eq 4 ]
-# then
-#   indiv=1
-#   ./Loop_Parts/Part_C/Part_C.sh $NPOP $WorkingDir $RunName $gen $indiv
-#   state=5
 
-#   ./SaveState_Prototype.sh $gen $state $RunName $indiv
-# fi
+# PART C
+if [ $state -eq 4 ]; then
+  indiv=1
+  if [ "${Design}" = "PUEO" ]; then
+    echo "pueo part c stuff here!"
+
+  elif [ "${Design}" = "HPol" ]; then
+    echo "hpol part c stuff here!"
+
+  else
+    python3 Loop_Parts/Part_C/Part_C.py $NPOP $WorkingDir $RunName $gen $indiv
+  # ./Loop_Parts/Part_C/Part_C.sh $NPOP $WorkingDir $RunName $gen $indiv
+  fi
+
+  state=5
+  ./SaveState_Prototype.sh $gen $state $RunName $indiv
+fi
 
 # ## Part D1 ##
 # if [ $state -eq 5 ]
