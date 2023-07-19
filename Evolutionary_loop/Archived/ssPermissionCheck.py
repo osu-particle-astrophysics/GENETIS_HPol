@@ -1,7 +1,8 @@
 #*******************************************************************************
-#  file: ssPermissionCheck.py
-#     This script is based on ssPermissionCheck.sh
-#     This is an attempt to slowly migrate to Python.
+#  file: sspermissioncheck.py
+#     Based on ssPermissionCheck.sh, this is an attempt to migrate to Python.
+#     This is currently left inside Archived as a python template
+#     but will be deleted eventually, as we no longer use ssPermissionCheck.sh
 #
 #  Programmer: Jason Yao (yao.966@osu.edu)
 #
@@ -12,42 +13,61 @@
 #     * vertical ruler at column 80
 #
 #  TODO: 
-#     * ssPermissionCheck.sh seems capable of waiting (sleep 1m);
-#       add this in the future.
-#     * ssPermissionCheck.sh sends email with error messages; add this.
+#     * not sure how argument default can be implemented
+#     * ssPermissionCheck.sh sends email with error messages
 #
 #*******************************************************************************
-import argparse as ap
+'''
+This script checks if the user-specified checkpoint (usr_spec) matches what
+is actually stored inside the SaveState.txt files.
+
+Usage: python3 sspermissioncheck.py <run_name> <working_dir> <usr_spec>
+
+For more information on the arguments: 
+  >> python3 sspermissioncheck.py -h
+'''
+
+import argparse
+import time
 
 ### ARGUMENTS ###
-# Use the following command to checkout the arguments in the terminal
-# >> Python3 ssPermissionCheck.py -h
-parser = ap.ArgumentParser()
-parser.add_argument("RunName", help="Run Name")
-parser.add_argument("WorkingDir", help="Working Directory (Evolutionary_Loop)")
-parser.add_argument("usr_spec", help="User-specified checkpoint (aka state)")
-g = parser.parse_args()
-
-
-### MESSAGES ###
-congrats = \
-"Hurray! Checkpoint (line 2) in SaveState.txt matches what you specified"
-err = \
-"SaveState did not update after jobs finished.\
- Permissions were likely not opened after the last run."
+parser = argparse.ArgumentParser()
+parser.add_argument("run_name", help="Run Name")
+parser.add_argument("working_dir",type=str,
+                    help="Working Directory (Evolutionary_Loop)",
+                    default="/Users/Jason/Documents/OSU/GENETIS/GENETIS_HPol/Evolutionary_loop")
+parser.add_argument("usr_spec", help="User-specified checkpoint (aka state)",
+                    type=int)
+args = parser.parse_args()
 
 
 ### READING ###
 # The "f" below stands for "f-strings".
 # This is cleaner than the old way of using %'s for string interpolation.
-file_path = f'{g.WorkingDir}/SaveStates/{g.RunName}_SaveState.txt'
+file_path = f'{args.working_dir}/SaveStates/{args.run_name}_SaveState.txt'
 
-file = open(file_path,"r")    # Open the file (read mode)
-file.readline()               # reading the first line (generation); not needed
-checkpoint = file.readline()  # reading the second line (state)
 
-### MAIN ###
-if (int(checkpoint)==int(g.usr_spec)):
-    print()
-else:
-    print(err);
+def main():
+  with open(file_path) as f:        # note: default open mode is read
+    f.readline()                    # discard the first line (generation)
+    checkpoint = int(f.readline())  # reading the second line (state)
+
+
+  if (checkpoint == args.usr_spec):
+    print('Hurray! Checkpoint (line 2) in SaveState.txt matches '
+          'what you specified')
+
+  else:
+    # The original Bash script has the following; not sure how useful this is.
+    print("2nd attemp...")
+    time.sleep(15)
+
+    if (checkpoint == args.usr_spec):
+      print('Hurray! Checkpoint (line 2) in SaveState.txt matches '
+            'what you specified')
+    else:
+      print('SaveState did not update after jobs finished.'
+            'Permissions were likely not opened after the last run.')
+
+if __name__ == '__main__':
+  main()
