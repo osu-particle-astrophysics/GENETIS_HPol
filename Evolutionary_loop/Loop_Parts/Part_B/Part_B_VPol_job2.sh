@@ -86,12 +86,14 @@ xfdtd $XFProj \
 #Xvnc :5 &  DISPLAY=:5 xfdtd $XFProj --execute-macro-script=$XmacrosDir/simulation_PEC.xmacro || true
 
 cd $WorkingDir/Antenna_Performance_Metric
-for i in `seq $(($gen*$NPOP + $indiv)) $(($gen*$NPOP + $NPOP))`
-do
+for i in `seq $(($gen*$NPOP + $indiv)) $(($gen*$NPOP + $NPOP))`; do
   pop_ind_num=$(($i - $gen*$NPOP))
-  for freq in `seq 1 60`
-  do
-    mv ${i}_${freq}.uan\
-      "$WorkingDir"/Run_Outputs/$RunName/uan_files/${gen}_${pop_ind_num}_${freq}.uan
+  for freq in `seq 1 60`;do
+
+    desti="$WorkingDir/Run_Outputs/$RunName/uan_files/${gen}_uan_files/"
+    nation="${pop_ind_num}/${gen}_${pop_ind_num}_${freq}.uan"
+
+    mv ${i}_${freq}.uan $desti$nation
+      
   done
 done

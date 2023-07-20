@@ -206,7 +206,7 @@ if [ $state -eq 3 ]; then
     echo "Put Hpol Job2 Skeleton Here!"
   
   else                                    # Bicones (symm, asymm, curved, etc.)
-  ./Loop_Parts/Part_B/Part_B_VPol_job2_sh\
+  ./Loop_Parts/Part_B/Part_B_VPol_job2.sh\
     $indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir\
     $XFProj $GeoFactor $num_keys $NSECTIONS
   fi
@@ -226,7 +226,8 @@ if [ $state -eq 4 ]; then
     echo "hpol part c stuff here!"
 
   else
-    python3 Loop_Parts/Part_C/Part_C.py $NPOP $WorkingDir $RunName $gen $indiv
+    python3 Loop_Parts/Part_C/part_c_vpol.py \
+      $NPOP $WorkingDir $RunName $gen $indiv
   # ./Loop_Parts/Part_C/Part_C.sh $NPOP $WorkingDir $RunName $gen $indiv
   fi
 

@@ -90,7 +90,7 @@ def readFile(indiv, freqNum):
   # f'{g.WorkingDir}/Run_Outputs/{g.RunName}/uan_files/{g.gen}_uan_files/{g.gen}_{indiv}_{freqNum}.uan'
   uanName = \
   f'{g.WorkingDir}/Run_Outputs/{g.RunName}/uan_files/{g.gen}_{indiv}_{freqNum}.uan'
-  f = open(uanName, "r")
+  f = open(uanName, "r") 
 
   for a in range(18):
     f.readline()
