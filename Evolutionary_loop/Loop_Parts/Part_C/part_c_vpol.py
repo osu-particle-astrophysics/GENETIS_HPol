@@ -8,6 +8,8 @@
 #
 #  Notes:
 #     * vertical ruler at column 80
+#     * for reference of the structure of the uan files, see sample.uan;
+#       more explanation below inside main() as comments
 #
 #  TODO:
 #     * freq_list hardcoded (see freqlist in Part_B_VPol_job1.sh, line 80); 
@@ -52,7 +54,7 @@ num_cols = 37 # (73 rows per group, 37 groups in total)
 
 # 1st column of the .uan file is the polar (zenith) angle: 0 to 180 deg.
 # 2nd column is the azimuthal angle: 0 to 360 deg
-# Format of the .uan files (as compared to that of AraSim, check out line 77):
+# Format of the .uan files:
 #   keep the polar angle (first column) the same, increase the azimuthal (2nd
 #   column) angles; then move on to the next polar angle, rinse and repeat.
 
@@ -71,10 +73,10 @@ freq_list = [ 83.33, 100.00, 116.67, 133.33, 150.00, 166.67, 183.34, 200.00,
 ''' Reads the .uan file and converts to a matrix "mat" '''
 def read_file(indiv:int, freq_idx:int):
 
-    # uan_files have subdirectories labeled by generations, eg. 0_uan_files
-    # Each generation subdirectories then have subsubdirectories labeled by
-    # the index of individuals (1 to num_pop where num_pop is indiv. per gen.)
-    # inside these subsubdirectories, there are 60 .uan files:
+    # uan_files/ have subdirectories labeled by generations, eg. 0_uan_files.
+    # Each generation-subdirectories then have subsubdirectories labeled by
+    # the index of individuals (1 to num_pop where num_pop is indiv. per gen.).
+    # Inside these subsubdirectories, there are 60 .uan files:
     #   one .uan file for each frequency in the list freq_list above.
     uan_name = (f'{args.working_dir}/Run_Outputs/'
                 f'{args.run_name}/uan_files/{args.gen}_uan_files/'
@@ -90,14 +92,14 @@ def read_file(indiv:int, freq_idx:int):
         for i in range(num_cols):
             for j in range(num_rows):
 
-                line = f.readline()
-                line_list = line.split(" ")
+                line = f.readline()      # .split(" ") splits by ONE whitespace
+                line_list = line.split() # .split() splits all (including tabs)
                 linear_gain = "%.2f" % 10**(float(line_list[2])/10)
 
-                line_final = (line_list[0]                 + "\t" + "  " + 
-                              line_list[1]                 + "\t" + "  " +
-                              "%.2f" % float(line_list[2]) + "\t" +
-                              str(linear_gain)             + "\t" +
+                line_final = (line_list[0]                 + "\t\t\t" +
+                              line_list[1]                 + "\t\t\t" +
+                              "%.2f" % float(line_list[2]) + "\t\t "  +
+                              str(linear_gain)             + "\t\t"   +
                               "%.2f" % float(line_list[5]) + "\n")
             
                 mat[j][i] = line_final
@@ -106,36 +108,37 @@ def read_file(indiv:int, freq_idx:int):
 
 
 def main():
-  for antenna in range(1, args.num_pop+1):
+# For each individual (antenna), open a new file: evol_antenna_model_?.dat
+# where ? is a number from 1 to num_pop (number of individuals per gen.)
+    for antenna in range(1, args.num_pop+1):
 
-    # For each individual (antenna), open a new file: evol_antenna_model_?.dat
-    # where ? is a number from 1 to num_pop (number of individuals per gen.)
-    with open(f'{args.working_dir}/Antenna_Performance_Metric/'
-              f'evol_antenna_model_{antenna}.dat',"w+") as dat_file:
-      
-        # change file permission (same as chmod a+rwx in bash)
-        os.chmod(f'{args.working_dir}/Antenna_Performance_Metric/'
-                 f'evol_antenna_model_{antenna}.dat',0o777)
+        # output file name
+        of_name=(f'{args.working_dir}/Antenna_Performance_Metric/'
+                 f'evol_antenna_model_{antenna}.dat')
+        with open(of_name,"w+") as ofstream:
+            os.chmod(of_name,0o777) # change file permission (ie. chmod a+rwx)
 
-# For each individual, combine all 60 frequency responses in a single .dat file.
-# There are 60 frequencies in freq_list and correspondingly 60 .uan files.
-# (insde .../uan_files/0_uan_files/1/, as an example, there are 60 .uan files;
-# each of these contain the frequency response of generation-zero-antenna-one.
-# by frequency response we refer to the gain of the individual at some
-# combination of (polar,azimuthal) angle pair.
-        for frq_idx,freq in enumerate(freq_list):
-            dat_file.write(f'freq: {freq} MHz\n')
-            dat_file.write( 'SWR: 1.965000\n')
-            dat_file.write( 'Polar     Azimuthal     Gain(dB)     '
-                            'Gain     Phase(deg)\n')
+# In a .uan file, each row starts with a pair of (polar, azimuthal) angles
+# and records the gain of the antenna at that angle at some specified frequency.
+# eg. "0_uan_files/27/0_27_60.uan" would (with 37*73 rows) document the gains
+# of the 0th-generation-antenna-27 at 1066.70 Mhz (the 60th freq. in freq_list)
 
-            mat = read_file(antenna, frq_idx+1)
+# There are 60 frequencies in freq_list and correspondingly 60 .uan files for
+# each individual. Combine all 60 .uan into a single .dat file for AraSim.
+# (eg. inside uan_files/0_uan_files/1/, there are 60 .uan files for antenna 1)
+            for frq_idx,freq in enumerate(freq_list):
+                ofstream.write(f'freq: {freq} MHz\n')
+                ofstream.write( 'SWR: 1.965000\n')
+                ofstream.write( 'Polar     Azimuthal     Gain(dB)     '
+                                'Gain     Phase(deg)\n')
+
+                mat = read_file(antenna, frq_idx+1)
 
 # For each polar angle group, discard the 360-degree azimuthal angle (360 == 0)
 # That is, for each of the 37 groups, discard the last row, as done below
-            for azi in range(num_rows-1):
-                for pol in range(num_cols):
-                    dat_file.write(mat[azi][pol])
+                for azi in range(num_rows-1):
+                    for pol in range(num_cols):
+                        ofstream.write(mat[azi][pol])
 # format for AraSim (for each of the 60 frequencies)
 # for the same azimuthal angle (2nd column), increase the polar angle by 5 deg.
 # then move on to the next azimuthal angle, rinse and repeat.
