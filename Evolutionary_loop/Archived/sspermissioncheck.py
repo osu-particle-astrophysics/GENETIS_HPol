@@ -31,10 +31,10 @@ import argparse
 import time
 
 
-def main(file_path:str):
+def main(file_path):
     with open(file_path) as f:          # note: default open mode is read
         f.readline()                    # discard the first line (generation)
-        checkpoint = int(f.readline())  # reading the second line (state)
+        checkpoint = int(f.readline())  # read the second line (state)
 
 
     if (checkpoint == args.usr_spec):
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     # nargs='?' makes arg optional
     parser.add_argument("run_name", help="Run Name", type=str,
                         default="test_run", nargs='?')
-    parser.add_argument("working_dir",type=Path,
+    parser.add_argument("working_dir", type=Path,
                         help="Working Directory (Evolutionary_Loop)",
                         default="/Users/Jason/Documents/OSU/GENETIS/GENETIS_HPol/"
                         "Evolutionary_loop", nargs='?')
@@ -73,7 +73,7 @@ if __name__ == '__main__':
 
     # The "f" below stands for "f-strings".
     # This is cleaner than the old way of using %'s for string interpolation.
-    file_path = args.working_dir/'SaveStates'/f'{args.run_name}_SaveState.txt'
+    file_path = args.working_dir/ 'SaveStates' /f'{args.run_name}_SaveState.txt'
     # Because working_dir's type is set to pathlib.Path, 
     # there is no need to put it inside fstring interpolation braces.
     # (Github PR #3 conversation, link above)
