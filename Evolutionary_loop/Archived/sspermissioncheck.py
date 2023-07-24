@@ -13,7 +13,6 @@
 #     * vertical ruler at column 80
 #
 #  TODO: 
-#     * not sure how argument default can be implemented
 #     * ssPermissionCheck.sh sends email with error messages
 #
 #*******************************************************************************
@@ -32,32 +31,7 @@ import argparse
 import time
 
 
-### ARGUMENTS ###
-parser = argparse.ArgumentParser()
-
-parser.add_argument("run_name", help="Run Name", type=str,
-                    default="test_run",nargs='?') # nargs='?' makes arg optional
-parser.add_argument("working_dir",type=Path,
-                    help="Working Directory (Evolutionary_Loop)",
-                    default="/Users/Jason/Documents/OSU/GENETIS/GENETIS_HPol/"
-                    "Evolutionary_loop",nargs='?')
-parser.add_argument("usr_spec", help="User-specified checkpoint (aka state)",
-                    type=int, default="4",nargs='?')
-# For more info on nargs and Path, see Ezio's comment at
-# https://github.com/osu-particle-astrophysics/GENETIS_HPol/pull/3#discussion_r1268767075
-args = parser.parse_args()
-
-
-### READING ###
-# The "f" below stands for "f-strings".
-# This is cleaner than the old way of using %'s for string interpolation.
-file_path = args.working_dir/'SaveStates'/f'{args.run_name}_SaveState.txt'
-# Because working_dir's type is set to pathlib.Path, 
-# there is no need to put it inside fstring interpolation braces.
-# (Github PR #3 conversation, link above)
-
-
-def main():
+def main(file_path:str):
     with open(file_path) as f:          # note: default open mode is read
         f.readline()                    # discard the first line (generation)
         checkpoint = int(f.readline())  # reading the second line (state)
@@ -79,6 +53,30 @@ def main():
             print('SaveState did not update after jobs finished.'
                   'Permissions were likely not opened after the last run.')
 
+
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+
+    # nargs='?' makes arg optional
+    parser.add_argument("run_name", help="Run Name", type=str,
+                        default="test_run", nargs='?')
+    parser.add_argument("working_dir",type=Path,
+                        help="Working Directory (Evolutionary_Loop)",
+                        default="/Users/Jason/Documents/OSU/GENETIS/GENETIS_HPol/"
+                        "Evolutionary_loop", nargs='?')
+    parser.add_argument("usr_spec", help="User-specified checkpoint (aka state)",
+                        type=int, default="4", nargs='?')
+# For more info on nargs and Path, see Ezio's comment at
+# https://github.com/osu-particle-astrophysics/GENETIS_HPol/pull/3#discussion_r1268767075
+    args = parser.parse_args()
+
+
+    # The "f" below stands for "f-strings".
+    # This is cleaner than the old way of using %'s for string interpolation.
+    file_path = args.working_dir/'SaveStates'/f'{args.run_name}_SaveState.txt'
+    # Because working_dir's type is set to pathlib.Path, 
+    # there is no need to put it inside fstring interpolation braces.
+    # (Github PR #3 conversation, link above)
+
+    main(file_path)
 
