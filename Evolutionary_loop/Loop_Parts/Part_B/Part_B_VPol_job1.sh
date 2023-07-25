@@ -1,21 +1,22 @@
 #*******************************************************************************
 #  Original file name: Part_B_GPU_job1.sh
-#	 		This is Part B1 of the loop, which prepares and runs simulation_PEC.xmacro
-#  		with information such as the parameters of the antennas.
+#     This is Part B1 of the loop, which prepares and runs simulation_PEC.xmacro
+#     with information such as the parameters of the antennas.
 #
 #  Programmer: OSU GENETIS Team
 #
 #  Revision history:
 #     07/11/23  Jason Yao, third pass over the loop for training purposes
+#     07/14/23  Jason Yao, merging Part_B_Curved_Constant_Quadratic_1.sh into
+#               this file as a comment (see "CAT SECTION", line 147)
 #
 #  Notes:
-# 		* vertical ruler at column 80
+#     * vertical ruler at column 80
 #
 #  TODO:
 #
 #*******************************************************************************
 
-# varaibles
 indiv=$1
 gen=$2
 NPOP=$3
@@ -31,8 +32,8 @@ nsections=${11}
 # If we're in the 0th generation, we need to make the directory for the XF jobs
 if [ ${gen} -eq 0 ]
 then
-	mkdir -m775 $WorkingDir/Run_Outputs/$RunName/XF_Outputs
-	mkdir -m775 $WorkingDir/Run_Outputs/$RunName/XF_Errors
+  mkdir -m775 $WorkingDir/Run_Outputs/$RunName/XF_Outputs
+  mkdir -m775 $WorkingDir/Run_Outputs/$RunName/XF_Errors
 fi
 
 # We need to check if directories we're going to write to already exist
@@ -41,36 +42,36 @@ fi
 
 for i in `seq 1 $NPOP`
 do
-	# first, declare the number of the individual we are checking
-	individual_number=$(($gen*$NPOP + $i))
+  # first, declare the number of the individual we are checking
+  individual_number=$(($gen*$NPOP + $i))
 
-	# next, write the potential directories corresponding to that individual
-	if [ $individual_number -lt 10 ]
-	then
-		indiv_dir_parent=$XFProj/Simulations/00000$individual_number/
-	elif [[ $individual_number -ge 10 && $individual_number -lt 100 ]]
-	then
-		indiv_dir_parent=$XFProj/Simulations/0000$individual_number/
-	elif [[ $individual_number -ge 100 && $individual_number -lt 1000 ]]
-	then
-		indiv_dir_parent=$XFProj/Simulations/000$individual_number/
-	elif [ $individual_number -ge 1000 ]
-	then
-		indiv_dir_parent=$XFProj/Simulations/00$individual_number/
-	fi
+  # next, write the potential directories corresponding to that individual
+  if [ $individual_number -lt 10 ]
+  then
+    indiv_dir_parent=$XFProj/Simulations/00000$individual_number/
+  elif [[ $individual_number -ge 10 && $individual_number -lt 100 ]]
+  then
+    indiv_dir_parent=$XFProj/Simulations/0000$individual_number/
+  elif [[ $individual_number -ge 100 && $individual_number -lt 1000 ]]
+  then
+    indiv_dir_parent=$XFProj/Simulations/000$individual_number/
+  elif [ $individual_number -ge 1000 ]
+  then
+    indiv_dir_parent=$XFProj/Simulations/00$individual_number/
+  fi
 
-	# now delete the directory if it exists
-	if [ -d $indiv_dir_parent ]
-	then
-		rm -rf $indiv_dir_parent
-	fi
+  # now delete the directory if it exists
+  if [ -d $indiv_dir_parent ]
+  then
+    rm -rf $indiv_dir_parent
+  fi
 done
 
 # The number of the next simulation directory is held in a hidden file in the
 # Simulations directory. The file is named .nextSimulationNumber
 if [[ $gen -ne 0 ]]
 then
-	echo $(($gen*$NPOP + 1)) > $XFProj/Simulations/.nextSimulationNumber
+  echo $(($gen*$NPOP + 1)) > $XFProj/Simulations/.nextSimulationNumber
 fi
 
 chmod -R 777 $XmacrosDir
@@ -84,8 +85,8 @@ freqlist=\
 73335 75001 76668 78335 80001 81668 83335 85002 86668 88335 90002 91668 93335 
 95002 96668 98335 100000 101670 103340 105000 106670"
 
-# get rid of the simulation_PEC.xmacro that already exists
-rm -f simulation_PEC.xmacro
+# empty the file without changing the permission
+> simulation_PEC.xmacro
 
 echo "var NPOP = $NPOP;" > simulation_PEC.xmacro
 echo "var indiv = $indiv;" >> simulation_PEC.xmacro
@@ -100,61 +101,69 @@ echo "var freq " | tr "\n" "=" >> simulation_PEC.xmacro
 # here's how we change our frequencies and put them in simulation_PEC.xmacro
 for i in $freqlist; # iterating through all values in our list
 do
-	if [ $i -eq 8333 ] # we need to start with a bracket
-	then
-		echo " " | tr "\n" "[" >> simulation_PEC.xmacro
-		# Whenever we append to a file, it adds a newline character at the end.
-		# The tr command replaces the newline (\n) with a bracket.
-		# (There's a space at the start; that will separate the = from the list by a
-		# space.)
-	fi
+  if [ $i -eq 8333 ] # we need to start with a bracket
+  then
+    echo " " | tr "\n" "[" >> simulation_PEC.xmacro
+    # Whenever we append to a file, it adds a newline character at the end.
+    # The tr command replaces the newline (\n) with a bracket.
+    # (There's a space at the start; that will separate the = from the list by a
+    # space.)
+  fi
 
-	# Now we're ready to start appending our new frequencies
-	# We start by changing our frequencies by the scale factor;
-	# we'll call this variable k
-	k=$(($GeoFactor*$i))
-	# Now we'll append our frequencies.The frequencies we're appending are divided
-	# by 100, since the original list was scaled up by 100. IT'S IMPORTANT TO DO
-	# IT THIS WAY. we can't just set k=$((scale*$i/100)) because of how bash
-	# handles float operations. Instead, we need to echo it with the | bc command
-	# to allow float quotients
+  # Now we're ready to start appending our new frequencies
+  # We start by changing our frequencies by the scale factor;
+  # we'll call this variable k
+  k=$(($GeoFactor*$i))
+  # Now we'll append our frequencies.The frequencies we're appending are divided
+  # by 100, since the original list was scaled up by 100. IT'S IMPORTANT TO DO
+  # IT THIS WAY. we can't just set k=$((scale*$i/100)) because of how bash
+  # handles float operations. Instead, we need to echo it with the | bc command
+  # to allow float quotients
 
-	if [ $i -ne 106670 ]
-	then
-		echo "scale=2 ; $k/100 " | bc | tr "\n" "," >> simulation_PEC.xmacro
-		echo "" | tr "\n" " " >> simulation_PEC.xmacro
-		# The above gives spaces between commas and numbers.
-		# We have to be careful! We want commas between numbers,
-		# but not after our last number, so we replace \n with comma above,
-		# but with "]" below
-	else
-		echo "scale=2 ; $k/100 " | bc | tr "\n" "]" >> simulation_PEC.xmacro
-		echo " " >> simulation_PEC.xmacro
-	fi
+  if [ $i -ne 106670 ]
+  then
+    echo "scale=2 ; $k/100 " | bc | tr "\n" "," >> simulation_PEC.xmacro
+    echo "" | tr "\n" " " >> simulation_PEC.xmacro
+    # The above gives spaces between commas and numbers.
+    # We have to be careful! We want commas between numbers,
+    # but not after our last number, so we replace \n with comma above,
+    # but with "]" below
+  else
+    echo "scale=2 ; $k/100 " | bc | tr "\n" "]" >> simulation_PEC.xmacro
+    echo " " >> simulation_PEC.xmacro
+  fi
 done
 
 
 if [[ $gen -eq 0 && $indiv -eq 1 ]]
 then
-	echo "if(indiv==1){" >> simulation_PEC.xmacro
-	echo \
-		"App.saveCurrentProjectAs(\"$WorkingDir/Run_Outputs/$RunName/$RunName\");"\
-		>> simulation_PEC.xmacro
-	echo "}" >> simulation_PEC.xmacro
+  echo "if(indiv==1){" >> simulation_PEC.xmacro
+  echo \
+    "App.saveCurrentProjectAs(\"$WorkingDir/Run_Outputs/$RunName/$RunName\");"\
+    >> simulation_PEC.xmacro
+  echo "}" >> simulation_PEC.xmacro
 fi
 
+## CAT SECTION ##
+# If we want to run Part_B_Curved_Constant_Quadratic_1.sh (now deleted),
+# uncomment the following two cat commands instead.
+# cat simulationPECmacroskeleton_curved_constant_quadratic.txt \
+#     >> simulation_PEC.xmacro
+# cat simulationPECmacroskeleton2_curved_constant_quadratic.txt \
+#     >> simulation_PEC.xmacro
 if [ $curved -eq 0 ]; then
-	if [ $nsections -eq 1 ]; then # straight side symmetric bicone
-		cat simulationPECmacroskeleton_GPU.txt >> simulation_PEC.xmacro
-		cat simulationPECmacroskeleton2_GPU.txt >> simulation_PEC.xmacro 
-	else													# straight side asymmetric bicone
-		cat simulationPECmacroskeleton_Sep.txt >> simulation_PEC.xmacro
-		cat simulationPECmacroskeleton2_Sep.txt >> simulation_PEC.xmacro
-	fi
-else 														# curved bicone
-	cat simulationPECmacroskeleton_curved.txt >> simulation_PEC.xmacro
-	cat simulationPECmacroskeleton2_curved.txt >> simulation_PEC.xmacro
+  if [ $nsections -eq 1 ]; then # straight side symmetric bicone
+    cat simulationPECmacroskeleton_GPU.txt >> simulation_PEC.xmacro
+    cat simulationPECmacroskeleton2_GPU.txt >> simulation_PEC.xmacro 
+  else                          # straight side asymmetric bicone
+    cat simulationPECmacroskeleton_Sep.txt >> simulation_PEC.xmacro
+    cat simulationPECmacroskeleton2_Sep.txt >> simulation_PEC.xmacro
+  fi
+else                            # curved bicone
+  cat simulationPECmacroskeleton_curved.txt >> simulation_PEC.xmacro
+  cat simulationPECmacroskeleton2_curved.txt >> simulation_PEC.xmacro
 fi
+## END OF CAT SECTION ##
 
 ## We need to change the gridsize by the same factor as the antenna size
 ## The gridsize in the macro skeleton is currently set to 0.1
@@ -179,8 +188,8 @@ sed -i "" "s+fileDirectory+${WorkingDir}/Generation_Data+" simulation_PEC.xmacro
 
 if [[ $gen -ne 0 && $i -eq 1 ]]
 then
-	cd $XFProj
-	rm -rf Simulations
+  cd $XFProj
+  rm -rf Simulations
 fi
 
 echo
@@ -195,8 +204,8 @@ echo '3. Close XF'
 module load xfdtd/7.9.2.2
 #if [ $gen -ne 0] 
 #then
-#	Xvnc :5 &  DISPLAY=:5 xfdtd $XFProj \
-#  --execute-macro-script=$XmacrosDir/simulation_PEC.xmacro || true
+# Xvnc :5 &  DISPLAY=:5 xfdtd $XFProj \
+#   --execute-macro-script=$XmacrosDir/simulation_PEC.xmacro || true
 #else
 #mkdir -m775 ${gen}_Antenna_Images
 xfdtd $XFProj --execute-macro-script=$XmacrosDir/simulation_PEC.xmacro || true
@@ -209,9 +218,9 @@ chmod -R 775 $XmacrosDir
 # determine how many jobs in the job array will run simultaeously
 if [ $NPOP -lt $num_keys ]
 then
-	batch_size=$NPOP
+  batch_size=$NPOP
 else
-	batch_size=$num_keys
+  batch_size=$num_keys
 fi
 
 # We'll make the run name the job name so as to use it with SBATCH commands.

@@ -1,0 +1,3 @@
+[submodule "Evolutionary_loop/Shared-Code"]
+	path = Evolutionary_loop/Shared-Code
+	url = https://github.com/osu-particle-astrophysics/Shared-Code.git
