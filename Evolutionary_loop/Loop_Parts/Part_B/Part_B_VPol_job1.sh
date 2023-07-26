@@ -187,12 +187,6 @@ sed -i "" "s+fileDirectory+${WorkingDir}/Generation_Data+" simulation_PEC.xmacro
 # Else just leave it
 
 
-if [[ $gen -ne 0 && $i -eq 1 ]]
-then
-  cd $XFProj
-  rm -rf Simulations
-fi
-
 echo
 echo
 echo 'Opening XF user interface...'
