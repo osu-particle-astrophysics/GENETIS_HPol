@@ -78,6 +78,7 @@ chmod -R 777 $XmacrosDir
 cd $XmacrosDir
 
 # frequencies are scaled up by 100 to avoid float operation errors in bash
+# note: this should match the list in part_c_vpol.py
 freqlist=\
 "8333 10000 11667 13333 15000 16667 18334 20000 21667 23334 25000 26667 28334 
 30000 31667 33334 35000 36667 38334 40001 41667 43334 45001 46667 48334 50001 
