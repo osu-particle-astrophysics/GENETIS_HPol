@@ -78,7 +78,7 @@ fi
 
 # use | as delimiter for sed sice WorkingDir contains /
 # (any symbol following "s" can be used as the delimiter)
-sed -i "s|fileDirectory|${WorkingDir}|" output.xmacro
+sed -i "" "s|fileDirectory|${WorkingDir}|" output.xmacro
 
 module load xfdtd/7.9.2.2
 xfdtd $XFProj \
@@ -93,7 +93,8 @@ for i in `seq $(($gen*$NPOP + $indiv)) $(($gen*$NPOP + $NPOP))`; do
     desti="$WorkingDir/Run_Outputs/$RunName/uan_files/${gen}_uan_files/"
     nation="${pop_ind_num}/${gen}_${pop_ind_num}_${freq}.uan"
 
-    mv ${i}_${freq}.uan $desti$nation
+    mkdir -p $desti${pop_ind_num}
+    mv ${gen}_${pop_ind_num}_${freq}.uan $desti$nation
       
   done
 done
