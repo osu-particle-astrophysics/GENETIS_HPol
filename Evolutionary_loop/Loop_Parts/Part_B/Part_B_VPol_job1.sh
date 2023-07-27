@@ -29,12 +29,6 @@ num_keys=$9
 curved=${10}
 nsections=${11}
 
-# If we're in the 0th generation, we need to make the directory for the XF jobs
-if [ ${gen} -eq 0 ]
-then
-  mkdir -m775 $WorkingDir/Run_Outputs/$RunName/XF_Outputs
-  mkdir -m775 $WorkingDir/Run_Outputs/$RunName/XF_Errors
-fi
 
 # We need to check if directories we're going to write to already exist
 # (would occur if we go back to rerun the same generation)
