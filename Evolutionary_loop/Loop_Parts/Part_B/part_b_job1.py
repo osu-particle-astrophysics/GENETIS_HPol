@@ -12,11 +12,6 @@
 #  TODO:
 #       1. check if subprocess runs xfdtd and submits the job-script properly.
 #          (XF SECTION)
-#       2. sort out "grid_size" sed command; currently the script prints out a
-#          wall of error messages when sed couldn't find a word to replace,
-#          whereas if we use Bash scripts it just quitely ignore the fact that 
-#          there isn't a word to replace.
-#       3. find something easier than sed -i "" "s|...|...|" <file>
 #
 #*******************************************************************************
 '''
@@ -32,6 +27,7 @@ For more information on the arguments:
   >> python3 part_b_job1.py -h
 '''
 
+
 from pathlib import Path
 import argparse
 import os
@@ -42,8 +38,9 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
          geo_factor, num_keys, curved, nsections):
 
 ## DIRECTORY CHECK    
-# Check the existence of directories in case we re-run the same generation.
-# These directories are under Simulatios/, from (gen*NPOP+1) to (gen*NPOP+10)
+
+    # In case we re-run the same generation, check the existence of
+    # subdirectories under Simulations located inside $XFProj.
 
 # DELETE ME DELETE ME DELETE ME DELETE ME DELETE ME DELETE ME 
     os.mkdir(xf_proj) # Note: XFdtd makes these; I am faking
@@ -84,6 +81,8 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 
 
 ## INITIALIZE XMACRO
+
+    # list of 60 frequencies used in XFdtd VPol simulations.
     freq_list = [83.33, 100.00, 116.67, 133.33, 150.00, 166.67, 183.34, 200.00,
         216.67, 233.34, 250.00, 266.67, 283.34, 300.00, 316.67, 333.34, 350.00,
         366.67, 383.34, 400.01, 416.67, 433.34, 450.01, 466.67, 483.34, 500.01,
@@ -117,6 +116,7 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 
 
 ## CAT SECTION
+
     # The rest of simulation_PEC.xmacro is built from two skeleton text files.
     if curved == 0:                            
         if nsections == 1:                     # straight-side symmetric bicone

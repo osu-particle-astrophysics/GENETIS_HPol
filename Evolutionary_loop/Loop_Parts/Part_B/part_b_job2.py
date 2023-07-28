@@ -17,15 +17,16 @@
 This is Part B2 of the loop, which prepares and runs output.xmacro with the
 relevant parameters (antenna type, population number, grid size, etc.)
 Output.xmacro writes the XFdtd simulation data to output files (.uan)
-The xmacro is mainly made of two xmacro-skeleton text files (see CAT SECTION)
+The xmacro is mainly made of a xmacro-skeleton text file (see CAT SECTION).
 
-Usage: python3 part_b_job1.py <indiv> <gen> <npop> <working_dir> ... <nsections>
+Usage: python3 part_b_job2.py <indiv> <gen> <npop> <working_dir> ... <nsections>
 
 Outout: XmacrosDir/simulation_PEC.xmacro
 
 For more information on the arguments: 
-  >> python3 part_b_job1.py -h
+  >> python3 part_b_job2.py -h
 '''
+
 
 import argparse
 import os
@@ -48,19 +49,22 @@ def count_flags(where=Path):
 
 def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj, 
          geo_factor, num_keys, curved, nsections):
-
 ## FLAG COUNT    
+
     # Count the number of flags that indicate succesful simulations
     flagpole = f'{working_dir}/Run_Outputs/{run_name}/GPUFlags'
     num_flags = count_flags(flagpole)
-
+    # Sleep for a bit before counting again. Count until all jobs are finished.
     while num_flags < npop:
-        sleep(20)
+        sleep(60)
         num_flags = count_flags(flagpole)
     
-    # once all XF simulations for the same generation are done, remove all flags
+    # Upon XF job completion for all individuals, remove all flags (to prepare
+    # the directory for counting again for the next generation)
     sp.run(f'rm {flagpole}/*', shell=True) # shell=True for wildcard ("*")
 
+
+## INITIALIZE XMACRO
 
     outmacro = xmacros_dir / 'output.xmacro'
     # If output.xmacro exists, empty it (without changing permission)
@@ -74,7 +78,9 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
     os.umask(0)                # umask(0) needed to ensure chmod works properly.
     os.chmod(outmacro, 0o775 ) # This is the same as Bash chmod 775 ${sim_path}.
 
+
 ## CAT SECTION
+
     # The rest of output.xmacro is built from two skeleton text files.
     if nsections == 1:
         p1 = sp.run(f'cat {xmacros_dir}/shortened_outputmacroskeleton.txt '

@@ -11,7 +11,7 @@
 #     07/13/23  Jason Yao, third pass over the loop for training purposes
 #
 #  Notes:
-#     * vertical ruler at column 80
+#     * We probably don't need this script ever since we use job arrays.
 #     * This file differes from Part_B_GPU_job2_asym_array.sh in the way it
 #       counts GPU flag files (from line 52 to line 122)
 #  TODO:
