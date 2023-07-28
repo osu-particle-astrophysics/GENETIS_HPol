@@ -10,13 +10,13 @@
 #  Notes:
 #       * vertical ruler at column 80
 #  TODO:
-#       * check if subprocess runs xfdtd and submits the job-script properly.
-#         (XF SECTION)
-#       * sort out "grid_size" sed command; currently the script prints out a
-#         wall of error messages when sed couldn't find a word to replace,
-#         whereas if we use Bash scripts it just quitely ignore the fact that 
-#         there isn't a word to replace.
-#       * find something easier than sed -i "" "s|...|...|" <file>
+#       1. check if subprocess runs xfdtd and submits the job-script properly.
+#          (XF SECTION)
+#       2. sort out "grid_size" sed command; currently the script prints out a
+#          wall of error messages when sed couldn't find a word to replace,
+#          whereas if we use Bash scripts it just quitely ignore the fact that 
+#          there isn't a word to replace.
+#       3. find something easier than sed -i "" "s|...|...|" <file>
 #
 #*******************************************************************************
 '''
@@ -150,30 +150,47 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
     xmacro_skeleton_default_gridsize = 0.1
     grid_size = "%.6f" % (xmacro_skeleton_default_gridsize/geo_factor)
 
-    sp.run(f'sed -i "" "s/var gridSize = 0.1;/var gridSize = {grid_size};/ '
-           'simulation_PEC.xmacro')
+    sp.run(f'sed -i "" "s/var gridSize = 0.1;/var gridSize = {grid_size};/" '
+           f'{sim_path}', shell=True)
 
 
 ## XF SECTION
 
-    # sp.run(f'xfdtd {xf_proj} --execute-macro-script={xmacros_dir}/'
-    #        'simulation_PEC.xmacro || true') # load the xmacro
-    # os.chmod(f'xmacros_dir', 0o777)
+    os.chmod(xmacros_dir, 0o775)
+    # load simulation_PEC.xmacro
+    p0 = sp.run(f'module load xfdtd/7.9.2.2',
+                shell=True, capture_output=True)
 
-    # # Determine the number of simultaneously running jobs in the SLURM job-array
-    # if npop <= num_keys:
-    #     batch_size = npop       # quite unlikely, since we only have 5 keys
-    # else:
-    #     batch_size = num_keys
+    if p0.returncode: # print out the error message
+        print('\nError at part_b_job1.py: XF SECTION while loading module\n'+
+              p0.stderr.decode())
 
-    # # Submit a job-array to OSC; each job in the array is responsible for
-    # # simulating one antenna in the current generation. Make the SLURM job-name
-    # # the same as run_name so that we can use SLURM variables.
-    # sp.run(f'sbatch --array=1{npop}%{batch_size} '
-    #        f'--job-name={run_name} '
-    #        f'--export=ALL,WorkingDir={working_dir},RunName={run_name}'
-    #        f'XFProj={xf_proj},NPOP={npop},gen={gen} '
-    #        f'{working_dir}/Batch_Jobs/GPU_XF_Job.sh') 
+    p1 = sp.run(f'xfdtd {xf_proj} --execute-macro-script={sim_path}', 
+                shell=True, capture_output=True) 
+
+    if p1.returncode: # print out the error message
+        print('\nError at part_b_job1.py XF SECTION while loading xmacro\n'+
+              p1.stderr.decode())
+
+    # Determine the number of simultaneously running jobs in the SLURM job-array
+    if npop <= num_keys:
+        batch_size = npop       # quite unlikely, since we only have 5 keys
+    else:
+        batch_size = num_keys
+
+    # Submit a job-array to OSC; each job in the array is responsible for
+    # simulating one antenna in the current generation. Make the SLURM job-name
+    # the same as run_name so that we can use SLURM variables.
+    p2 = sp.run(f'sbatch --array=1{npop}%{batch_size} '
+                f'--job-name={run_name} '
+                f'--export=ALL,WorkingDir={working_dir},RunName={run_name}'
+                f'XFProj={xf_proj},NPOP={npop},gen={gen} '
+                f'{working_dir}/Batch_Jobs/GPU_XF_Job.sh',
+                shell=True, capture_output=True) 
+
+    if p2.returncode: # print out the error message
+        print('\nError at part_b_job1.py XF SECTION during job submission\n'+
+              p2.stderr.decode())
 
 ### END OF MAIN
 
