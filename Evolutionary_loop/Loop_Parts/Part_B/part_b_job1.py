@@ -93,8 +93,8 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
         966.68, 983.35, 1000.00, 1016.70, 1033.40, 1050.00, 1066.70] 
 
     sim_path = xmacros_dir/ 'simulation_PEC.xmacro'
-    if os.path.exists(sim_path):
-        os.remove(sim_path)
+    # If simulation.xmacro exists, empty it (without changing permission)
+    sp.run(f'[ -f {sim_path} ] && > {sim_path}', shell=True)
     
     # Begin writing some run-specific variables to the xmacro
     with open (sim_path, "w+") as f:
@@ -105,15 +105,15 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
         f.write(', '.join( "%.2f"%(freq*geo_factor) for freq in freq_list) )
         f.write('] \n')
     
-    os.umask(0)                # umask(0) needed to ensure chmod works properly.
-    os.chmod(sim_path, 0o775 ) # This is the same as Bash chmod 775 ${sim_path}.
-
     if (gen == 0 and indiv == 1):
         with open (sim_path,"a") as f:
             f.write('if(indiv==1){\n'
                     f'App.saveCurrentProjectAs(\"{working_dir}/Run_Outputs/'
                     f'{run_name}/{run_name}\");\n'
                     '}\n')
+
+    os.umask(0)                # umask(0) needed to ensure chmod works properly.
+    os.chmod(sim_path, 0o775 ) # This is the same as Bash chmod 775 ${sim_path}.
 
 
 ## CAT SECTION
@@ -141,10 +141,10 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 
     # sed swaps out the hardcoded word "fileDirectory" inside the xmacro.
     # option "i" of sed: swap "in-place" instead of outputting to terminal.
-    sp.run(f'sed -i "" "s|fileDirectory|{working_dir}/Generation_Data|" '
-           f'{sim_path}', shell=True)
     # The empty quotes after sed -i are for MacOS compatibility:
     # https://stackoverflow.com/questions/12272065/sed-undefined-label-on-macos
+    sp.run(f'sed -i "" "s|fileDirectory|{working_dir}/Generation_Data|" '
+           f'{sim_path}', shell=True)
 
     # Change gridsize by the same factor used for changing antenna size.
     xmacro_skeleton_default_gridsize = 0.1
@@ -157,17 +157,15 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 ## XF SECTION
 
     os.chmod(xmacros_dir, 0o775)
-    # load simulation_PEC.xmacro
-    p0 = sp.run(f'module load xfdtd/7.9.2.2',
-                shell=True, capture_output=True)
-
+    # load XFdtd on OSC
+    p0 = sp.run(f'module load xfdtd/7.9.2.2', shell=True, capture_output=True)
     if p0.returncode: # print out the error message
         print('\nError at part_b_job1.py: XF SECTION while loading module\n'+
               p0.stderr.decode())
 
+    # load simulation_PEC.xmacro
     p1 = sp.run(f'xfdtd {xf_proj} --execute-macro-script={sim_path}', 
                 shell=True, capture_output=True) 
-
     if p1.returncode: # print out the error message
         print('\nError at part_b_job1.py XF SECTION while loading xmacro\n'+
               p1.stderr.decode())
@@ -178,6 +176,8 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
     else:
         batch_size = num_keys
 
+
+## SIMULATION JOB SUBMISSION
     # Submit a job-array to OSC; each job in the array is responsible for
     # simulating one antenna in the current generation. Make the SLURM job-name
     # the same as run_name so that we can use SLURM variables.
@@ -189,7 +189,7 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
                 shell=True, capture_output=True) 
 
     if p2.returncode: # print out the error message
-        print('\nError at part_b_job1.py XF SECTION during job submission\n'+
+        print('\nError at part_b_job1.py during job submission\n'+
               p2.stderr.decode())
 
 ### END OF MAIN
