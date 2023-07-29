@@ -10,7 +10,9 @@
 #  Notes:
 #       * vertical ruler at column 80
 #  TODO:
-#       * MOVE SECTION is not great; clean this up
+#       1 MOVE SECTION is not great; clean this up
+#       2. p0 & p1 need to be one process, and p0 & p2 need to be another.
+#          (i.e. load xfdtd needs to be absorbed)
 #
 #*******************************************************************************
 '''
