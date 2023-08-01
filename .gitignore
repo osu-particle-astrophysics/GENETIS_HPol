@@ -15,6 +15,9 @@ Xmacros/output.xmacro
 Xmacros/simulation_PEC.xmacro
 Xmacros/*.png
 
+AraSim/a_*.txt
+AraSim/setup.txt
+
 .DS_Store
 *.root
 *.uan
