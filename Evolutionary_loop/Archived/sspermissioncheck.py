@@ -26,9 +26,10 @@ For more information on the arguments:
   >> python3 sspermissioncheck.py -h
 '''
 
-from pathlib import Path
 import argparse
 import time
+
+from pathlib import Path
 
 
 def main(file_path):
@@ -37,7 +38,7 @@ def main(file_path):
         checkpoint = int(f.readline())  # read the second line (state)
 
 
-    if (checkpoint == args.usr_spec):
+    if checkpoint == args.usr_spec:
         print('Hurray! Checkpoint (line 2) in SaveState.txt matches '
               'what you specified')
 
@@ -46,11 +47,11 @@ def main(file_path):
         print("2nd attemp...")
         time.sleep(15)
 
-        if (checkpoint == args.usr_spec):
+        if checkpoint == args.usr_spec:
             print('Hurray! Checkpoint (line 2) in SaveState.txt matches '
                   'what you specified')
         else:
-            print('SaveState did not update after jobs finished.'
+            print('SaveState did not update after jobs finished. '
                   'Permissions were likely not opened after the last run.')
 
 
@@ -73,7 +74,7 @@ if __name__ == '__main__':
 
     # The "f" below stands for "f-strings".
     # This is cleaner than the old way of using %'s for string interpolation.
-    file_path = args.working_dir/ 'SaveStates' /f'{args.run_name}_SaveState.txt'
+    file_path = args.working_dir / 'SaveStates' / f'{args.run_name}_SaveState.txt'
     # Because working_dir's type is set to pathlib.Path, 
     # there is no need to put it inside fstring interpolation braces.
     # (Github PR #3 conversation, link above)

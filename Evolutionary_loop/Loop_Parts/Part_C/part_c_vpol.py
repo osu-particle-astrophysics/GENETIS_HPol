@@ -31,11 +31,13 @@ For more information on the arguments:
 import argparse     # for parsing command-line arguments
 import os           # for changing file permissions
 
+from pathlib import Path
+
 # ARGUMENTS
 parser = argparse.ArgumentParser();
 parser.add_argument("num_pop", type=int,
                     help="number of individual per generation (NPOP)");
-parser.add_argument("working_dir",
+parser.add_argument("working_dir", type=Path,
                     help="working directory (WorkingDir)");
 parser.add_argument("run_name",
                     help="RunName");
@@ -78,9 +80,9 @@ def read_file(indiv:int, freq_idx:int):
     # the index of individuals (1 to num_pop where num_pop is indiv. per gen.).
     # Inside these subsubdirectories, there are 60 .uan files:
     #   one .uan file for each frequency in the list freq_list above.
-    uan_name = (f'{args.working_dir}/Run_Outputs/'
-                f'{args.run_name}/uan_files/{args.gen}_uan_files/'
-                f'{indiv}/{args.gen}_{indiv}_{freq_idx}.uan')
+    uan_name = (args.working_dir / f'Run_Outputs' / f'{args.run_name}' /
+                'uan_files' / f'{args.gen}_uan_files' / f'{indiv}' /
+                f'{args.gen}_{indiv}_{freq_idx}.uan')
     with open(uan_name) as f:
         for foo in range(18):
             f.readline()  # discarding header lines in the .uan file
@@ -94,16 +96,15 @@ def read_file(indiv:int, freq_idx:int):
 
                 line = f.readline()      # .split(" ") splits by ONE whitespace
                 line_list = line.split() # .split() splits all (including tabs)
-                linear_gain = "%.2f" % 10**(float(line_list[2])/10)
+                linear_gain = f'{10**(float(line_list[2])/10):.2f}'
 
                 line_final = (line_list[0]                 + "\t\t\t" +
                               line_list[1]                 + "\t\t\t" +
-                              "%.2f" % float(line_list[2]) + "\t\t "  +
-                              str(linear_gain)             + "\t\t"   +
-                              "%.2f" % float(line_list[5]) + "\n")
+                              f'{float(line_list[2]):.2f}' + "\t\t "  +
+                              linear_gain                  + "\t\t"   +
+                              f'{float(line_list[5]):.2f}' + "\n")
             
                 mat[j][i] = line_final
-        f.close()        
     return mat
 
 
@@ -113,9 +114,9 @@ def main():
     for antenna in range(1, args.num_pop+1):
 
         # output file name
-        of_name=(f'{args.working_dir}/Antenna_Performance_Metric/'
+        of_name=(args.working_dir / 'Antenna_Performance_Metric' /
                  f'evol_antenna_model_{antenna}.dat')
-        with open(of_name,"w+") as ofstream:
+        with open(of_name, "w") as ofstream:
             os.chmod(of_name,0o777) # change file permission (ie. chmod a+rwx)
 
 # In a .uan file, each row starts with a pair of (polar, azimuthal) angles

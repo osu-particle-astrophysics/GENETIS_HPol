@@ -29,11 +29,11 @@ For more information on the arguments:
   >> python3 part_b_job1.py -h
 '''
 
-
-from pathlib import Path
 import argparse
 import os
 import subprocess as sp
+
+from pathlib import Path
 
 
 def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj, 
@@ -45,8 +45,8 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
     # subdirectories under Simulations located inside $XFProj.
 
 # DELETE ME DELETE ME DELETE ME DELETE ME DELETE ME DELETE ME 
-    os.mkdir(xf_proj) # Note: XFdtd makes these; I am faking
-    os.mkdir(xf_proj/ 'Simulations')
+    # Note: XFdtd makes these; I am faking
+    (xf_proj / 'Simulations').mkdir(parents=True)
 # DELETE ME DELETE ME DELETE ME DELETE ME DELETE ME DELETE ME 
 
     for i in range(1, npop+1):
@@ -59,14 +59,7 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 
         # target directories have six digits, eg. 000912, in which case 
         # "index" above would be 912.
-        if index < 10:
-            target = xf_proj/ 'Simulations' / f'00000{index}'
-        elif index < 100:
-            target = xf_proj/ 'Simulations' / f'0000{index}'
-        elif index < 1000:
-            target = xf_proj/ 'Simulations' / f'000{index}'
-        else:
-            target = xf_proj/ 'Simulations' / f'00{index}'
+        target = xf_proj / 'Simulations' / f'{index:06d}'
     
 # DELETE ME DELETE ME DELETE ME DELETE ME DELETE ME DELETE ME 
         os.mkdir(target) # XFdtd akes these; I am faking
@@ -77,7 +70,7 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 
 # NECESSARY ? NECESSARY ? NECESSARY ? NECESSARY ? NECESSARY ? NECESSARY ? 
     if gen != 0:
-        with open ( xf_proj/ 'Simulations/.nextSimulationNumber',"w+") as f:
+        with open (xf_proj / 'Simulations' / '.nextSimulationNumber', "w") as f:
             f.write( str(gen*npop + 1) )
 # NECESSARY ? NECESSARY ? NECESSARY ? NECESSARY ? NECESSARY ? NECESSARY ? 
 
@@ -93,28 +86,26 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
         816.68, 833.35, 850.02, 866.68, 883.35, 900.02, 916.68, 933.35, 950.02,
         966.68, 983.35, 1000.00, 1016.70, 1033.40, 1050.00, 1066.70] 
 
-    sim_path = xmacros_dir/ 'simulation_PEC.xmacro'
-    # If simulation.xmacro exists, empty it (without changing permission)
-    sp.run(f'[ -f {sim_path} ] && > {sim_path}', shell=True)
+    sim_path = xmacros_dir / 'simulation_PEC.xmacro'
     
     # Begin writing some run-specific variables to the xmacro
-    with open (sim_path, "w+") as f:
+    with open (sim_path, "w") as f:
         f.write(f'var NPOP = {npop};\n'
                 f'var indiv = {indiv};\n'
                 f'//Factor of {geo_factor} frequency\n'
                 'var freq = [')
-        f.write(', '.join( "%.2f"%(freq*geo_factor) for freq in freq_list) )
-        f.write('] \n')
+        f.write(', '.join( f'{freq*geo_factor:.2f}' for freq in freq_list) )
+        f.write('] \n')    # using f-string padding: 2 digits after decimal pt.
     
-    if (gen == 0 and indiv == 1):
-        with open (sim_path,"a") as f:
+    if gen == 0 and indiv == 1:
+        with open (sim_path, "a") as f:
             f.write('if(indiv==1){\n'
                     f'App.saveCurrentProjectAs(\"{working_dir}/Run_Outputs/'
                     f'{run_name}/{run_name}\");\n'
                     '}\n')
 
     os.umask(0)                # umask(0) needed to ensure chmod works properly.
-    os.chmod(sim_path, 0o775 ) # This is the same as Bash chmod 775 ${sim_path}.
+    os.chmod(sim_path, 0o775)  # This is the same as Bash chmod 775 ${sim_path}.
 
 
 ## CAT SECTION
@@ -149,8 +140,8 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
            f'{sim_path}', shell=True)
 
     # Change gridsize by the same factor used for changing antenna size.
-    xmacro_skeleton_default_gridsize = 0.1
-    grid_size = "%.6f" % (xmacro_skeleton_default_gridsize/geo_factor)
+    xmacro_skeleton_default_gridsize = 0.1 # padding: 6 digits after decimal pt.
+    grid_size = f'{xmacro_skeleton_default_gridsize/geo_factor:.6f}'
 
     sp.run(f'sed -i "" "s/var gridSize = 0.1;/var gridSize = {grid_size};/" '
            f'{sim_path}', shell=True)

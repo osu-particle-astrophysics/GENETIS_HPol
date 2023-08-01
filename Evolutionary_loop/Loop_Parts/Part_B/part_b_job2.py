@@ -33,6 +33,7 @@ For more information on the arguments:
 import argparse
 import os
 import subprocess as sp
+
 from pathlib import Path
 from time import sleep
 
@@ -54,7 +55,7 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 ## FLAG COUNT    
 
     # Count the number of flags that indicate succesful simulations
-    flagpole = f'{working_dir}/Run_Outputs/{run_name}/GPUFlags'
+    flagpole = working_dir / f'Run_Outputs' / f'{run_name}/GPUFlags'
     num_flags = count_flags(flagpole)
     # Sleep for a bit before counting again. Count until all jobs are finished.
     while num_flags < npop:
@@ -69,11 +70,9 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 ## INITIALIZE XMACRO
 
     outmacro = xmacros_dir / 'output.xmacro'
-    # If output.xmacro exists, empty it (without changing permission)
-    sp.run(f'[ -f {outmacro} ] && > {outmacro}', shell=True)
 
     # Begin writing some run-specific variables to the xmacro
-    with open (f'{xmacros_dir}/output.xmacro', "w+") as f:
+    with open (outmacro, "w") as f:
         f.write(f'var NPOP = {npop};\n'
                 f'for (var k = {gen*npop + 1}; k <= {gen*npop+npop}; k++){{\n')
     
@@ -135,8 +134,8 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 
         for freq in range(1,61):
 
-            desti  = (f'{working_dir}/Run_Outputs/'
-                      f'{run_name}/uan_files/{gen}_uan_files/{pop_ind_num}/')
+            desti  = (working_dir / 'Run_Outputs' / f'{run_name}' /
+                      'uan_files' / f'{gen}_uan_files' / f'{pop_ind_num}')
             nation = (f'{gen}_{pop_ind_num}_{freq}.uan')
 
             p2 = sp.run(f'mkdir -p {desti};',
@@ -146,7 +145,7 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
                       p2.stderr.decode())
 
             p3 = sp.run(f'mv {working_dir}/Antenna_Performance_Metric/'
-                        f'{gen}_{pop_ind_num}_{freq}.uan {desti}{nation}',
+                        f'{gen}_{pop_ind_num}_{freq}.uan {desti}/{nation}',
                         shell=True, capture_output=True)
             if p3.returncode:
                 print('\nError at the end of part_b_job2.py when moving uans\n'+
