@@ -23,7 +23,7 @@ The xmacro is mainly made of a xmacro-skeleton text file (see CAT SECTION).
 
 Usage: python3 part_b_job2.py <indiv> <gen> <npop> <working_dir> ... <nsections>
 
-Outout: XmacrosDir/simulation_PEC.xmacro
+Outout: XmacrosDir/output.xmacro
 
 For more information on the arguments: 
   >> python3 part_b_job2.py -h
