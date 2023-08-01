@@ -143,6 +143,8 @@ if [[ $gen -eq 0 && $state -eq 0 ]]; then
   mkdir -m775 $WorkingDir/Run_Outputs/$RunName
   mkdir -m775 $WorkingDir/Run_Outputs/$RunName/AraSimFlags
   mkdir -m775 $WorkingDir/Run_Outputs/$RunName/AraSimConfirmed
+	mkdir -m775 $WorkingDir/Run_Outputs/$RunName/AraSim_Outputs
+	mkdir -m775 $WorkingDir/Run_Outputs/$RunName/AraSim_Errors
   mkdir -m775 $WorkingDir/Run_Outputs/$RunName/GPUFlags
   mkdir -m775 $WorkingDir/Run_Outputs/$RunName/XFGPUOutputs
   mkdir -m775 $WorkingDir/Run_Outputs/$RunName/XF_Outputs
