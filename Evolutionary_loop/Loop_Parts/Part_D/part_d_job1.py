@@ -11,8 +11,6 @@
 #       * vertical ruler at column 80
 #  TODO:
 #       * Incorporate process 0 into part_c.py
-#       * p1 needs to be combined with the sbatch command (ie. in the same
-#         subprocess)
 #       * remove .root files
 #
 #*******************************************************************************
@@ -50,10 +48,6 @@ def main(gen, npop, working_dir, arasim_exec,
         if p0.stderr:
             print('Error at start of part_d_job1.py when moving .dat files')
     
-    # p1 = sp.run(f'source {arasim_exec}/new_root_setup.sh\n'
-    #             f'source cvmfs/ara.opensciencegrid.org/rrunk/centos7/setup.sh',
-    #             shell=True)
-    
     if not debug_mode:
         # replace num_nnu (number of neutrinots thrown) in setup_dummy.txt
         p2 = sp.run(f'sed -e "s/num_nnu/{nnt}/" -e "s/n_exp/{exp}/" '
@@ -64,12 +58,12 @@ def main(gen, npop, working_dir, arasim_exec,
         if p2.stderr:
             print(f'Error at part d job1:\n {p2.stderr}')
     
-        # run AraSim from AraSim/setup.txt for each individual using a job array
+
+## RUN AraSim
         num_jobs = npop * seeds
         max_jobs = 252 # maximum number of simultaneous jobs
 
-
-## RUN AraSim
+        # run AraSim from AraSim/setup.txt for each individual using a job array
         p3 = sp.run('sbatch '
                     f'--array=1-{num_jobs}%{max_jobs} --job-name={run_name} '
                     f'--export=ALL,gen={gen},WorkingDir={working_dir},'

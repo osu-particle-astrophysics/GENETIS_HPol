@@ -77,9 +77,6 @@ FREQ=60         # number of frequencies being iterated over in XF
 # XmacrosDir=/fs/ess/PAS1960/GENETIS_HPol/Xmacros
 # AraSimExec=/fs/ess/PAS1960/BiconeEvolutionOSC/Original_GENETIS_AraSim/AraSim 
 # XFProj=$WorkingDir/Run_Outputs/${RunName}/${RunName}.xf
-# source /fs/ess/PAS1960/GENETIS_HPol/araenv.sh # for AraSim libraries
-# source /fs/ess/PAS1960/GENETIS_HPol/new_root_setup.sh
-# source /cvmfs/ara.opensciencegrid.org/trunk/centos7/setup.sh
 WorkingDir=/Users/Jason/Documents/OSU/GENETIS/GENETIS_HPol/Evolutionary_loop
 XmacrosDir=/Users/Jason/Documents/OSU/GENETIS/GENETIS_HPol/Xmacros
 XFProj=$WorkingDir/Run_Outputs/${RunName}/${RunName}.xf
@@ -192,7 +189,7 @@ if [ $state -eq 2 ]; then
     echo "Put Hpol Job1 Skeleton Here!"
 
   else                                    # Bicones (symm, asymm, curved, etc.)
-    ./Loop_Parts/Part_B/Part_B_VPol_job1.sh\
+    python3 $WorkingDir/Loop_Parts/Part_B/part_b_job1.py \
       $indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir \
       $XFProj $GeoFactor $num_keys $CURVED $NSECTIONS
   fi
@@ -210,9 +207,9 @@ if [ $state -eq 3 ]; then
     echo "Put Hpol Job2 Skeleton Here!"
   
   else                                    # Bicones (symm, asymm, curved, etc.)
-  ./Loop_Parts/Part_B/Part_B_VPol_job2.sh\
-    $indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir\
-    $XFProj $GeoFactor $num_keys $NSECTIONS
+  python3 $WorkingDir/Loop_Parts/Part_B/part_b_job2.py \
+      $indiv $gen $NPOP $WorkingDir $RunName $XmacrosDir \
+      $XFProj $GeoFactor $num_keys $CURVED $NSECTIONS
   fi
 
   state=4
@@ -232,28 +229,22 @@ if [ $state -eq 4 ]; then
   else
     python3 Loop_Parts/Part_C/part_c_vpol.py \
       $NPOP $WorkingDir $RunName $gen $indiv
-  # ./Loop_Parts/Part_C/Part_C.sh $NPOP $WorkingDir $RunName $gen $indiv
   fi
 
   state=5
   ./SaveState_Prototype.sh $gen $state $RunName $indiv
 fi
 
-# ## Part D1 ##
-# if [ $state -eq 5 ]
-# then
-#   # The reason why Part_D1.sh is run after the save state is changed is because all Part_D1 
-#   # does is submit AraSim jobs which are their own jobs and run on their own time
-#   # We need to make a new AraSim job script which takes the runname as a flag 
-#   # ./Loop_Parts/Part_D/Part_D1_AraSeed.sh $gen $NPOP $WorkingDir $AraSimExec $exp \
-#   #   $NNT $RunName $Seeds $DEBUG_MODE
-#   # ./Loop_Parts/Part_D/Part_D1_AraSeed_Notif.sh 
-#   ./Loop_Parts/Part_D/Part_D1_Array.sh $gen $NPOP $WorkingDir $AraSimExec $exp \
-#     $NNT $RunName $Seeds $DEBUG_MODE
+# PART D
+# Part d1
+if [ $state -eq 5 ]
+then
+  python3 ./Loop_Parts/Part_D/part_d_job1.py\
+    $gen $NPOP $WorkingDir $AraSimExec $exp $NNT $RunName $Seeds $DEBUG_MODE
 
-#   state=6
-#   ./SaveState_Prototype.sh $gen $state $RunName $indiv
-# fi
+  state=6
+  ./SaveState_Prototype.sh $gen $state $RunName $indiv
+fi
 
 # ## Part D2 ##
 # if [ $state -eq 6 ]
