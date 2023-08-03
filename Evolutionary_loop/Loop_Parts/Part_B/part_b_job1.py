@@ -12,8 +12,6 @@
 #  TODO:
 #       1. check if subprocess runs xfdtd and submits the job-script properly.
 #          (XF SECTION)
-#       2. p0 & p1 need to be one process, and p0 & p2 need to be another.
-#          (i.e. load xfdtd needs to be absorbed)
 #
 #*******************************************************************************
 '''
@@ -104,8 +102,7 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
                     f'{run_name}/{run_name}\");\n'
                     '}\n')
 
-    os.umask(0)                # umask(0) needed to ensure chmod works properly.
-    os.chmod(sim_path, 0o775)  # This is the same as Bash chmod 775 ${sim_path}.
+    sim_path.chmod(0o775)      # This is the same as Bash chmod 775 ${sim_path}.
 
 
 ## CAT SECTION
@@ -113,21 +110,19 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
     # The rest of simulation_PEC.xmacro is built from two skeleton text files.
     if curved == 0:                            
         if nsections == 1:                     # straight-side symmetric bicone
-            sp.run(f'cat {xmacros_dir}/simulationPECmacroskeleton_GPU.txt'
-                   f'>> {sim_path}', shell=True)
-            sp.run(f'cat {xmacros_dir}/simulationPECmacroskeleton2_GPU.txt'
-                   f'>> {sim_path}', shell=True)
+            fst = 'simulationPECmacroskeleton_GPU.txt'  # first skeleton
+            snd = 'simulationPECmacroskeleton2_GPU.txt' # second skeleton
 
         else:                                  # straight-side asymmetric bicone
-            sp.run(f'cat {xmacros_dir}/simulationPECmacroskeleton_Sep.txt'
-                   f'>> {sim_path}', shell=True)
-            sp.run(f'cat {xmacros_dir}/simulationPECmacroskeleton2_Sep.txt'
-                   f'>> {sim_path}', shell=True)
+            fst = 'simulationPECmacroskeleton_Sep.txt'
+            snd = 'simulationPECmacroskeleton2_Sep.txt'
     else:                                      # curved-side bicone
-        sp.run(f'cat {xmacros_dir}/simulationPECmacroskeleton_curved.txt'
-               f'>> {sim_path}', shell=True)
-        sp.run(f'cat {xmacros_dir}/simulationPECmacroskeleton2_curved.txt'
-               f'>> {sim_path}', shell=True)
+            fst = 'simulationPECmacroskeleton_curved.txt'
+            snd = 'simulationPECmacroskeleton2_curved.txt'
+
+    with open(sim_path, 'a') as outfile:
+        outfile.write((xmacros_dir / fst).read_text())
+        outfile.write((xmacros_dir / snd).read_text())
 
 
 ## SED-TION (Ha! Get it? Like...section?)
@@ -149,17 +144,14 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 
 ## XF SECTION
 
-    os.chmod(xmacros_dir, 0o775)
-    # load XFdtd on OSC
-    p0 = sp.run(f'module load xfdtd/7.9.2.2', shell=True, capture_output=True)
-    if p0.returncode: # print out the error message
-        print('\nError at part_b_job1.py: XF SECTION while loading module\n'+
-              p0.stderr.decode())
+    xmacros_dir.chmod(0o775)
 
-    # load simulation_PEC.xmacro
-    p1 = sp.run(f'xfdtd {xf_proj} --execute-macro-script={sim_path}', 
+    # load the XFdtd module on OSC and load simulation_PEC.xmacro into XFdtd
+    p1 = sp.run(f'module load xfdtd/7.9.2.2\n'
+                f'xfdtd {xf_proj} --execute-macro-script={sim_path}', 
                 shell=True, capture_output=True) 
-    if p1.returncode: # print out the error message
+
+    if p1.stderr: # print out the error message
         print('\nError at part_b_job1.py XF SECTION while loading xmacro\n'+
               p1.stderr.decode())
 
@@ -174,16 +166,15 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
     # Submit a job-array to OSC; each job in the array is responsible for
     # simulating one antenna in the current generation. Make the SLURM job-name
     # the same as run_name so that we can use SLURM variables.
-    p2 = sp.run(f'sbatch --array=1{npop}%{batch_size} '
-                f'--job-name={run_name} '
-                f'--export=ALL,WorkingDir={working_dir},RunName={run_name}'
-                f'XFProj={xf_proj},NPOP={npop},gen={gen} '
-                f'{working_dir}/Batch_Jobs/GPU_XF_Job.sh',
-                shell=True, capture_output=True) 
-
-    if p2.returncode: # print out the error message
-        print('\nError at part_b_job1.py during job submission\n'+
-              p2.stderr.decode())
+    try:
+        sp.call(['sbatch', f'--array=1{npop}%{batch_size}',
+                f'--job-name={run_name}',
+                f'--export=ALL,WorkingDir={working_dir},RunName={run_name},'
+                f'XFProj={xf_proj},NPOP={npop},gen={gen}',
+                f'{working_dir}/Batch_Jobs/GPU_XF_Job.sh'],
+                capture_output=True)
+    except:
+        print('\nError at part_b_job1.py during job submission\n')
 
 ### END OF MAIN
 
