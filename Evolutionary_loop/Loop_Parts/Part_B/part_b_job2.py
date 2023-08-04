@@ -11,8 +11,6 @@
 #       * vertical ruler at column 80
 #  TODO:
 #       1 MOVE SECTION is not great; clean this up
-#       2. p0 & p1 need to be one process, and p0 & p2 need to be another.
-#          (i.e. load xfdtd needs to be absorbed)
 #
 #*******************************************************************************
 '''
@@ -31,7 +29,6 @@ For more information on the arguments:
 
 
 import argparse
-import os
 import subprocess as sp
 
 from pathlib import Path
@@ -76,24 +73,18 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
         f.write(f'var NPOP = {npop};\n'
                 f'for (var k = {gen*npop + 1}; k <= {gen*npop+npop}; k++){{\n')
     
-    os.umask(0)                # umask(0) needed to ensure chmod works properly.
-    os.chmod(outmacro, 0o775 ) # This is the same as Bash chmod 775 ${sim_path}.
+    outmacro.chmod(0o775 ) # This is the same as Bash chmod 775 ${sim_path}.
 
 
 ## CAT SECTION
 
     # The rest of output.xmacro is built from two skeleton text files.
     if nsections == 1:
-        p1 = sp.run(f'cat {xmacros_dir}/shortened_outputmacroskeleton.txt '
-                    f'>> {outmacro}', shell=True, capture_output=True)
-        if p1.stderr:
-            print('Error at part_b_job2.py: failed to cat the skeleton')
-
+        skeleton = 'shortened_outputmacroskeleton.txt'
     else: 
-        p1 = sp.run(f'cat {xmacros_dir}/shortened_outputmacroskeleton_Asym.txt '
-                    f'>> {outmacro}', shell=True, capture_output=True)
-        if p1.stderr:
-            print('Error at part_b_job2.py: failed to cat the skeleton')
+        skeleton = 'shortened_outputmacroskeleton_Asym.txt'
+    with open(outmacro, 'a') as outfile:
+        outfile.write((xmacros_dir / skeleton).read_text())
 
 
 ## SED-TION
@@ -107,17 +98,13 @@ def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj,
 
 ## XF SECTION
 
-    os.chmod(xmacros_dir, 0o775)
-    # load xfdtd on OSC
-    p0 = sp.run(f'module load xfdtd/7.9.2.2', shell=True, capture_output=True)
-    if p0.returncode: # print out the error message
-        print('\nError at part_b_job2.py: XF SECTION while loading module\n'+
-              p0.stderr.decode())
-
-    # load output.xmacro
-    p1 = sp.run(f'xfdtd {xf_proj} --execute-macro-script={outmacro}', 
+    xmacros_dir.chmod(0o775)
+    # load xfdtd on OSC and load output.xmacro into XFdtd
+    p1 = sp.run(f'module load xfdtd/7.9.2.2\n'
+                f'xfdtd {xf_proj} --execute-macro-script={outmacro}', 
                 shell=True, capture_output=True) 
-    if p1.returncode: # print out the error message
+
+    if p1.stderr: # print out the error message
         print('\nError at part_b_job2.py XF SECTION while loading xmacro\n'+
               p1.stderr.decode())
 

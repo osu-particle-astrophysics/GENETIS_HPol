@@ -1,23 +1,23 @@
 #!/bin/bash
-## This job is designed to be submitted by an array batch submission
-## Here's the command:
-## sbatch --array=1-NPOP*SEEDS%max --export=ALL,(variables) AraSimCall_Array.sh
 #SBATCH -A PAS1960
 #SBATCH -t 18:00:00
 #SBATCH -N 1
 #SBATCH -n 8
-#SBATCH --output=/fs/ess/PAS1960/BiconeEvolutionOSC/BiconeEvolution/current_antenna_evo_build/XF_Loop/Evolutionary_Loop/Run_Outputs/%x/AraSim_Outputs/AraSim_%a.output
-#SBATCH --error=/fs/ess/PAS1960/BiconeEvolutionOSC/BiconeEvolution/current_antenna_evo_build/XF_Loop/Evolutionary_Loop/Run_Outputs/%x/AraSim_Errors/AraSim_%a.error
+#SBATCH --output=/fs/ess/PAS1960/GENETIS_HPol/Evolutionary_Loop/Run_Outputs/%x/AraSim_Outputs/AraSim_%a.output
+#SBATCH --error=/fs/ess/PAS1960/GENETIS_HPol/Evolutionary_Loop/Run_Outputs/%x/AraSim_Errors/AraSim_%a.error
 
-source /fs/ess/PAS1960/BiconeEvolutionOSC/new_root/new_root_setup.sh
+source $AraSimDir/new_root_setup.sh
+source $AraSimDir/setup.sh
+source $AraSimDir/araenv.sh # for AraSim libraries
+
 cd $AraSimDir
-num=$(($((${SLURM_ARRAY_TASK_ID}-1))/${Seeds}+1)) # num denotes antenna number; Jason 061523
+num=$(($((${SLURM_ARRAY_TASK_ID}-1))/${Seeds}+1)) # num denotes antenna number
 seed=$(($((${SLURM_ARRAY_TASK_ID}-1))%${Seeds}+1))
 echo a_${num}_${seed}.txt
 
 chmod -R 777 $AraSimDir/outputs/
 ./AraSim setup.txt ${SLURM_ARRAY_TASK_ID} $TMPDIR a_${num}.txt > \
- $TMPDIR/AraOut_${gen}_${num}_${seed}.txt 
+  $TMPDIR/AraOut_${gen}_${num}_${seed}.txt 
 
 cd $TMPDIR
 echo "Let's see what's in TMPDIR:"
