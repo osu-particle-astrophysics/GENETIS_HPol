@@ -46,7 +46,7 @@ def main(gen, npop, working_dir, arasim_exec,
                     f'-e "s/current_seed/{specific_seed}/" '
                     f'{arasim_exec}/setup_dummy_araseed.txt '
                     f'>> {arasim_exec}/setup.txt',
-                    shell=True, capture_output=True, text=True)
+                    capture_output=True, shell=True, text=True)
         if p2.stderr:
             print(f'Error at part d job1:\n {p2.stderr}')
     
@@ -56,14 +56,18 @@ def main(gen, npop, working_dir, arasim_exec,
         max_jobs = 252 # maximum number of simultaneous jobs
 
         # run AraSim from AraSim/setup.txt for each individual using a job array
-        p3 = sp.run('sbatch '
-                    f'--array=1-{num_jobs}%{max_jobs} --job-name={run_name} '
-                    f'--export=ALL,gen={gen},WorkingDir={working_dir},'
-                    f'RunName={run_name},Seeds={seeds},AraSimDir={arasim_exec} '
-                    f'{working_dir}/Batch_Jobs/AraSimCall_Array.sh',
-                    shell=True, capture_output=True, text=True)
-        if p3.stderr:
-            print(f'Error at part d1 submission: \n {p3.stderr}')
+        try:
+            sp.run(['sbatch',
+                   f'--job-name={run_name}',
+                   f'--export=ALL,gen={gen},WorkingDir={working_dir},'
+                   f'RunName={run_name},Seeds={seeds},'
+                   f'AraSimDir={arasim_exec}',
+                   f'--array=1-{num_jobs}%{max_jobs}',
+                   f'{working_dir}/Batch_Jobs/AraSimCall_Array.sh'],
+                   capture_output=True)
+                    
+        except:
+            print('Error at part d1 submission')
         
     else:
         print("debug mode under construction")
