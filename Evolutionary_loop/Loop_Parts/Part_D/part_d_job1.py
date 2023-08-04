@@ -10,7 +10,6 @@
 #  Notes:
 #       * vertical ruler at column 80
 #  TODO:
-#       * Incorporate process 0 into part_c.py
 #       * remove .root files
 #
 #*******************************************************************************
@@ -40,13 +39,6 @@ def main(gen, npop, working_dir, arasim_exec,
     
 ## AraSim SETUP
     specific_seed = 32000
-
-    metric_path = working_dir / 'Antenna_Performance_Metric'
-    for i in range(1,npop+1):
-        p0 = sp.run(f'mv {metric_path}/evol_antenna_model_{i}.dat '
-                    f'{arasim_exec}/a_{i}.txt', shell=True, capture_output=True)
-        if p0.stderr:
-            print('Error at start of part_d_job1.py when moving .dat files')
     
     if not debug_mode:
         # replace num_nnu (number of neutrinots thrown) in setup_dummy.txt

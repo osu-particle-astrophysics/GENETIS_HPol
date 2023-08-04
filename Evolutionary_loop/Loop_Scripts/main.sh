@@ -228,7 +228,7 @@ if [ $state -eq 4 ]; then
 
   else
     python3 Loop_Parts/Part_C/part_c_vpol.py \
-      $NPOP $WorkingDir $RunName $gen $indiv
+      $NPOP $WorkingDir $RunName $gen $AraSimExec
   fi
 
   state=5
