@@ -1,6 +1,9 @@
 A.3.2 Running the Loop [#f1]_
 ==============================
 
+..  image:: ../../under_construction.png
+    :width: 200
+
 .. _a321:
 
 A.3.2.1 Step 1: setting your variables
