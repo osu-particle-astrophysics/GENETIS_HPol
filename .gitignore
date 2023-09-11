@@ -1,9 +1,10 @@
 *del.sh
-Evolutionary_loop/Shared-Code/*
+Evolutionary_loop/Shared-Code/GA/*.csv
 Evolutionary_loop/SaveStates/*
 Evolutionary_loop/Run_Outputs/*
 Evolutionary_Loop/*.txt
 Evolutionary_Loop/scriptEOFiles/
+Evolutionary_Loop/test.sh
 
 Evolutionary_Loop/Antenna_Performance_Metric/AraOut*
 Evolutionary_Loop/Antenna_Performance_Metric/*.txt
@@ -14,6 +15,10 @@ Xmacros/output.xmacro
 Xmacros/simulation_PEC.xmacro
 Xmacros/*.png
 
+AraSim/a_*.txt
+AraSim/setup.txt
+
+.DS_Store
 *.root
 *.uan
 *.dat
