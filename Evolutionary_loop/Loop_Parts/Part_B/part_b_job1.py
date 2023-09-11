@@ -34,6 +34,18 @@ import subprocess as sp
 from pathlib import Path
 
 
+def dummy(kind=None):
+    """
+    This is a dummy function
+
+    :param kind: Optional "kind" of ingredients.
+    :type kind: list[str] or None
+    :return: none
+    """
+    print("Hi I am a dummy function")
+
+
+
 def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj, 
          geo_factor, num_keys, curved, nsections):
 

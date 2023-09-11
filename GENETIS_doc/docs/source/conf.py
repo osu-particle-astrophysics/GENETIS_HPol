@@ -1,4 +1,6 @@
-
+import os
+import sys
+sys.path.insert(0, os.path.abspath("../../../../GENETIS_HPol/Evolutionary_loop/Loop_Parts/Part_B"))
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -18,7 +20,8 @@ release = '0.1'
 extensions = [
     'sphinxnotes.strike',
     'sphinx.ext.todo',
-    'sphinx_panels'
+    'sphinx_panels',
+    'sphinx.ext.autodoc'
 ]
 
 todo_include_todos = True
