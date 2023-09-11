@@ -22,7 +22,7 @@
 This is Part C of the loop, which is responsible for converting the .uan files 
 (made in Part B by XF) into AraSim-readable .dat files.
 
-Usage: python3 Part_C_VPol.py <num_pop> <working_dir> <run_name> <gen> <indiv>
+Usage: python3 Part_C_VPol.py <num_pop> <working_dir> <run_name> <gen> <arasim>
 
 For more information on the arguments: 
   >> python3 part_c_vpol.py -h
@@ -34,18 +34,6 @@ import os           # for changing file permissions
 from pathlib import Path
 
 # ARGUMENTS
-parser = argparse.ArgumentParser();
-parser.add_argument("num_pop", type=int,
-                    help="number of individual per generation (NPOP)");
-parser.add_argument("working_dir", type=Path,
-                    help="working directory (WorkingDir)");
-parser.add_argument("run_name",
-                    help="RunName");
-parser.add_argument("gen", type=int,
-                    help="index of generation");
-parser.add_argument("indiv", type=int,
-                    help="index of individual");
-args = parser.parse_args();
 
 
 # GLOBALS
@@ -73,16 +61,17 @@ freq_list = [ 83.33, 100.00, 116.67, 133.33, 150.00, 166.67, 183.34, 200.00,
 
 # FUNCTIONS
 ''' Reads the .uan file and converts to a matrix "mat" '''
-def read_file(indiv:int, freq_idx:int):
+def read_file(antenna_idx:int, freq_idx:int,
+              working_dir:Path, run_name:str, gen:int):
 
     # uan_files/ have subdirectories labeled by generations, eg. 0_uan_files.
     # Each generation-subdirectories then have subsubdirectories labeled by
     # the index of individuals (1 to num_pop where num_pop is indiv. per gen.).
     # Inside these subsubdirectories, there are 60 .uan files:
     #   one .uan file for each frequency in the list freq_list above.
-    uan_name = (args.working_dir / f'Run_Outputs' / f'{args.run_name}' /
-                'uan_files' / f'{args.gen}_uan_files' / f'{indiv}' /
-                f'{args.gen}_{indiv}_{freq_idx}.uan')
+    uan_name = (working_dir / f'Run_Outputs' / f'{run_name}' /
+                'uan_files' / f'{args.gen}_uan_files' / f'{antenna_idx}' /
+                f'{gen}_{antenna_idx}_{freq_idx}.uan')
     with open(uan_name) as f:
         for foo in range(18):
             f.readline()  # discarding header lines in the .uan file
@@ -108,14 +97,13 @@ def read_file(indiv:int, freq_idx:int):
     return mat
 
 
-def main():
+def main(num_pop, working_dir, run_name, gen, arasim_exec):
 # For each individual (antenna), open a new file: evol_antenna_model_?.dat
 # where ? is a number from 1 to num_pop (number of individuals per gen.)
-    for antenna in range(1, args.num_pop+1):
+    for antenna in range(1, num_pop+1):
 
         # output file name
-        of_name=(args.working_dir / 'Antenna_Performance_Metric' /
-                 f'evol_antenna_model_{antenna}.dat')
+        of_name=(arasim_exec / f'a_{antenna}.txt')
         with open(of_name, "w") as ofstream:
             os.chmod(of_name,0o777) # change file permission (ie. chmod a+rwx)
 
@@ -133,7 +121,8 @@ def main():
                 ofstream.write( 'Polar     Azimuthal     Gain(dB)     '
                                 'Gain     Phase(deg)\n')
 
-                mat = read_file(antenna, frq_idx+1)
+                mat = read_file(antenna, frq_idx+1, working_dir,
+                                run_name, gen)
 
 # For each polar angle group, discard the 360-degree azimuthal angle (360 == 0)
 # That is, for each of the 37 groups, discard the last row, as done below
@@ -145,4 +134,18 @@ def main():
 # then move on to the next azimuthal angle, rinse and repeat.
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser();
+    parser.add_argument("num_pop", type=int,
+                        help="number of individual per generation (NPOP)");
+    parser.add_argument("working_dir", type=Path,
+                        help="working directory (WorkingDir)");
+    parser.add_argument("run_name",
+                        help="RunName");
+    parser.add_argument("gen", type=int,
+                        help="index of generation");
+    parser.add_argument("arasim_exec", type=Path,
+                        help="Path to AraSim directory");
+    args = parser.parse_args();
+
+    main(args.num_pop, args.working_dir, args.run_name,
+         args.gen, args.arasim_exec)
