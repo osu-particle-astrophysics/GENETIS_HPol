@@ -1,0 +1,23 @@
+A.3.2 Running the Loop [#f1]_
+==============================
+
+.. _a321:
+
+A.3.2.1 Step 1: setting your variables
+--------------------------------------
+
+
+.. _a322:
+
+A.3.2.2 Step 2: requesting a VDI
+--------------------------------------
+
+
+.. _a323:
+
+A.3.2.3 Step 3: starting the script
+--------------------------------------
+
+
+..  rubric:: reference
+..  [#f1] Rolla, Julie. Dissertation Appendix A. Section A.3.2
