@@ -2,18 +2,47 @@
 
 Part (B1) & (B2): XFdtd [#f1]_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This part pertains to :ref:`XFdtd <a2xfdtd>`.
+
+Part (B) pertains to :ref:`XFdtd <a2xfdtd>`.
+
+Part (B1)
+---------
+
+..  todo::
+
+    exactly what information are we talking about here (in docstring?)
+
+    should be more specific.
 
 
-.. todo::
+..  currentmodule:: part_b_job1
 
-    * update using **autodoc**
+..  automodule:: part_b_job1
 
-..  note::
 
-    This is a test to see if I can get autodoc to work
 
-..  autofunction:: part_b_job1.dummy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

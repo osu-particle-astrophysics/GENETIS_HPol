@@ -137,7 +137,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -218,7 +218,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -226,37 +226,41 @@
         <article role="main">
           <section id="part-b1-b2-xfdtd">
 <span id="a312"></span><h1>Part (B1) &amp; (B2): XFdtd <a class="footnote-reference brackets" href="#f1" id="id1">1</a><a class="headerlink" href="#part-b1-b2-xfdtd" title="Permalink to this headline">#</a></h1>
-<p>This part pertains to <a class="reference internal" href="../../A2.html#a2xfdtd"><span class="std std-ref">XFdtd</span></a>.</p>
+<p>Part (B) pertains to <a class="reference internal" href="../../A2.html#a2xfdtd"><span class="std std-ref">XFdtd</span></a>.</p>
+<section id="part-b1">
+<h2>Part (B1)<a class="headerlink" href="#part-b1" title="Permalink to this headline">#</a></h2>
 <div class="admonition-todo admonition" id="id2">
 <p class="admonition-title">Todo</p>
-<ul class="simple">
-<li><p>update using <strong>autodoc</strong></p></li>
-</ul>
+<p>exactly what information are we talking about here (in docstring?)</p>
+<p>should be more specific.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This is a test to see if I can get autodoc to work</p>
-</div>
-<dl class="py function">
-<dt class="sig sig-object py" id="part_b_job1.dummy">
-<span class="sig-prename descclassname"><span class="pre">part_b_job1.</span></span><span class="sig-name descname"><span class="pre">dummy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#part_b_job1.dummy" title="Permalink to this definition">#</a></dt>
-<dd><p>This is a dummy function</p>
+<span class="target" id="module-part_b_job1"></span><p>Prepares and runs <code class="docutils literal notranslate"><span class="pre">simulation_PEC.xmacro</span></code> with information such as the
+parameters of the antennas. 
+The xmacro is mainly made of two xmacro-skeleton text files 
+(see the <strong>CAT SECTION</strong> of <code class="docutils literal notranslate"><span class="pre">part_b_job1.py</span></code>).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>kind</strong> (<em>list</em><em>[</em><em>str</em><em>] or </em><em>None</em>) – Optional “kind” of ingredients.</p>
+<dt class="field-odd">Path</dt>
+<dd class="field-odd"><p>Evolutionary_loop/Loop_Parts/part_b_job1.py</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
+<dt class="field-even">Usage</dt>
+<dd class="field-even"><p>python3 part_b_job1.py &lt;indiv&gt; &lt;gen&gt; &lt;npop&gt; 
+&lt;working_dir&gt; &lt;run_name&gt; &lt;xmacros_dir&gt; &lt;xf_proj&gt;
+&lt;geo_factor&gt; &lt;num_keys&gt; &lt;curved&gt; &lt;nsections&gt;</p>
+</dd>
+<dt class="field-odd">Outout</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">$XmacrosDir/simulation_PEC.xmacro</span></code></p>
+</dd>
+<dt class="field-even">Help</dt>
+<dd class="field-even"><p>&gt;&gt; python3 part_b_job1.py -h</p>
 </dd>
 </dl>
-</dd></dl>
-
 <p class="rubric">reference</p>
 <dl class="footnote brackets">
 <dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Rolla, Julie. Dissertation Appendix A. Section A.3.1.2</p>
 </dd>
 </dl>
+</section>
 </section>
 
         </article>
@@ -302,8 +306,27 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Part (B1) &amp; (B2): XFdtd </a><ul>
+<li><a class="reference internal" href="#part-b1">Part (B1)</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
