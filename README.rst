@@ -9,7 +9,7 @@ GENETIS_doc
 -----------
 This directory contains the documentation.
 
-To view the documentation, please use the link under the **about** section.
+To view the documentation, please use the link under **About**.
 
 To edit the `rst` files locally with Sphinx, note that 
 
