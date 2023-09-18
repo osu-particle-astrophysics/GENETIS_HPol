@@ -9,8 +9,7 @@ GENETIS_doc
 -----------
 This directory contains the documentation.
 
-To view the documentation, please use this `link
-<https://genetis-doc.vercel.app/>`_.
+To view the documentation, please use the link under **About**.
 
 To edit the `rst` files locally with Sphinx, note that 
 
