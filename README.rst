@@ -20,4 +20,4 @@ To edit the `rst` files locally with Sphinx, note that
 3.  ``autodoc`` is used for automatic python documentation and ``todo`` is used
     for to-do lists (no need to install these two)
 
-(see ``docs/source/conf.py``), 
+(see ``docs/source/conf.py``)
