@@ -46,7 +46,7 @@ Part (B1)
 
 
 
-.. **Part (B1)** 
+.. **Part (B1)**
 
 .. ..  note::
 
