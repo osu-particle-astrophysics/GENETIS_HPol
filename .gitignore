@@ -1,3 +1,5 @@
+.vscode/
+
 *del.sh
 Evolutionary_loop/Shared-Code/GA/*.csv
 Evolutionary_loop/SaveStates/*
