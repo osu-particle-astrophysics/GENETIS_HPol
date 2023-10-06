@@ -15,16 +15,20 @@
 #
 #*******************************************************************************
 '''
-This is Part B1 of the loop, which prepares and runs simulation_PEC.xmacro with
-information such as the parameters of the antennas. The xmacro is mainly made of
-two xmacro-skeleton text files (see CAT SECTION)
+Prepares and runs ``simulation_PEC.xmacro`` with information such as the
+parameters of the antennas. 
+The xmacro is mainly made of two xmacro-skeleton text files 
+(see the **CAT SECTION** of ``part_b_job1.py``).
 
-Usage: python3 part_b_job1.py <indiv> <gen> <npop> <working_dir> ... <nsections>
+:Path: Evolutionary_loop/Loop_Parts/part_b_job1.py
 
-Outout: XmacrosDir/simulation_PEC.xmacro
+:Usage: python3 part_b_job1.py <indiv> <gen> <npop> 
+        <working_dir> <run_name> <xmacros_dir> <xf_proj>
+        <geo_factor> <num_keys> <curved> <nsections> 
 
-For more information on the arguments: 
-  >> python3 part_b_job1.py -h
+:Outout: ``$XmacrosDir/simulation_PEC.xmacro``
+
+:Help: >> python3 part_b_job1.py -h
 '''
 
 import argparse
@@ -32,6 +36,18 @@ import os
 import subprocess as sp
 
 from pathlib import Path
+
+
+def dummy(kind=None):
+    """
+    This is a dummy function
+
+    :param kind: Optional "kind" of ingredients.
+    :type kind: list[str] or None
+    :return: none
+    """
+    print("Hi I am a dummy function")
+
 
 
 def main(indiv, gen, npop, working_dir, run_name, xmacros_dir, xf_proj, 
