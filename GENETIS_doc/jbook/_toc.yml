@@ -7,4 +7,3 @@ parts:
 - caption: I am caption
   chapters:
   - file: hello_world
-  - file: another

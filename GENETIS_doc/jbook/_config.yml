@@ -19,16 +19,16 @@ execute:
 # bibtex_bibfiles:
 #   - references.bib
 
-# # Information about where the book exists on the web
-# repository:
-#   url: https://github.com/osu-particle-astrophysics/GENETIS_HPol
-#   # https://github.com/executablebooks/jupyter-book  # Online location of your book
-#   path_to_book: GENETIS_doc/  # Optional path to your book, relative to the repository root
-#   branch: gh-pages  # Which branch of the repository should be used when creating links (optional)
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/osu-particle-astrophysics/GENETIS_HPol
+  # https://github.com/executablebooks/jupyter-book  # Online location of your book
+  path_to_book: GENETIS_doc/jbook  # Optional path to your book, relative to the repository root
+  branch: jbdoc  # Which branch of the repository should be used when creating links (optional)
 
-# # Add GitHub buttons to your book
-# # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-# html:
-#   use_issues_button: true
-#   use_repository_button: true
-#   use_edit_page_button: true
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: true
+  use_repository_button: true
+  use_edit_page_button: true
