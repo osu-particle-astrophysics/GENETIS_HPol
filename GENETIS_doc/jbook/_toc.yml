@@ -9,6 +9,13 @@ parts:
     chapters:
     - file: diss/ch2
     - file: diss/ch3
+      sections:
+        - file: diss/ch3_2
+        - file: diss/ch3_3
+        - file: diss/ch3_4
+        - file: diss/ch3_5
+        - file: diss/ch3_6
+
   - caption: User's Guide
     chapters:
     - file: guide/a1
