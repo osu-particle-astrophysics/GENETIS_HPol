@@ -62,11 +62,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/a3/a3_1_1';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/a3/A3_1_1';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Part (B1) &amp; (B2): XFdtd" href="a3_1_2.html" />
-    <link rel="prev" title="Reference: PAEA Loop" href="a3_1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,25 +170,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../a1.html">Before you Begin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../a2.html">How to: Getting Started</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="a3.html">PAEA Introudction</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="a3_1.html">Reference: PAEA Loop</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Part (A): genetic algorithm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="a3_1_2.html">Part (B1) &amp; (B2): XFdtd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="a3_1_3.html">Part (C): XFdtd output conversion code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="a3_1_4.html">Part (D1) &amp; (D2): AraSim Execution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="a3_1_5.html">Part (E): fitness score generation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="a3_1_6.html">Part (F): plotting</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="a3_2.html">Running the Loop</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../a4.html">The AREA Software</a></li>
-</ul>
 
     </div>
 </nav></div>
@@ -261,7 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/edit/gh-pages/GENETIS_doc/jbook/guide/a3/a3_1_1.md" target="_blank"
+      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/edit/gh-pages/GENETIS_doc/jbook/guide/a3/A3_1_1.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -278,7 +257,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/issues/new?title=Issue%20on%20page%20%2Fguide/a3/a3_1_1.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/issues/new?title=Issue%20on%20page%20%2Fguide/a3/A3_1_1.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -308,7 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/guide/a3/a3_1_1.md" target="_blank"
+      <li><a href="../../_sources/guide/a3/A3_1_1.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -388,7 +367,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Part (A): genetic algorithm</h1>
+    <h1>Part (A): genetic algorithm </h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -403,7 +382,28 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="part-a-genetic-algorithm">
-<h1>Part (A): genetic algorithm<a class="headerlink" href="#part-a-genetic-algorithm" title="Permalink to this heading">#</a></h1>
+<span id="a311"></span><h1>Part (A): genetic algorithm <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#part-a-genetic-algorithm" title="Permalink to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Evolutionary_loop/Part_A.sh</span></code> does two things:</p>
+<ol class="arabic simple">
+<li><p>It calls the <span class="xref std std-doc">genetic algorithm</span>
+(GA), a program that outputs “DNA”, ie. antenna parameters. These are stored
+in <code class="docutils literal notranslate"><span class="pre">generationDNA.csv</span></code>.</p></li>
+<li><p>It moves the GA outputs under the <code class="docutils literal notranslate"><span class="pre">Evolutionrary_loop/Run_Outputs/</span></code>
+directory so that they are not overwritten.</p></li>
+</ol>
+<p>Note that the GA is inside a <a class="reference external" href="https://www.atlassian.com/git/tutorials/git-submodule">Git submodule</a>. In other words,
+<code class="docutils literal notranslate"><span class="pre">Shared-Code</span></code> is a <a class="reference external" href="https://github.com/osu-particle-astrophysics/Shared-Code">seperate GENETIS repository</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As of August 15, 2023, <code class="docutils literal notranslate"><span class="pre">GENETIS_HPol</span></code> uses the <code class="docutils literal notranslate"><span class="pre">hpol</span></code> branch of
+<code class="docutils literal notranslate"><span class="pre">Shared-Code</span></code>.</p>
+</div>
+<p class="rubric">reference</p>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Rolla, Julie. Dissertation Appendix A. Section A.3.1.1</p>
+</aside>
 </section>
 
     <script type="text/x-thebe-config">
@@ -436,24 +436,6 @@ document.write(`
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="a3_1.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Reference: PAEA Loop</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="a3_1_2.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Part (B1) &amp; (B2): XFdtd</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
