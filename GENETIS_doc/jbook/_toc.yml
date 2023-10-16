@@ -19,17 +19,17 @@ parts:
   - caption: User's Guide
     chapters:
     - file: guide/a1
-    - file: guide/a2
-    - file: guide/a3/a3
-      sections: 
-      - file: guide/a3/a3_1
-        sections:
-          - file: guide/a3/a3_1_1
-          - file: guide/a3/a3_1_2
-          - file: guide/a3/a3_1_3
-          - file: guide/a3/a3_1_4
-          - file: guide/a3/a3_1_5
-          - file: guide/a3/a3_1_6
-      - file: guide/a3/a3_2
-    - file: guide/a4
+    # - file: guide/A2
+    # - file: guide/a3/A3
+    #   sections: 
+    #   - file: guide/a3/A3_1
+    #     sections:
+    #       - file: guide/A3/a3_1_1
+    #       - file: guide/A3/a3_1_2
+    #       - file: guide/A3/a3_1_3
+    #       - file: guide/A3/a3_1_4
+    #       - file: guide/A3/a3_1_5
+    #       - file: guide/A3/a3_1_6
+    #   - file: guide/a3/A3_2
+    # - file: guide/A4
 
