@@ -4,6 +4,25 @@
 format: jb-book
 root: index
 parts:
-- caption: I am caption
-  chapters:
-  - file: hello_world
+  # DO NOT PUT COLONS INSIDE CAPTION!!
+  - caption: Dissertation Excerpt
+    chapters:
+    - file: diss/ch2
+    - file: diss/ch3
+  - caption: User's Guide
+    chapters:
+    - file: guide/a1
+    - file: guide/a2
+    - file: guide/a3/a3
+      sections: 
+      - file: guide/a3/a3_1
+        sections:
+          - file: guide/a3/a3_1_1
+          - file: guide/a3/a3_1_2
+          - file: guide/a3/a3_1_3
+          - file: guide/a3/a3_1_4
+          - file: guide/a3/a3_1_5
+          - file: guide/a3/a3_1_6
+      - file: guide/a3/a3_2
+    - file: guide/a4
+
