@@ -20,16 +20,16 @@ parts:
     chapters:
     - file: guide/A1
     - file: guide/A2
-    # - file: guide/a3/A3
-    #   sections: 
-    #   - file: guide/a3/A3_1
-    #     sections:
-    #       - file: guide/A3/a3_1_1
-    #       - file: guide/A3/a3_1_2
-    #       - file: guide/A3/a3_1_3
-    #       - file: guide/A3/a3_1_4
-    #       - file: guide/A3/a3_1_5
-    #       - file: guide/A3/a3_1_6
-    #   - file: guide/a3/A3_2
+    - file: guide/A3/A3
+      sections:
+      - file: guide/A3/A3_1
+        sections:
+        - file: guide/A3/A3_1_1
+        - file: guide/A3/A3_1_2
+        - file: guide/A3/A3_1_3
+        - file: guide/A3/A3_1_4
+        - file: guide/A3/A3_1_5
+        - file: guide/A3/A3_1_6
+      - file: guide/A3/A3_2
     - file: guide/A4
 
