@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Part (D1) and (D2): AraSim execution &#8212; GENETIS Documentation</title>
+    <title>The AREA Software &#8212; GENETIS Documentation</title>
   
   
   
@@ -19,54 +19,53 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/a3/A3_1_4';</script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/A4';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="How to: Getting Started" href="A2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -103,7 +102,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../../search.html"
+      action="../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -141,7 +140,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="../../index.html">
+<a class="navbar-brand logo" href="../index.html">
   
   
   
@@ -155,22 +154,28 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../index.html">
+                <a class="reference internal" href="../index.html">
                     GENETIS Home
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dissertation Excerpt</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../diss/ch2.html">Evolutionary Computation and Machine Learning</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../diss/ch3.html">Antenna Optimization with Genetic Algorithms</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../diss/ch3_2.html">Early GENETIS Investigations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../diss/ch3_3.html">Discussion: the Loop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../diss/ch3_4.html">Physical Antenna Evolution Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../diss/ch3_5.html">Antenna Response Evolution Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../diss/ch3_6.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diss/ch2.html">Evolutionary Computation and Machine Learning</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../diss/ch3.html">Antenna Optimization with Genetic Algorithms</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../diss/ch3_2.html">Early GENETIS Investigations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diss/ch3_3.html">Discussion: the Loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diss/ch3_4.html">Physical Antenna Evolution Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diss/ch3_5.html">Antenna Response Evolution Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../diss/ch3_6.html">Conclusion</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User's Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="A1.html">Before You Begin </a></li>
+<li class="toctree-l1"><a class="reference internal" href="A2.html">How to: Getting Started  </a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The AREA Software</a></li>
 </ul>
 
     </div>
@@ -242,7 +247,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/edit/gh-pages/GENETIS_doc/jbook/guide/a3/A3_1_4.md" target="_blank"
+      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/edit/gh-pages/GENETIS_doc/jbook/guide/A4.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -259,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/issues/new?title=Issue%20on%20page%20%2Fguide/a3/A3_1_4.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/issues/new?title=Issue%20on%20page%20%2Fguide/A4.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -289,7 +294,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/guide/a3/A3_1_4.md" target="_blank"
+      <li><a href="../_sources/guide/A4.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -369,7 +374,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Part (D1) and (D2): AraSim execution</h1>
+    <h1>The AREA Software</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,63 +388,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="part-d1-and-d2-arasim-execution">
-<span id="a314"></span><h1>Part (D1) and (D2): AraSim execution<a class="headerlink" href="#part-d1-and-d2-arasim-execution" title="Permalink to this heading">#</a></h1>
-<p>Sub-Bash scripts for parts (D1) and (D2) are responsible for executing AraSim.
-AraSim is a neutrino simulation software that simulates the environment the ARA
-antennas experience in Antarctica when taking data. AraSim generates neutrino
-events independent of each other, with interaction point locations chosen with a
-uniform density in the ice. For computational ease, neutrinos are generated
-within a 3-5 km radius around the center of a single station for neutrino
-energies from <span class="math notranslate nohighlight">\(E_\nu = 10^{17}\)</span> eV-<span class="math notranslate nohighlight">\(10^{21}\)</span> eV, with the
-larger radii used for higher energies. AraSim then performs ray tracing and
-attenuation on the signal and calculates what electromagnetic radiation reaches
-the station. At the station, the gain and phase data from XF are used to
-calculate the sensitivity of the antenna to neutrinos. This value is extracted
-as an effective sensitive ice volume (called the ‘effective volume’). This
-effective volume is our fitness measurement, called the fitness score, for all
-individuals. For more information on what AraSim does, please see
-<strong>Chapter 3.2.2.2</strong>.</p>
-<p>Before going into the detail of these scripts, it’s important to note that to
-run AraSim, we need to submit jobs in order to fully utilize the computational
-power of the supercomputing cluster. To submit a job, a short script is run that
-contains a number of parameters for the cluster. Jobs allow the user to specify
-the number of cores to use, the number of GPUs to use, and a time limit. You are
-also more easily able to run many jobs in parallel, which means we can run
-multiple simulations at once instead of waiting for each individual simulation
-to run before starting the next. Note that running a program through the command
-line instead of submitting a job will work, but it will be significantly slower
-and may time out before completion. Jobs allow the cluster to allocate cores and
-time to users appropriately, so you may have to wait for a job to start,
-especially if you are requesting significant computational power. Please see
-more about job submissions on the <a class="reference external" href="https://www.osc.edu/supercomputing/batch-processing-at-osc/job-submission">OSC site</a>.
-Though this may seem intimidating, our software is set up to
-automatically submit AraSim jobs; the user bears no responsibility in submitting
-the jobs manually. This, as well as the remainder of discussions apropos AraSim,
-is noteworthy information that can assist in properly understanding our software
-for future modifications; however, it is not essential to starting a run if no
-modifications are needed.</p>
-<p>One more note-worthy mention is that because these jobs take a long time, we
-have modified our run so that, for each individual, we break up the number of
-neutrinos into smaller jobs and utilize the ability to run simulations in
-parallel. For example, if our variable NNT=30,000, making Seeds=10 means that we
-divide a total of 300k neutrinos into 10 jobs that will run in parallel; this
-dramatically speeds up our run time.</p>
-<p>In the rest of this section, we will discuss the two sub-Bash scripts that are
-responsible for running the simulation of our antennas in Antarctica using
-AraSim. Part (D1) is responsible for running two things: (1) it moves each .dat
-file into a folder AraSim can access, while changing it to a .txt, which is what
-AraSim reads, and (2) it runs AraSim for each individual and moves the output
-into the <code class="docutils literal notranslate"><span class="pre">Antenna_Performance_Metric</span></code> folder. It also makes a directory for
-all errors and output files from AraSim to be dumped. Part (D2) is responsible
-for telling our loop to wait until AraSim is finished running. This will check
-the completed files and make sure they all appear before moving on to the next
-part.  This checks that both (1) the jobs finished and (2) that they were
-successful. If it is unsuccessful, it will resubmit the job. It does so by
-using the <code class="docutils literal notranslate"><span class="pre">grep</span></code> command to search the files for segmentation violations. If
-it sees one, it resubmits that job. Note that we also submit a job for the
-actual ARA bicone during the first generation so it can be compared against in
-our run.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-area-software">
+<h1>The AREA Software<a class="headerlink" href="#the-area-software" title="Permalink to this heading">#</a></h1>
+<a class="reference internal image-reference" href="../_images/under_construction.png"><img alt="../_images/under_construction.png" src="../_images/under_construction.png" style="width: 200px;" /></a>
 </section>
 
     <script type="text/x-thebe-config">
@@ -455,7 +406,7 @@ our run.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./guide/a3"
+            path: "./guide"
         },
         predefinedOutput: true
     }
@@ -472,6 +423,15 @@ our run.</p>
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="A2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">How to: Getting Started  </p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -521,8 +481,8 @@ By OSU GENETIS Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>
