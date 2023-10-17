@@ -392,6 +392,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-set-up-bash-read-command">How to set up Bash read command </a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-your-new-favorite-editor">tutorial: your new favorite editor</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bashrc-alias">bashrc alias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-bashrc">our bashrc</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-launch-a-vdi">How to launch a VDI</a></li>
@@ -413,251 +414,208 @@ document.write(`
 designed to be a collection of how-to guides.</p>
 <section id="how-to-obtain-an-osc-account">
 <span id="a21"></span><h2>How to obtain an OSC account <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#how-to-obtain-an-osc-account" title="Permalink to this heading">#</a></h2>
-<!-- The commercial antenna simulation software that we use (XFdtd) is installed on -->
-<!-- OSC. If you are associated with the Ohio State University, you can email or talk -->
-<!-- to Dr. [Connolly](mailto:connolly@physics.osu.edu) to obtain an Ohio Supercomputer -->
-<!-- Center (OSC) account. Please include the following information in your email: -->
-<!--  -->
-<!-- - Your first and last name -->
-<!-- - Your date of birth -->
-<!-- - Your e-mail address -->
-<!-- - Your phone number -->
-<!--  -->
-<!-- Once you request access, you'll receive an email stating you've been invited to -->
-<!-- join the project, `PAS1960` (Our project space on OSC is at -->
-<!-- `/fs/ess/PAS1960`). You can then follow the link provided in the email to -->
-<!-- register your account. -->
-<!-- If you don't already have an OSC account, you'll also receive an email telling -->
-<!-- you that a request has been made on your behalf, and it will ask you to verify -->
-<!-- your email address. -->
-<!--  -->
-<!-- You should also ask Dr. Connolly to add you to our {ref}`XFdtd <a2xfdtd>` -->
-<!-- license. Please fill out the -->
-<!-- {download}`OSC Software License Agreement form <osc_sla.pdf>` and email it to -->
-<!-- Dr. Connolly. -->
+<p>The commercial antenna simulation software that we use (XFdtd) is installed on
+OSC. If you are associated with the Ohio State University, you can email or talk
+to Dr. <a class="reference external" href="mailto:connolly&#37;&#52;&#48;physics&#46;osu&#46;edu">Connolly</a> to obtain an Ohio Supercomputer
+Center (OSC) account. Please include the following information in your email:</p>
+<ul class="simple">
+<li><p>Your first and last name</p></li>
+<li><p>Your date of birth</p></li>
+<li><p>Your e-mail address</p></li>
+<li><p>Your phone number</p></li>
+</ul>
+<p>Once you request access, you’ll receive an email stating you’ve been invited to
+join the project, <code class="docutils literal notranslate"><span class="pre">PAS1960</span></code> (Our project space on OSC is at <code class="docutils literal notranslate"><span class="pre">/fs/ess/PAS1960</span></code>).
+You can then follow the link provided in the email to register your account.
+If you don’t already have an OSC account, you’ll also receive an email telling
+you that a request has been made on your behalf, and it will ask you to verify
+your email address.</p>
+<p>You should also ask Dr. Connolly to add you to our <a class="reference internal" href="#a2xfdtd"><span class="std std-ref">XFdtd</span></a>
+license. Please fill out the
+<a class="reference download internal" download="" href="../_downloads/63c386703fd8f8ac60ea13a98ccdeb4d/osc_sla.pdf"><code class="xref download docutils literal notranslate"><span class="pre">OSC</span> <span class="pre">Software</span> <span class="pre">License</span> <span class="pre">Agreement</span> <span class="pre">form</span></code></a> and email it to
+Dr. Connolly.</p>
 </section>
 <section id="how-to-connect-to-osc">
 <span id="a22"></span><h2>How to connect to OSC <a class="footnote-reference brackets" href="#f3" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="headerlink" href="#how-to-connect-to-osc" title="Permalink to this heading">#</a></h2>
-<!-- If you're running Windows {strike}`consider getting an operating system that -->
-<!-- doesn't suck`, you will need to set up Bash to work on Windows first. -->
-<!--  -->
-<!-- ```{eval-rst} -->
-<!-- ..  todo:: -->
-<!--  -->
-<!--     how to set up Bash on Windows? -->
-<!-- ``` -->
-<!--  -->
-<!-- If you're running macOS or Linux, simply open the terminal application and type -->
-<!-- the following command to "ssh into OSC": -->
-<!--  -->
-<!-- ```Bash -->
-<!-- ssh -XY your_username@pitzer.osc.edu -->
-<!-- ``` -->
-<!--  -->
-<!-- This will let you access OSC's [Pitzer cluster](https://www.osc.edu/resources/technical_support/supercomputers/pitzer). -->
-<!-- Alternatively, you could access the [Owens cluster](https://www.osc.edu/resources/technical_support/supercomputers/owens) through -->
-<!--  -->
-<!-- ```Bash -->
-<!-- ssh your_username@owens.osc.edu -->
-<!-- ``` -->
-<!--  -->
-<!-- (`-XY` is an `option` of the command `ssh`; more on this [here](https://www.microfocus.com/documentation/rsit-server-client-unix/8-4-0/unix-guide/ssh_options_ap.html).) -->
-<!-- Note that the terminal is not going to display your password as you type it, -->
-<!-- it is not going to even show hints on how many characters you have entered, -->
-<!-- such as `****`. -->
-<!--  -->
-<!-- To cancel logging into OSC, press the keys {kbd}`Control` + {kbd}`c` -->
-<!--  -->
-<!-- Once you are in, you may close the connection to OSC with {kbd}`Control` + -->
-<!-- {kbd}`d` -->
+<p>If you’re running Windows <strike>consider getting an operating system that
+doesn’t suck</strike>, you will need to set up Bash to work on Windows first.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">TODO</p>
+<p>how to set up Bash on Windows?</p>
+</div>
+<p>If you’re running macOS or Linux, simply open the terminal application and type
+the following command to “ssh into OSC”:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-XY<span class="w"> </span>your_username@pitzer.osc.edu
+</pre></div>
+</div>
+<p>This will let you access OSC’s
+<a class="reference external" href="https://www.osc.edu/resources/technical_support/supercomputers/pitzer">Pitzer cluster</a>.
+Alternatively, you could access the
+<a class="reference external" href="https://www.osc.edu/resources/technical_support/supercomputers/owens">Owens cluster</a>
+through</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>your_username@owens.osc.edu
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-XY</span></code> is an <code class="docutils literal notranslate"><span class="pre">option</span></code> of the command <code class="docutils literal notranslate"><span class="pre">ssh</span></code>;
+more on this
+<a class="reference external" href="https://www.microfocus.com/documentation/rsit-server-client-unix/8-4-0/unix-guide/ssh_options_ap.html">here</a>.
+Note that the terminal is not going to display your password as you type it,
+it is not going to even show hints on how many characters you have entered,
+such as <code class="docutils literal notranslate"><span class="pre">****</span></code>.</p>
+<p>To cancel logging into OSC, press the keys <kbd class="kbd docutils literal notranslate">Control</kbd> + <kbd class="kbd docutils literal notranslate">c</kbd></p>
+<p>Once you are in, you may close the connection to OSC with <kbd class="kbd docutils literal notranslate">Control</kbd> +
+<kbd class="kbd docutils literal notranslate">d</kbd></p>
 </section>
 <section id="how-to-set-up-bash-read-command">
 <span id="a23"></span><h2>How to set up Bash read command <a class="footnote-reference brackets" href="#f4" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a><a class="headerlink" href="#how-to-set-up-bash-read-command" title="Permalink to this heading">#</a></h2>
-<!-- Once you are on OSC, you may want to proceed to set up your `.bashrc` file. -->
-<!--  -->
-<!-- To do so, `cd` (change directory) to your home directory if you are not -->
-<!-- already there: -->
-<!--  -->
-<!-- ```Bash -->
-<!-- cd ~ -->
-<!-- ``` -->
-<!--  -->
-<!-- Here you may wish to also print out where your home directory is with the -->
-<!-- command `pwd` (print working directory), which is most likely going to be -->
-<!-- `/users/PAS1960/your_username`. -->
-<!--  -->
-<!-- If you now list `a`ll files in your home directory through `ls -a`, -->
-<!-- you should see a Bash read command file, or `.bashrc` (but worry not if it is -->
-<!-- not there). Basically, this is a Bash script that a computer runs every time you -->
-<!-- open up the terminal if you are using Bash. -->
-<!--  -->
-<!-- :::{note} -->
-<!-- If you are somehow using other "shells" to interact with the operating -->
-<!-- system, for example *zsh*, then you would have a corresponding `.zshrc` -->
-<!-- file. -->
-<!-- ::: -->
+<p>Once you are on OSC, you may want to proceed to set up your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file.</p>
+<p>To do so, <code class="docutils literal notranslate"><span class="pre">cd</span></code> (change directory) to your home directory if you are not
+already there:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
+</pre></div>
+</div>
+<p>Here you may wish to also print out where your home directory is with the
+command <code class="docutils literal notranslate"><span class="pre">pwd</span></code> (print working directory), which is most likely going to be
+<code class="docutils literal notranslate"><span class="pre">/users/PAS1960/your_username</span></code>.</p>
+<p>If you now list <code class="docutils literal notranslate"><span class="pre">a</span></code>ll files in your home directory through <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-a</span></code>,
+you should see a Bash read command file, or <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> (but worry not if it is
+not there). Basically, this is a Bash script that a computer runs every time you
+open up the terminal if you are using Bash.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are somehow using other “shells” to interact with the operating
+system, for example <em>zsh</em>, then you would have a corresponding <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>
+file.</p>
+</div>
 <section id="tutorial-your-new-favorite-editor">
 <span id="a23vim"></span><h3>tutorial: your new favorite editor<a class="headerlink" href="#tutorial-your-new-favorite-editor" title="Permalink to this heading">#</a></h3>
-<!-- In the terminal, open or create your own `.bashrc` using the text editor -->
-<!-- *Vim* through -->
-<!--  -->
-<!-- ```Bash -->
-<!-- vim ~/.bashrc -->
-<!-- ``` -->
-<!--  -->
-<!-- If this is your first time using Bash and Vim, congratulations, you are now -->
-<!-- editing your first ever Bash script, a widely used scripting language, via [a -->
-<!-- widely used editor](https://www.vim.org/), and the first thing you will notice -->
-<!-- is that you can't actually type anything; you probably can't even `q`uit the -->
-<!-- editor to go back to the terminal window; incidentally, this has over the years -->
-<!-- become a meme among Vim users. That you can't type as you normally could is -->
-<!-- because you are in what is known as the `normal` mode.  Hit {kbd}`i` to get -->
-<!-- into `insert` mode; you should see **-- INSERT --** in the bottom left corner. -->
-<!-- Now, you will be able to type normally. To exit the `insert` mode, press -->
-<!-- {kbd}`esc` on your keyboard, and you will be back in the `normal` mode. In -->
-<!-- `normal` mode, hit {kbd}`:+w+q+Enter` to save what you typed and quit; -->
-<!-- alternatively, hit {kbd}`:+q+!+Enter` to force quit Vim without saving. -->
-<!--  -->
-<!-- Now that you have started using Vim, you might want to check out the offline -->
-<!-- tutorial by typing `vimtutor` in the terminal. For more advanced [tips and -->
-<!-- tricks](https://www.youtube.com/watch?v=bQfFvExpZDU) to speed up your typing, -->
-<!-- you are also encouraged to watch [tutorials](https://www.youtube.com/watch?v=qZO9A5F6BZs&t=504s) on the internet. -->
-<!--  -->
-<!-- :::{warning} -->
-<!-- In two months it will start feeling painful whenever you *cannot* use Vim. -->
-<!-- ::: -->
+<p>In the terminal, open or create your own <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> using the text editor
+<strong>Vim</strong> through</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<p>If this is your first time using Bash and Vim, congratulations, you are now
+editing your first ever Bash script, a widely used scripting language, via
+<a class="reference external" href="https://www.vim.org/">a widely used editor</a>,
+and the first thing you will notice is that you can’t actually type anything;
+you probably can’t even <code class="docutils literal notranslate"><span class="pre">q</span></code>uit the editor to go back to the terminal window;
+incidentally, this has over the years become a meme among Vim users.
+That you can’t type as you normally could is because you are in what is known
+as the <code class="docutils literal notranslate"><span class="pre">normal</span></code> mode.  Hit <kbd class="kbd docutils literal notranslate">i</kbd> to get into <code class="docutils literal notranslate"><span class="pre">insert</span></code> mode; you should see
+<strong>– INSERT –</strong> in the bottom left corner.
+Now, you will be able to type normally. To exit the <code class="docutils literal notranslate"><span class="pre">insert</span></code> mode, press
+<kbd class="kbd docutils literal notranslate">esc</kbd> on your keyboard, and you will be back in the <code class="docutils literal notranslate"><span class="pre">normal</span></code> mode.
+In <code class="docutils literal notranslate"><span class="pre">normal</span></code> mode, hit <kbd class="kbd docutils literal notranslate">:</kbd> + <kbd class="kbd docutils literal notranslate">w</kbd> + <kbd class="kbd docutils literal notranslate">q</kbd> + <kbd class="kbd docutils literal notranslate">Enter</kbd>
+to save what you typed and quit;
+alternatively, hit <kbd class="kbd docutils literal notranslate">:</kbd>+<kbd class="kbd docutils literal notranslate">q</kbd>+<kbd class="kbd docutils literal notranslate">!</kbd>+<kbd class="kbd docutils literal notranslate">Enter</kbd>
+to force quit Vim without saving.</p>
+<p>Now that you have started using Vim, you might want to check out the offline
+tutorial by typing <code class="docutils literal notranslate"><span class="pre">vimtutor</span></code> in the terminal. For more advanced
+<a class="reference external" href="https://www.youtube.com/watch?v=bQfFvExpZDU">tips and tricks</a>
+to speed up your typing, you are also encouraged to watch
+<a class="reference external" href="https://www.youtube.com/watch?v=qZO9A5F6BZs&amp;t=504s">tutorials</a> on the internet.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In two months it will start feeling painful whenever you <em>cannot</em> use Vim.</p>
+</div>
 </section>
 <section id="bashrc-alias">
 <h3>bashrc alias<a class="headerlink" href="#bashrc-alias" title="Permalink to this heading">#</a></h3>
-<!-- You can put any alias to commands in `.bashrc` and the computer will -->
-<!-- automatically follow these abbreviations each time you open a new terminal -->
-<!-- window. For example, suppose you don't want to have to type out -->
-<!--  -->
-<!-- ```Bash -->
-<!-- cd /fs/ess/PAS1960/GENETIS_HPol/Evolutionary_loop -->
-<!-- ``` -->
-<!--  -->
-<!-- In order to go to the `GENETIS_HPol` workspace, you could set up an `alias`: -->
-<!--  -->
-<!-- 1. Open up `.bashrc` again using Vim. -->
-<!--  -->
-<!-- 2. In **--Insert--** mode, enter -->
-<!--  -->
-<!--    ```Bash -->
-<!--    alias hpol='/fs/ess/PAS1960/GENETIS_HPol/Evolutionary_loop' -->
-<!--    ``` -->
-<!--  -->
-<!-- 3. Save the above change and quit Vim through {kbd}`:+w+q`. -->
-<!--  -->
-<!-- 4. In the terminal, enter `source ~/.bashrc` for the `alias` to take -->
-<!--    effect. Alternatively, you could close the terminal window and open up -->
-<!--    a new one (`.bashrc` is automatically sourced when a new terminal is -->
-<!--    opened). -->
-<!--  -->
-<!-- 5. Now, after the newly edited `.bashrc` is `sourced`, instead of typing -->
-<!--    `cd /fs/ess/PAS1960/GENETIS_HPol/Evolutionary_loop`, you could simply use -->
-<!--    `hpol` to get to the desired directory! -->
-<!--  -->
-<!-- ### our bashrc -->
-<!--  -->
-<!-- The following is the `.bashrc` used by the OSU GENETIS team. -->
-<!-- Note that this specific `.bashrc` is for OSU Connolly group members and will -->
-<!-- not work if you do not have access to the PAS1960 project space. -->
-<!--  -->
-<!-- ```{eval-rst} -->
-<!-- ..  todo:: -->
-<!--  -->
-<!--     * Check if ``.bashrc`` is still up-to-date -->
-<!-- ``` -->
-<!--  -->
-<!-- ```Bash -->
-<!-- # .bashrc -->
-<!-- #  Source global definitions -->
-<!-- if [ -f /etc/bashrc ]; then -->
-<!--     . /etc/bashrc -->
-<!-- fi -->
-<!--  -->
-<!-- #For GENETIS -->
-<!-- module load gnu/7.3.0 -->
-<!-- module load mvapich2/2.3 -->
-<!-- module load fftw3 -->
-<!-- module load python/3.6-conda5.2 -->
-<!-- module load cmake -->
-<!-- export CC=`which gcc` -->
-<!-- export CXX=`which g++` -->
-<!--  -->
-<!-- #For running ARASim -->
-<!-- source /cvmfs/ara.opensciencegrid.org/v2.0.0/centos7/setup.sh -->
-<!-- source /fs/project/PAS0654/BiconeEvolutionOSC/new_root/new_root_setup.sh -->
-<!--  -->
-<!-- #Bicone GENETIS directory shortcut alias to PAS1960 -->
-<!-- alias GE60='cd /fs/ess/PAS1960/BiconeEvolutionOSC/BiconeEvolution/\ -->
-<!-- current_antenna_evo_build/XF_Loop/Evolutionary_Loop/' -->
-<!-- ``` -->
+<p>You can put any alias to commands in <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> and the computer will
+automatically follow these abbreviations each time you open a new terminal
+window. For example, suppose you don’t want to have to type out</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/fs/ess/PAS1960/GENETIS_HPol/Evolutionary_loop
+</pre></div>
+</div>
+<p>In order to go to the <code class="docutils literal notranslate"><span class="pre">GENETIS_HPol</span></code> workspace, you could set up an <code class="docutils literal notranslate"><span class="pre">alias</span></code>:</p>
+<ol class="arabic">
+<li><p>Open up <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> again using Vim.</p></li>
+<li><p>In <strong>–Insert–</strong> mode, enter</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">hpol</span><span class="o">=</span><span class="s1">&#39;/fs/ess/PAS1960/GENETIS_HPol/Evolutionary_loop&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Save the above change and quit Vim through <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">:</kbd>+<kbd class="kbd docutils literal notranslate">w</kbd>+<kbd class="kbd docutils literal notranslate">q</kbd></kbd>.</p></li>
+<li><p>In the terminal, enter <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.bashrc</span></code> for the <code class="docutils literal notranslate"><span class="pre">alias</span></code> to take
+effect. Alternatively, you could close the terminal window and open up
+a new one (<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> is automatically sourced when a new terminal is
+opened).</p></li>
+<li><p>Now, after the newly edited <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> is <code class="docutils literal notranslate"><span class="pre">sourced</span></code>, instead of typing
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/fs/ess/PAS1960/GENETIS_HPol/Evolutionary_loop</span></code>, you could simply use
+<code class="docutils literal notranslate"><span class="pre">hpol</span></code> to get to the desired directory!</p></li>
+</ol>
+</section>
+<section id="our-bashrc">
+<h3>our bashrc<a class="headerlink" href="#our-bashrc" title="Permalink to this heading">#</a></h3>
+<p>The following is the <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> used by the OSU GENETIS team.
+Note that this specific <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> is for OSU Connolly group members and will
+not work if you do not have access to the PAS1960 project space.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">TODO</p>
+<p>Check if <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> is still up-to-date</p>
+</div>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># .bashrc</span>
+<span class="c1">#  Source global definitions</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>/etc/bashrc<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>.<span class="w"> </span>/etc/bashrc
+<span class="k">fi</span>
+
+<span class="c1">#For GENETIS</span>
+module<span class="w"> </span>load<span class="w"> </span>gnu/7.3.0
+module<span class="w"> </span>load<span class="w"> </span>mvapich2/2.3
+module<span class="w"> </span>load<span class="w"> </span>fftw3
+module<span class="w"> </span>load<span class="w"> </span>python/3.6-conda5.2
+module<span class="w"> </span>load<span class="w"> </span>cmake
+<span class="nb">export</span><span class="w"> </span><span class="nv">CC</span><span class="o">=</span><span class="sb">`</span>which<span class="w"> </span>gcc<span class="sb">`</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CXX</span><span class="o">=</span><span class="sb">`</span>which<span class="w"> </span>g++<span class="sb">`</span>
+
+<span class="c1">#For running ARASim</span>
+<span class="nb">source</span><span class="w"> </span>/cvmfs/ara.opensciencegrid.org/v2.0.0/centos7/setup.sh
+<span class="nb">source</span><span class="w"> </span>/fs/project/PAS0654/BiconeEvolutionOSC/new_root/new_root_setup.sh
+
+<span class="c1">#Bicone GENETIS directory shortcut alias to PAS1960</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">GE60</span><span class="o">=</span><span class="s1">&#39;cd /fs/ess/PAS1960/BiconeEvolutionOSC/BiconeEvolution/\</span>
+<span class="s1">current_antenna_evo_build/XF_Loop/Evolutionary_Loop/&#39;</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="how-to-launch-a-vdi">
 <span id="a2vdi"></span><h2>How to launch a VDI<a class="headerlink" href="#how-to-launch-a-vdi" title="Permalink to this heading">#</a></h2>
-<!-- To "launch a VDI (virtual desktop infrastructure)," visit [OSC OnDemand](https://ondemand.osc.edu/pun/sys/dashboard). Once you log in, select -->
-<!-- "Lighweight Desktop". -->
-<!--  -->
-<!-- ```{image} img/VDI_step1.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
-<!--  -->
-<!-- Then, request the number of hours (please don't actually enter 9999999) and -->
-<!-- hit the blue "Launch" button. -->
-<!--  -->
-<!-- ```{image} img/VDI_step2.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
-<!--  -->
-<!-- Once the vitual desktop is ready, you should see the blue "launch lightweight -->
-<!-- desktop" button. Please note that there will be a delay before this button shows -->
-<!-- up; the wait time depends on how much resources (in this case, the number of -->
-<!-- hours) you are requesting. -->
-<!--  -->
-<!-- ```{image} img/VDI_step3.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
-<!--  -->
-<!-- :::{note} -->
-<!-- It is a GENETIS common practice to share VDI with other team members via the -->
-<!-- `#vdi_links` {ref}`Slack channel <a12>` (locked, please ask for permission -->
-<!-- to join the channel). With the shared link, others can view the terminal -->
-<!-- check the status of the currently running loop. To generate a shareable VDI -->
-<!-- link, click the "View Only (Share-able Link)" button. -->
-<!-- ::: -->
-<!--  -->
-<!-- Once you launch the virtual desktop, your browser will open another tab. -->
-<!--  -->
-<!-- ```{image} img/VDI_step4.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
-<!--  -->
-<!-- Congratulations, you now know how to access OSC through a perhaps more familiar -->
-<!-- interface. -->
-<!--  -->
-<!-- :::{warning} -->
-<!-- The VDI will shutdown once the time is up. Make sure you request enough -->
-<!-- time for your work and that you save your progress. -->
-<!-- ::: -->
-<!--  -->
-<!-- When you are finished with your work, remember to log out: -->
-<!--  -->
-<!-- ```{image} img/VDI_step5.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
-<!--  -->
-<!-- ```{image} img/VDI_step6.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
-<!--  -->
-<!-- Finally, delete the session: -->
-<!--  -->
-<!-- ```{image} img/VDI_step7.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
+<p>To “launch a VDI (virtual desktop infrastructure),”
+visit <a class="reference external" href="https://ondemand.osc.edu/pun/sys/dashboard">OSC OnDemand</a>.
+Once you log in, select “Lighweight Desktop”.</p>
+<a class="reference internal image-reference" href="../_images/VDI_step1.png"><img alt="../_images/VDI_step1.png" src="../_images/VDI_step1.png" style="width: 850px;" /></a>
+<p>Then, request the number of hours (please don’t actually enter 9999999) and
+hit the blue “Launch” button.</p>
+<a class="reference internal image-reference" href="../_images/VDI_step2.png"><img alt="../_images/VDI_step2.png" src="../_images/VDI_step2.png" style="width: 850px;" /></a>
+<p>Once the vitual desktop is ready, you should see the blue “launch lightweight
+desktop” button. Please note that there will be a delay before this button shows
+up; the wait time depends on how much resources (in this case, the number of
+hours) you are requesting.</p>
+<a class="reference internal image-reference" href="../_images/VDI_step3.png"><img alt="../_images/VDI_step3.png" src="../_images/VDI_step3.png" style="width: 850px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is a GENETIS common practice to share VDI with other team members via the
+<code class="docutils literal notranslate"><span class="pre">#vdi_links</span></code> <a class="reference internal" href="A1.html#a12"><span class="std std-ref">Slack channel</span></a> (locked, please ask for permission
+to join the channel). With the shared link, others can view the terminal
+check the status of the currently running loop. To generate a shareable VDI
+link, click the “View Only (Share-able Link)” button.</p>
+</div>
+<p>Once you launch the virtual desktop, your browser will open another tab.</p>
+<a class="reference internal image-reference" href="../_images/VDI_step4.png"><img alt="../_images/VDI_step4.png" src="../_images/VDI_step4.png" style="width: 850px;" /></a>
+<p>Congratulations, you now know how to access OSC through a perhaps more familiar
+interface.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The VDI will shutdown once the time is up. Make sure you request enough
+time for your work and that you save your progress.</p>
+</div>
+<p>When you are finished with your work, remember to log out:</p>
+<a class="reference internal image-reference" href="../_images/VDI_step5.png"><img alt="../_images/VDI_step5.png" src="../_images/VDI_step5.png" style="width: 850px;" /></a>
+<a class="reference internal image-reference" href="../_images/VDI_step6.png"><img alt="../_images/VDI_step6.png" src="../_images/VDI_step6.png" style="width: 850px;" /></a>
+<p>Finally, delete the session:</p>
+<a class="reference internal image-reference" href="../_images/VDI_step7.png"><img alt="../_images/VDI_step7.png" src="../_images/VDI_step7.png" style="width: 850px;" /></a>
 </section>
 <section id="how-to-launch-xfdtd-on-osc">
 <span id="a2xfdtd"></span><h2>How to launch XFdtd on OSC <a class="footnote-reference brackets" href="#f5" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a><a class="headerlink" href="#how-to-launch-xfdtd-on-osc" title="Permalink to this heading">#</a></h2>
@@ -815,6 +773,7 @@ designed to be a collection of how-to guides.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-set-up-bash-read-command">How to set up Bash read command </a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-your-new-favorite-editor">tutorial: your new favorite editor</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bashrc-alias">bashrc alias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-bashrc">our bashrc</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-launch-a-vdi">How to launch a VDI</a></li>
