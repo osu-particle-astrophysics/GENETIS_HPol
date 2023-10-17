@@ -619,68 +619,39 @@ time for your work and that you save your progress.</p>
 </section>
 <section id="how-to-launch-xfdtd-on-osc">
 <span id="a2xfdtd"></span><h2>How to launch XFdtd on OSC <a class="footnote-reference brackets" href="#f5" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a><a class="headerlink" href="#how-to-launch-xfdtd-on-osc" title="Permalink to this heading">#</a></h2>
-<!-- We use {ref}`XFdtd <ch3_3_xfdtd>` to create antennas and simulate their "gains" -->
-<!-- (response to electromagnetic waves) on OSC. -->
-<!-- For more information on how to use the software, check out its -->
-<!-- {download}`users guide <XFdtd_Users_Guide.pdf>` or the more in-depth [reference -->
-<!-- manual](https://www.scribd.com/doc/237799239/XFdtd-Reference-Manual-pdf). -->
-<!--  -->
-<!-- To launch XFdtd, first {ref}`requested the VDI <a2vdi>` and click on the -->
-<!-- terminal icon. -->
-<!--  -->
-<!-- ```{image} img/xflaunch_step1.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
-<!--  -->
-<!-- Inside the terminal, type -->
-<!--  -->
-<!-- ```Bash -->
-<!-- module load xfdtd/7.9.2.2 -->
-<!-- ``` -->
-<!--  -->
-<!-- where `7.9.2.2` is the latest version on OSC (as of Aug 20, 2023); -->
-<!-- alternatively, use the default version through `module load xfdtd`. -->
-<!-- Next, to launch the XFdtd GUI, type -->
-<!--  -->
-<!-- ```Bash -->
-<!-- xfdtd & -->
-<!-- ``` -->
-<!--  -->
-<!-- where the `&` "backgrounds" the terminal command. You will be prompted to -->
-<!-- confirm your license. Once confirmed, you should see the following. -->
-<!--  -->
-<!-- ```{image} img/xflaunch_step2.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
-<!--  -->
-<!-- Incidentally, you might consider checking out the `Help` drop-down menu inside -->
-<!-- the graphical user interface (GUI) of XFdtd. The "Scripting API documentation" -->
-<!-- pertains to the scripting language `xmacro` which we use to control the -->
-<!-- software. -->
-<!--  -->
-<!-- ```{image} img/xflaunch_step3.png -->
-<!-- :width: 850 -->
-<!-- ``` -->
-<!--  -->
-<!-- Congratulations, you now know how to launch the XFdtd GUI on OSC! -->
-<!--  -->
-<!-- % ----------------------------------------------------------------------------- -->
-<!--  -->
-<!-- % ..  rubric:: footnote -->
-<!--  -->
-<!-- % ..  [#r1]   A REMCOM product that utilizes the finite difference time domain -->
-<!--  -->
-<!-- % (Fdtd) method to compute the response of simulated antennas. -->
-<!--  -->
-<!-- % For more information, please see **section 3.3**. -->
-<!--  -->
-<!-- ```{eval-rst} -->
-<!-- ..  todo:: -->
-<!--  -->
-<!--     * reference dissertation Chapter 3.3 -->
-<!--  -->
-<!-- ``` -->
-<!--  -->
+<p>We use <span class="xref std std-ref">XFdtd</span> to create antennas and simulate their “gains”
+(response to electromagnetic waves) on OSC.
+For more information on how to use the software, check out its
+<a class="reference download internal" download="" href="../_downloads/737a5a63021002d23d89ffbe83da5160/XFdtd_Users_Guide.pdf"><code class="xref download docutils literal notranslate"><span class="pre">users</span> <span class="pre">guide</span></code></a> or the more in-depth
+<a class="reference external" href="https://www.scribd.com/doc/237799239/XFdtd-Reference-Manual-pdf">reference manual</a>.</p>
+<p>To launch XFdtd, first <a class="reference internal" href="#a2vdi"><span class="std std-ref">requested the VDI</span></a> and click on the
+terminal icon.</p>
+<a class="reference internal image-reference" href="../_images/xflaunch_step1.png"><img alt="../_images/xflaunch_step1.png" src="../_images/xflaunch_step1.png" style="width: 850px;" /></a>
+<p>Inside the terminal, type</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>xfdtd/7.9.2.2
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">7.9.2.2</span></code> is the latest version on OSC (as of Aug 20, 2023);
+alternatively, use the default version through <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">xfdtd</span></code>.
+Next, to launch the XFdtd GUI, type</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>xfdtd<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<p>where the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> “backgrounds” the terminal command. You will be prompted to
+confirm your license. Once confirmed, you should see the following.</p>
+<a class="reference internal image-reference" href="../_images/xflaunch_step2.png"><img alt="../_images/xflaunch_step2.png" src="../_images/xflaunch_step2.png" style="width: 850px;" /></a>
+<p>Incidentally, you might consider checking out the <code class="docutils literal notranslate"><span class="pre">Help</span></code> drop-down menu inside
+the graphical user interface (GUI) of XFdtd. The “Scripting API documentation”
+pertains to the scripting language <code class="docutils literal notranslate"><span class="pre">xmacro</span></code> which we use to control the
+software.</p>
+<a class="reference internal image-reference" href="../_images/xflaunch_step3.png"><img alt="../_images/xflaunch_step3.png" src="../_images/xflaunch_step3.png" style="width: 850px;" /></a>
+<p>Congratulations, you now know how to launch the XFdtd GUI on OSC!</p>
+<div class="dropdown admonition">
+<p class="admonition-title">TODO</p>
+<ul class="simple">
+<li><p>reference dissertation Chapter 3.3</p></li>
+</ul>
+</div>
 <hr class="footnotes docutils" />
 <aside class="footnote brackets" id="f1" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
