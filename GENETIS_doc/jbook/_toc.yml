@@ -32,4 +32,6 @@ parts:
         - file: guide/A3/A3_1_6
       - file: guide/A3/A3_2
     - file: guide/A4
-
+  - caption: Genetic Algorithm Reference Guide
+    chapters:
+    - file: ga_ref/ga_doc_temp
