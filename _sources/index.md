@@ -3,27 +3,29 @@
 Welcome to the GENETIS project!
 
 This documentation is based on the dissertation by 
-[Dr. Julie Rolla] (https://etd.ohiolink.edu/apexprod/rws_olink/r/1501/10?clear=10&p10_accession_num=osu163668789451345>).
+[Dr. Julie Rolla](https://etd.ohiolink.edu/apexprod/rws_olink/r/1501/10?clear=10&p10_accession_num=osu163668789451345>).
 It follows the [Diátaxis documentation guideline](https://diataxis.fr/):
 
 ```{admonition} Navigation
-:class: tip
+:class: seealso, dropdown
 *  The **Dissertation Excerpt** is intended to be a 
     [discussion](https://diataxis.fr/explanation/).
 
     This part of the documentation is based on Chapter 2 and 3 of Julie's
     disseration.
 
-* **User's Guide** is based on the Appendix of the dissertation.
-
-    It is recommended that you read through the discussion before this.
-
-    *  **Before You Begin** is intended to be a set of 
+*  If you are joining our team, you can find onboarding documents under the
+    **New GENETIS Members** section.
+    *  {doc}`guide/A1` is intended to be a set of 
         [tutorials](https://diataxis.fr/tutorials/).
 
-    *  **How to: Getting Started** is a set of 
+    *  {doc}`guide/A2` is a set of 
         [how-to guides](https://diataxis.fr/how-to-guides/).
 
-    *  Lastly, **PAEA Introduction** is a 
-        [reference guide](https://diataxis.fr/reference/).
+* **HPol Manual** is based on the Appendix of the dissertation,
+    it is mainly intended to be an automatically generated 
+    [reference guide](https://diataxis.fr/reference/), so 
+    it is recommended that you read through the other parts of the
+    documentation first.
+
 ```
