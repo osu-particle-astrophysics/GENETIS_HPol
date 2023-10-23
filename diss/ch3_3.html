@@ -587,25 +587,21 @@ neutrino interactions in the Antarctic ice, which produce electromagnetic
 showers resulting in the production of Askaryan radiation.</p>
 <div class="tip dropdown admonition">
 <p class="admonition-title">more on AraSim</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AraSim uniformly distributes the neutrino-ice interactions within a
+<p>AraSim uniformly distributes the neutrino-ice interactions within a
 cylindrical volume with a 3 km radius centered around the detector.
 The direction of the incoming neutrino is randomly distributed over a solid
-angle of :math:`4 \pi`.
-
-The radio emission propagation is modeled using ray tracing, which
+angle of <span class="math notranslate nohighlight">\(4 \pi\)</span>.</p>
+<p>The radio emission propagation is modeled using ray tracing, which
 determines the path length from the interaction to the detector. The ray
 tracing models the depth-dependent index of refraction of the ice, which is
-:math:`n=1.3` at the surface to :math:`n=1.8` at 200m depth. Because of
+<span class="math notranslate nohighlight">\(n=1.3\)</span> at the surface to <span class="math notranslate nohighlight">\(n=1.8\)</span> at 200m depth. Because of
 this variable index of refraction, the electromagnetic waves emitted from
-the interaction bend en route from the interaction point to the antenna.
-
-AraSim then calculates the polarization, viewing angle, travel time at the
+the interaction bend en route from the interaction point to the antenna.</p>
+<p>AraSim then calculates the polarization, viewing angle, travel time at the
 receivers, and then models the system electronics, noise waveforms, and
 time-domain trigger. The output of AraSim is a file that contains the same
 data in the same format (as well as additional information) as an actual ARA
-event, including the event waveforms.
-</pre></div>
-</div>
+event, including the event waveforms.</p>
 </div>
 <p>After XFdtd produces an individual’s gain pattern, we use it in AraSim to
 calculate the <strong>effective volume</strong>, which serves as the fitness score of the
@@ -618,7 +614,7 @@ individual.</p>
 </div>
 <p>Since the number of expected neutrinos detected is directly proportional to
 effective volume, we can directly use this value as the fitness score.</p>
-<div class="tip dropdown admonition">
+<div class="tip admonition">
 <p class="admonition-title">more on effective volume</p>
 <p>The effective volume (<span class="math notranslate nohighlight">\([V \Omega]_{\rm eff}\)</span>) quantifies the volume of
 ice and solid angle of the sky the detector can detect signals within, as
@@ -627,20 +623,18 @@ determined in AraSim by measuring the fraction of simulated events detected
 by the array and multiplying by the simulated ice volume and solid angle.
 The effective volume is given below.</p>
 <div class="math notranslate nohighlight" id="ch3-3-veff-eqn">
-\[
-    [V\Omega]_{\rm eff} =
-    4\pi \ V_{\rm ice} \ \frac{N_{\rm detected}}{N_{\rm simulated}}
-\]</div>
+\[    [V\Omega]_{\rm eff} =
+    4\pi \ V_{\rm ice} \ \frac{N_{\rm detected}}{N_{\rm {simulated} }}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(V_{\rm ice}\)</span> is the total volume of ice simulated in AraSim,
 <span class="math notranslate nohighlight">\(N_{\rm detected}\)</span> is the total number of neutrinos detected
 (accounting for trigger efficiencies and interaction cross-sections), and
-<span class="math notranslate nohighlight">\(N_{\rm simulated}\)</span> is the total number of neutrinos simulated.  In
+<span class="math notranslate nohighlight">\(N_{\rm sim}\)</span> is the total number of neutrinos simulated.  In
 this analysis, <span class="math notranslate nohighlight">\(V_{\rm ice}\)</span> is given by a cylinder around the
-detector with a radius of 3 km, with a total volume of approximately 85 km<br />
-<sup>3</sup>.  For each individual, <span class="math notranslate nohighlight">\(N_{\rm simulated}\)</span> is
+detector with a radius of 3 km, with a total volume of approximately
+85 km<sup>3</sup>.  For each individual, <span class="math notranslate nohighlight">\(N_{\rm simulated}\)</span> is
 <span class="math notranslate nohighlight">\(3\times10^{5}\)</span> neutrinos with an energy of <span class="math notranslate nohighlight">\(10^{18}\)</span> eV.
-Simulating this number of neutrinos gives a standard deviation of 0.11 km<br />
-<sup>3</sup>\ str.</p>
+Simulating this number of neutrinos gives a standard deviation of
+0.11 km<sup>3</sup> str.</p>
 </div>
 </section>
 </section>
