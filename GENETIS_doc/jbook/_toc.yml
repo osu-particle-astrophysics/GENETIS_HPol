@@ -15,22 +15,25 @@ parts:
         - file: diss/ch3_4
         - file: diss/ch3_5
         - file: diss/ch3_6
-
-  - caption: User's Guide
+  - caption: New GENETIS Members
     chapters:
     - file: guide/A1
     - file: guide/A2
+
+  - caption: HPol Manual
+    chapters:
     - file: guide/A3/A3
+    - file: guide/A3/A3_1
       sections:
-      - file: guide/A3/A3_1
-        sections:
-        - file: guide/A3/A3_1_1
-        - file: guide/A3/A3_1_2
-        - file: guide/A3/A3_1_3
-        - file: guide/A3/A3_1_4
-        - file: guide/A3/A3_1_5
-        - file: guide/A3/A3_1_6
-      - file: guide/A3/A3_2
+      - file: guide/A3/A3_1_1
+      - file: guide/A3/A3_1_2
+      - file: guide/A3/A3_1_3
+      - file: guide/A3/A3_1_4
+      - file: guide/A3/A3_1_5
+      - file: guide/A3/A3_1_6
+    - file: guide/A3/A3_2
+  - caption: AREA Manual
+    chapters:
     - file: guide/A4
   - caption: Genetic Algorithm Reference Guide
     chapters:
