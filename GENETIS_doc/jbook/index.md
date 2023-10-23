@@ -3,7 +3,7 @@
 Welcome to the GENETIS project!
 
 This documentation is based on the dissertation by 
-[Dr. Julie Rolla]([https://etd.ohiolink.edu/apexprod/rws_olink/r/1501/10?clear=10&p10_accession_num=osu163668789451345>](https://etd.ohiolink.edu/acprod/odb_etd/ws/send_file/send?accession=osu163668789451345&disposition=inline)).
+[Dr. Julie Rolla](https://etd.ohiolink.edu/acprod/odb_etd/ws/send_file/send?accession=osu163668789451345&disposition=inline).
 It follows the [Diátaxis documentation guideline](https://diataxis.fr/):
 
 ```{admonition} Navigation
