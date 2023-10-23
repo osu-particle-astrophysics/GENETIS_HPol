@@ -1,5 +1,6 @@
 # GENETIS Home
 
+## Welcome
 Welcome to the GENETIS project!
 
 This documentation is based on the dissertation by 
@@ -29,3 +30,33 @@ It follows the [Diátaxis documentation guideline](https://diataxis.fr/):
     documentation first.
 
 ```
+
+## Task List
+This documentation is still under active development. Pardon our mess!
+```{admonition} Dissertation Excerpt
+:class: warning, dropdown
++ [ ] **Figure out bibliography!!!**
++ [ ] Evolutionary Computation and Machine Learning
++ [x] Discussion: the Loop
++ [ ] Physical Antenna Evolution Algorithm
++ [ ] Antenna Response Evolution Algorithm
++ [ ] Conclution
+```
+```{admonition} HPol Manual
+:class: warning, dropdown
++ [x] Physical Antenna Evolution Algorithm
++ [ ] Get autodoc to work with MyST. If this doesn't work, maybe continue using
+      rst.
++ [ ] How to Run the HPol Loop
+```
+
+```{admonition} AREA Manual
+:class: warning, dropdown
++ [ ] **To be started**
+```
+
+```{admonition} Genetic Algorithm Reference Guide
+:class: warning, dropdown
++ [ ] **To be started**
+```
+
