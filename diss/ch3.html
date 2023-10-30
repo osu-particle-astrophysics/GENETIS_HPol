@@ -173,6 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="ch3_6.html">Conclusion</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">New GENETIS Members</span></p>
 <ul class="nav bd-sidenav">
@@ -419,7 +420,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-genetic-algorithms">Why Genetic Algorithms</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-at-hand">Problem at hand</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Inspiration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Inspiration</a></li>
 </ul>
 </li>
 </ul>
@@ -467,23 +468,27 @@ algorithm (GA).</p>
 <section id="inspiration">
 <h3>Inspiration<a class="headerlink" href="#inspiration" title="Permalink to this heading">#</a></h3>
 <p>GAs have previously been applied to the design of various detectors and
-experiments although seldom used to optimize for a science outcome directly.
+experiments although seldom used to optimize for a science outcome directly
+<span id="id2">[<a class="reference internal" href="reference.html#id157" title="Bin Liu and others. Optimization of the design of Gas Cherenkov Detectors for ICF diagnosis. Nuclear Inst. and Methods in Physics Research, A, 897:54-58, 2018.">1</a>, <a class="reference internal" href="reference.html#id144" title="A. Liu, A. Bross, and D. Neuffer. Optimization of the magnetic horn for the nustorm non-conventional neutrino beam using the genetic algorithm. Nuclear Inst. and Methods in Physics Research, A, 794:200-205, 2015.">2</a>]</span>.
 Some examples of evolution toward a science outcome include a horn antenna
 designed using a GA optimized for detecting Cosmic Microwave Background
-radiation. Another example is from both the Long Baseline Neutrino Oscillation
+radiation <span id="id3">[<a class="reference internal" href="reference.html#id158" title="Darragh McCarthy, Neil Trappe, J. Anthony Murphy, Créidhe O’Sullivan, Marcin Gradziel, Stephen Doherty, Peter G. Huggard, Arturo Polegro, and Maarten van der Vorst. The optimisation, design and verification of feed horn structures for future cosmic microwave background missions. Infrared Physics &amp; Technology, 76:32-37, 2016.">3</a>]</span>.
+Another example is from both the Long Baseline Neutrino Oscillation
 experiment (LBNO) and the Deep Underground Neutrino Experiment (DUNE), where GAs
 were utilized to optimize the design of neutrino beamlines using simulations of
-a science outcome to determine the fitness. GAs have also been used to optimize
-the layout of detectors, sensors, shielding, and for trigger optimization.</p>
+a science outcome to determine the fitness <span id="id4">[<a class="reference internal" href="reference.html#id148" title="M. Calviani, S. Di Luise, V. Galymov, and P. Velten. Optimization of neutrino fluxes for future long baseline neutrino oscillation experiments. In Nuclear Physics B Proceedings Supplement. 2014. arXiv:1411.2418.">4</a>, <a class="reference internal" href="reference.html#id147" title="H.M. Schellman. Lbnf beamline. In The 39th International Conference on High Energy Physics, volume 340. 2018.">5</a>]</span>.
+GAs have also been used to optimize the layout of detectors, sensors,
+shielding, and for trigger optimization
+<span id="id5">[<a class="reference internal" href="reference.html#id146" title="Doddy Kastanya. Adore-ga: genetic algorithm variant of the adore algorithm for rop detector layout optimization in candu reactors. Annals of Nuclear Energy, 46:160-168, 2012.">6</a>, <a class="reference internal" href="reference.html#id145" title="Eric B. Flynn and Michael D. Todd. Optimal placement of piezoelectric actuators and sensors for detecting damage in plate structures. Journal of Intelligent Material Systems and Structures, 21(3):265-274, 2010.">7</a>, <a class="reference internal" href="reference.html#id151" title="N. Kleedtke, M. Hua, and S. Pozzi. Genetic algorithm optimization of tin–copper graded shielding for improved plutonium safeguards measurements. Nuclear Inst. and Methods in Physics Research, A, 2021.">8</a>, <a class="reference internal" href="reference.html#id149" title="S Abdullin. Genetic algorithm for susy trigger optimization in cms detector at lhc. Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment, 502(2):693-695, 2003. Proceedings of the VIII International Workshop on Advanced Computing and Analysis Techniques in Physics Research.">9</a>]</span>.</p>
 </section>
 <section id="our-goal">
 <h3>Our goal<a class="headerlink" href="#our-goal" title="Permalink to this heading">#</a></h3>
 <p>GENETIS seeks to assist the search for one of the most important missing piece
 of particle astrophysics – the detection of ultra-high energy (UHE) neutrinos
-at energies above ~<span class="math notranslate nohighlight">\(10^{18}\)</span>eV.
+at energies above ~<span class="math notranslate nohighlight">\(10^{18}\)</span>eV <span id="id6">[<a class="reference internal" href="reference.html#id126" title="M. G. Aartsen and others. Evidence for Astrophysical Muon Neutrinos from the Northern Sky with IceCube. Phys. Rev. Lett., 115(8):081102, 2015. arXiv:1507.04005, doi:10.1103/PhysRevLett.115.081102.">10</a>]</span> .
 Utilizing a variety of different antennas, a number of experiments employ
 antenna arrays to detect Askaryan radiation produced from a neutrino-ice
-interaction in Antarctica or Greenland:</p>
+interaction in Antarctica or Greenland <span id="id7">[<a class="reference internal" href="reference.html#id6" title="GA Askaryan. Excess negative charge of an electron-photon shower and its coherent radio emission. Sov. Phys. JETP, 14:441-443, 1962.">11</a>, <a class="reference internal" href="reference.html#id3" title="T. Heuge and D. Besson. Radiowave Detection of Ultra-High Energy Neutrinos and Cosmic Rays. Progress of Theoretical and Experimental Physics, 2017. arXiv:1701.02987.">12</a>]</span>:</p>
 <ol class="arabic simple">
 <li><p>ANtarctic Impulsive Transient Antenna (ANITA), now named PUEO</p></li>
 <li><p>Askaryan Radio Array (ARA)</p></li>
@@ -507,16 +512,18 @@ learning. Given the immense scale of these experiments and the difficulty in
 detecting UHE neutrinos, each detector element must be designed to return the
 most science for its cost.</p>
 </section>
-<section id="id2">
-<h3>Inspiration<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<section id="id8">
+<h3>Inspiration<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p>The use of GAs was initially motivated by the NASA ST-5 antenna in which a GA
-designed a simple, segmented, wire antenna for satellite communications.
+designed a simple, segmented, wire antenna for satellite communications <span id="id9">[<a class="reference internal" href="reference.html#id124" title="G. Hornby and others. Automated Antenna Design with Evolutionary Algorithms. American Institute of Aeronautics and Astronautics, 2006.">13</a>]</span>.
 Many other examples exist of antenna design optimization using GAs including
-Yagi-Uda antennas, electrically loaded wire antennas, broadband cage antennas,
-planar antennas, pyramid horn antennas, ultra-wideband slot antennas, helical
-antennas, patch antennas, adaptive antennas and others .</p>
+Yagi-Uda antennas <span id="id10">[<a class="reference internal" href="reference.html#id135" title="E.A. Jones and W.T. Joines. Design of yagi-uda antennas using genetic algorithms. IEEE Transactions on Antennas and Propagation, 45(9):1386-1392, 1997.">14</a>]</span>, electrically loaded wire
+antennas <span id="id11">[<a class="reference internal" href="reference.html#id136" title="A. Boag, Amir Boag, E. Michielssen, and R. Mittra. Design of electrically loaded wire antennas using genetic algorithms. IEEE Transactions on Antennas and Propagation, 1996.">15</a>]</span>, broadband cage antennas <span id="id12">[<a class="reference internal" href="reference.html#id137" title="J. Deng, X. Chen, R. Yu, and X. Wen. A broadband cage antenna optimized by genetic algorithm. 2014 International workshop on Antenna Technology: &quot;Small Antennas, Novel EM Structures and Materials, and Applications, 2014.">16</a>]</span>, planar
+antennas{cite{Gulati18}, pyramid horn antennas<span id="id13">[<a class="reference internal" href="reference.html#id139" title="R. Deepika, P. Manikandan, and P. Sivakumar. Optimization of pyramid horn antenna using genetic algorithm and evolution strategy. 2017 IEEE International Conference on Electrical, Instrumentation and Communication Engineering, 2017.">17</a>]</span>,
+ultra-wideband slot antennas <span id="id14">[<a class="reference internal" href="reference.html#id140" title="L. Xie, Y. Jiao, G. Wei, G. Zhao, and F. Zhang. A compact uwb slot antenna optimized by genetic algorithm. Microwave and Optical Technology Letters, 53:2135-2139, 2011.">18</a>]</span>, helical antennas<span id="id15">[<a class="reference internal" href="reference.html#id141" title="R. Lovestead and A. Safaai-Jazi. Optimum design of helical antennas by genetic algorithm. Microwave and Optical Technology Letters, 62:425-431, 2020.">19</a>]</span>,
+patch antennas <span id="id16">[<a class="reference internal" href="reference.html#id153" title="D. Eclercy, A. Reineix, and B. Jecko. Fdtd genetic algorithm for antenna optimization. Microwave and Optical Technology Letters, 16:72-74, 1998.">20</a>]</span>, adaptive antennas <span id="id17">[<a class="reference internal" href="reference.html#id154" title="R.L. Haupt. Adaptive crossed dipole antennas using a genetic algorithm. IEEE Transactions on Antennas and Propagation, 52(8):1976-1982, 2004.">21</a>, <a class="reference internal" href="reference.html#id155" title="C. Laohapensaeng and C. Free. An adaptive antenna using genetic algorithm. In Asia Pacific Microwave Conference-Proceedings, volume 62, 425-431. 2005.">22</a>]</span> and others <span id="id18">[<a class="reference internal" href="reference.html#id142" title="Randy L. Haupt. Antenna design with a mixed integer genetic algorithm. IEEE Transactions on Antennas and Propagation, 55(3):577-582, 2007.">23</a>]</span>.</p>
 <p>GAs were chosen because of their effectiveness at complex optimization problems,
-especially when many optima could exist.
+especially when many optima could exist <span id="id19">[<a class="reference internal" href="reference.html#id134" title="M. M. Raghuwanshi and Omprakash Kakde. Survey on multiobjective evolutionary and real coded genetic algorithms. In Complexity International, volume 11. 2004.">24</a>]</span>.
 For instance, searching a 6-dimensional parameter space (as is the case for the
 asymmetric bicone discussed in Chapter <strong>3.4.2</strong>), using increments necessary to
 find a peak fitness score would require evaluation of more than <span class="math notranslate nohighlight">\(10^{8}\)</span>
@@ -616,7 +623,7 @@ instead of a black-box model.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-genetic-algorithms">Why Genetic Algorithms</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-at-hand">Problem at hand</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Inspiration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Inspiration</a></li>
 </ul>
 </li>
 </ul>
