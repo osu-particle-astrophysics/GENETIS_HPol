@@ -36,23 +36,27 @@ algorithm (GA).
 ### Inspiration
 
 GAs have previously been applied to the design of various detectors and
-experiments although seldom used to optimize for a science outcome directly.
+experiments although seldom used to optimize for a science outcome directly
+{cite}`Liu18, Liu15`.
 Some examples of evolution toward a science outcome include a horn antenna
 designed using a GA optimized for detecting Cosmic Microwave Background
-radiation. Another example is from both the Long Baseline Neutrino Oscillation
+radiation {cite}`McCarthy2016`.
+Another example is from both the Long Baseline Neutrino Oscillation
 experiment (LBNO) and the Deep Underground Neutrino Experiment (DUNE), where GAs
 were utilized to optimize the design of neutrino beamlines using simulations of
-a science outcome to determine the fitness. GAs have also been used to optimize
-the layout of detectors, sensors, shielding, and for trigger optimization.
+a science outcome to determine the fitness {cite}`LBNO15, DUNE18`.
+GAs have also been used to optimize the layout of detectors, sensors,
+shielding, and for trigger optimization
+{cite}`ADORE12, FLYNN10, Kleedtke, ABDULLIN2003`.
 
 ### Our goal
 
 GENETIS seeks to assist the search for one of the most important missing piece
 of particle astrophysics -- the detection of ultra-high energy (UHE) neutrinos
-at energies above ~$10^{18}$eV.
+at energies above ~$10^{18}$eV {cite:p}`Aartsen:2015rwa` .
 Utilizing a variety of different antennas, a number of experiments employ
 antenna arrays to detect Askaryan radiation produced from a neutrino-ice
-interaction in Antarctica or Greenland:
+interaction in Antarctica or Greenland {cite}`Askaryan, Heuge2017`:
 
 1. ANtarctic Impulsive Transient Antenna (ANITA), now named PUEO
 2. Askaryan Radio Array (ARA)
@@ -78,14 +82,17 @@ most science for its cost.
 ### Inspiration
 
 The use of GAs was initially motivated by the NASA ST-5 antenna in which a GA
-designed a simple, segmented, wire antenna for satellite communications.
+designed a simple, segmented, wire antenna for satellite communications {cite}`NASA_Paperclip`.
 Many other examples exist of antenna design optimization using GAs including
-Yagi-Uda antennas, electrically loaded wire antennas, broadband cage antennas,
-planar antennas, pyramid horn antennas, ultra-wideband slot antennas, helical
-antennas, patch antennas, adaptive antennas and others .
+Yagi-Uda antennas {cite}`Jones97`, electrically loaded wire
+antennas {cite}`Boag96`, broadband cage antennas {cite}`Deng14`, planar
+antennas{cite{Gulati18}, pyramid horn antennas{cite}`Deepika17`,
+ultra-wideband slot antennas {cite}`Xie11`, helical antennas{cite}`Lovestead19`,
+patch antennas {cite}`Eclercy98`, adaptive antennas {cite}`Haupt04,
+Laohapensaeng05` and others {cite}`Haupt07`.
 
 GAs were chosen because of their effectiveness at complex optimization problems,
-especially when many optima could exist.
+especially when many optima could exist {cite}`Mutation`.
 For instance, searching a 6-dimensional parameter space (as is the case for the
 asymmetric bicone discussed in Chapter **3.4.2**), using increments necessary to
 find a peak fitness score would require evaluation of more than $10^{8}$
@@ -134,3 +141,5 @@ instead of a black-box model.
 
 
 [^f1]: Rolla, Julie. Dissertation Chapter 3.1
+
+

@@ -15,6 +15,7 @@ parts:
         - file: diss/ch3_4
         - file: diss/ch3_5
         - file: diss/ch3_6
+    - file: diss/reference.md
   - caption: New GENETIS Members
     chapters:
     - file: guide/A1
