@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'diss/ch3_2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Discussion: the Loop" href="ch3_3.html" />
+    <link rel="next" title="⭐ Discussion: the Loop" href="ch3_3.html" />
     <link rel="prev" title="Antenna Optimization with Genetic Algorithms" href="ch3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -164,8 +164,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="ch2.html">Evolutionary Computation and Machine Learning</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="ch3.html">Antenna Optimization with Genetic Algorithms </a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Early GENETIS Investigations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch3_3.html">Discussion: the Loop </a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Early GENETIS Investigations </a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3_3.html">⭐ Discussion: the Loop </a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch3_4.html">Physical Antenna Evolution Algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch3_5.html">Antenna Response Evolution Algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch3_6.html">Conclusion</a></li>
@@ -386,7 +386,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -397,11 +399,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Early GENETIS Investigations</h1>
+    <h1>Early GENETIS Investigations </h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarter-wavelength-dipole-antenna">Quarter-Wavelength Dipole Antenna</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -412,8 +422,78 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="early-genetis-investigations">
-<h1>Early GENETIS Investigations<a class="headerlink" href="#early-genetis-investigations" title="Permalink to this heading">#</a></h1>
-<p>hello world <span id="id1">[<a class="reference internal" href="reference.html#id126" title="M. G. Aartsen and others. Evidence for Astrophysical Muon Neutrinos from the Northern Sky with IceCube. Phys. Rev. Lett., 115(8):081102, 2015. arXiv:1507.04005, doi:10.1103/PhysRevLett.115.081102.">10</a>]</span></p>
+<h1>Early GENETIS Investigations <a class="footnote-reference brackets" href="#f1" id="id1">1</a><a class="headerlink" href="#early-genetis-investigations" title="Permalink to this heading">#</a></h1>
+<p>Before getting into the optimization of the antennas, GENETIS produced
+proof-of-concept studies to understand GAs better and build a foundation of
+knowledge. In this section, we will briefly discuss some of the details of our
+earlier studies.</p>
+<section id="quarter-wavelength-dipole-antenna">
+<h2>Quarter-Wavelength Dipole Antenna<a class="headerlink" href="#quarter-wavelength-dipole-antenna" title="Permalink to this heading">#</a></h2>
+<p>As our first proof-of-concept, the GENETIS team used a GA to recreate the
+length solution for a quarter-wavelength dipole at 3 GHz. Since this is a
+problem with a known solution, this helped us explore both the effectiveness of
+a GA at finding the solution and the number of generations it takes on average
+to arrive at the correct answer.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">more on the early GA</p>
+<p>The quarter-wavelength dipole study was the first version of our loop software.
+It was similar to the current version; however, the fitness evaluation was more
+straightforward. This GA began the loop by randomly generating genes for the
+initial population (radius and length). Genes for the initial population were
+initialized via a uniform distribution, converted to a normal distribution
+using the Box Muller method. The Box Muller method can be used to convert
+pairs of numbers that are uniformly distributed to numbers that are normally
+distributed <span id="id2">[<a class="reference internal" href="reference.html#id27" title="G. E. P. Box and Mervin E. Muller. A Note on the Generation of Random Normal Deviates. The Annals of Mathematical Statistics, 29(2):610 – 611, 1958. URL: https://doi.org/10.1214/aoms/1177706645, doi:10.1214/aoms/1177706645.">26</a>]</span>.
+The fitness function involved using XFdtd, an antenna simulation software, to
+produce gain patterns for each solution.
+The fitness score was simply the measure of peak gain relative to that expected
+for a quarter-wavelength dipole at 3 GHz.
+Solutions with a smaller difference in gain pattern to the expected result were
+scored as performing better.
+The GA modified the generations using mutation, where each individual’s genes
+were mutated and passed on to the next generation;
+thus, all individuals went through the mutation operator to construct the next
+generation, and no selection methods were used.
+Each individual’s genes were mutated through a Gaussian distribution centered
+on the current value, with a standard deviation proportional to the fitness
+score.
+The GA converged by adjusting the magnitude of the mutations based on the
+fitness score.
+If an individual was closer to the solution than prior generations, it mutated
+with a standard deviation 0.9 times the last deviation.
+If the individual were further from the solution, it would mutate using a
+standard deviation of the prior deviation divided by 0.9%
+The quarter-wavelength dipole loop can be seen in <a class="reference internal" href="#quartwaveloop-fig"><span class="std std-numref">Fig. 2</span></a>.</p>
+<figure class="align-default" id="quartwaveloop-fig">
+<img alt="../_images/copy_of_ga_loop_2.png" src="../_images/copy_of_ga_loop_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">The quarter-wavelength dipole project’s software loop</span><a class="headerlink" href="#quartwaveloop-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+<figure class="align-default" id="quartwaveresults-fig">
+<img alt="../_images/Quarterwavedipole.png" src="../_images/Quarterwavedipole.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Results for the evolution of a quarter-wavelength dipole antenna solution
+showing the improvement of the average length toward the known solution.</span><a class="headerlink" href="#quartwaveresults-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>As seen in <a class="reference internal" href="#quartwaveresults-fig"><span class="std std-numref">Fig. 3</span></a>, the results of this study show that
+with a population of 5 individuals and 13 generations, the design converged to
+the expected result very quickly.
+The best individuals matched the expected results. The average per generation
+doesn’t quite reach the solution because the mutation operator is constantly
+adjusting each individual.
+This result provided an initial proof of concept for the use of a GA for
+antenna design and laid an initial foundation for future GENETIS endeavours.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Rolla, Julie. Dissertation Chapter 3 Section 3.2
+<em>Early GENETIS Investigations</em></p>
+</dd>
+</dl>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -460,7 +540,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Discussion: the Loop </p>
+        <p class="prev-next-title">⭐ Discussion: the Loop </p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -470,6 +550,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarter-wavelength-dipole-antenna">Quarter-Wavelength Dipole Antenna</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
