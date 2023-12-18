@@ -15,7 +15,7 @@ Finally, we discuss the **two main** applications of the GA:
     *   **gain pattern** glossary here
 ```
 
-% ----------------------------------------------------------------------------
+<!-- ---------------------------------------------------------------------------- -->
 
 (ch3-1)=
 
@@ -86,7 +86,7 @@ designed a simple, segmented, wire antenna for satellite communications {cite}`N
 Many other examples exist of antenna design optimization using GAs including
 Yagi-Uda antennas {cite}`Jones97`, electrically loaded wire
 antennas {cite}`Boag96`, broadband cage antennas {cite}`Deng14`, planar
-antennas{cite{Gulati18}, pyramid horn antennas{cite}`Deepika17`,
+antennas{cite}`Gulati18`, pyramid horn antennas{cite}`Deepika17`,
 ultra-wideband slot antennas {cite}`Xie11`, helical antennas{cite}`Lovestead19`,
 patch antennas {cite}`Eclercy98`, adaptive antennas {cite}`Haupt04,
 Laohapensaeng05` and others {cite}`Haupt07`.
@@ -109,36 +109,54 @@ GAs are also more transparent than other optimization techniques, which allows
 for a better understanding of how the algorithm arrived at a final result
 instead of a black-box model.
 
-% The early endeavors of GENETIS mostly involved proof of concept designs and
+<!-- The early endeavors of GENETIS mostly involved proof of concept designs and -->
+<!-- tests that are covered in Chapter~\ref{ch:early}. The first project in 2017 used -->
+<!-- a GA to evolve to the known length of a quarter wavelength dipole antenna at 3 -->
+<!-- GHz. Other early work involved the evolution of a paperclip antenna toward set -->
+<!-- patterns and performance tests. -->
+<!-- Chapter~\ref{ch:GENETISGA} describes the heart of the GENETIS project, the -->
+<!-- custom genetic algorithm. Each step of the GA is discussed in detail, covering -->
+<!-- the initialization, fitness evaluation, new generation creation, and -->
+<!-- termination. What makes the GENETIS GA impressive is the integration of various -->
+<!-- types of simulation software to generate a fitness score. This chapter and -->
+<!-- Appendix~\ref{genmanual} discuss these programs in detail. -->
 
-% tests that are covered in Chapter~\ref{ch:early}. The first project in 2017 used
+ <!-- The second stage of investigation is the Physical Antenna Evolution Algorithm -->
+ <!-- (PAEA) project and is discussed in Chapter~\ref{ch:PAEA}. PAEA uses the -->
+ <!-- GENETIS GA to investigate the optimization of the ARA collaboration's in-ice -->
+ <!-- vertical polarization bicone antennas. PAEA initially optimized  a symmetric -->
+ <!-- bicone antenna with linear sides, and is now exploring more complex geometry, -->
+ <!-- such as (1) asymmetric bicone with linear sides and (2) asymmetric bicone with -->
+ <!-- nonlinear sides. The results of each project are discussed below. -->
 
-% a GA to evolve to the known length of a quarter wavelength dipole antenna at 3
+<!-- As a third investigation, GENETIS is optimizing the antenna response pattern, -->
+<!-- without any antenna designs or geometry. This investigation, called the Antenna -->
+<!-- Response Evolutionary Algorithm (AREA), is being run with minimal constraints, -->
+<!-- as the goal of this project is to explore what improvement to the neutrino -->
+<!-- sensitivity is possible due to improvements in antenna responses alone, without -->
+<!-- regard to what physical design might be needed to bring about that response. -->
+<!-- The results of this investigation are presented in Chapter~\ref{ch:AREA}. -->
 
-% GHz. Other early work involved the evolution of a paperclip antenna toward set
+<!-- Future goals for GENETIS include optimization of detectors for similar -->
+<!-- experiments, such as the ANITA horn antennas, and exploring the optimization of -->
+<!-- a plethora of other experimental parameters, such as array design and detector -->
+<!-- layout. -->
 
-% patterns and performance tests.
-
-% Chapter~\ref{ch:GENETISGA} describes the heart of the GENETIS project, the
-
-% custom genetic algorithm. Each step of the GA is discussed in detail, covering
-
-% the initialization, fitness evaluation, new generation creation, and
-
-% termination. What makes the GENETIS GA impressive is the integration of various
-
-% types of simulation software to generate a fitness score. This chapter and
-
-% Appendix~\ref{genmanual} discuss these programs in detail.
-
-% The second stage of investigation is the Physical Antenna Evolution Algorithm (PAEA) project and is discussed in Chapter~\ref{ch:PAEA}. PAEA uses the GENETIS GA to investigate the optimization of the ARA collaboration's in-ice vertical polarization bicone antennas. PAEA initially optimized  a symmetric bicone antenna with linear sides, and is now exploring more complex geometry, such as (1) asymmetric bicone with linear sides and (2) asymmetric bicone with nonlinear sides. The results of each project are discussed below.
-
-% As a third investigation, GENETIS is optimizing the antenna response pattern, without any antenna designs or geometry. This investigation, called the Antenna Response Evolutionary Algorithm (AREA), is being run with minimal constraints, as the goal of this project is to explore what improvement to the neutrino sensitivity is possible due to improvements in antenna responses alone, without regard to what physical design might be needed to bring about that response. The results of this investigation are presented in Chapter~\ref{ch:AREA}.
-
-% % Future goals for GENETIS include optimization of detectors for similar experiments, such as the ANITA horn antennas, and exploring the optimization of a plethora of other experimental parameters, such as array design and detector layout.
-
-% My contributions to GENETIS involve heavy involvement in creating the loop and, more recently, as a mentor and leader for the group. Over time, the early code has grown, and our network of primary contributors, which now includes myself, 11 undergraduate students, and experts in the fields of GAs, ML, antennas, and additive manufacturing. As one of the significant architects of our current software package, I have been guiding all GENETIS projects and working alongside undergraduate students in the drive to make meaningful contributions. I wrote the user guide to the loop, which is necessary to understand all of the complex moving parts. Additionally, I built a training course that on-boards students and prepares them to contribute. This course includes information on the big picture of UHE neutrino experiments, GAs, and the GENETIS group, and instructs them in the principles of coding in the different languages necessary to improve the GA. Furthermore, I led weekly planning and working meetings and developed task tracking and prioritization sheets to help students stay on track.
-
+<!-- My contributions to GENETIS involve heavy involvement in creating the loop and, -->
+<!-- more recently, as a mentor and leader for the group. Over time, the early code -->
+<!-- has grown, and our network of primary contributors, which now includes myself, -->
+<!-- 11 undergraduate students, and experts in the fields of GAs, ML, antennas, and -->
+<!-- additive manufacturing. As one of the significant architects of our current -->
+<!-- software package, I have been guiding all GENETIS projects and working -->
+<!-- alongside undergraduate students in the drive to make meaningful contributions. -->
+<!-- I wrote the user guide to the loop, which is necessary to understand all of the -->
+<!-- complex moving parts. Additionally, I built a training course that on-boards -->
+<!-- students and prepares them to contribute. This course includes information on -->
+<!-- the big picture of UHE neutrino experiments, GAs, and the GENETIS group, and -->
+<!-- instructs them in the principles of coding in the different languages necessary -->
+<!-- to improve the GA. Furthermore, I led weekly planning and working meetings and -->
+<!-- developed task tracking and prioritization sheets to help students stay on -->
+<!-- Mrack. -->
 
 [^f1]: Rolla, Julie. Dissertation Chapter 3.1
 
