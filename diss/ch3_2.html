@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'diss/ch3_2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -139,9 +141,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -369,6 +373,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -378,6 +383,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -410,6 +416,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarter-wavelength-dipole-antenna">Quarter-Wavelength Dipole Antenna</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paperclip-antenna-evolution">Paperclip Antenna Evolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ga-performance-test">GA Performance Test</a></li>
 </ul>
             </nav>
         </div>
@@ -486,11 +494,103 @@ doesn’t quite reach the solution because the mutation operator is constantly
 adjusting each individual.
 This result provided an initial proof of concept for the use of a GA for
 antenna design and laid an initial foundation for future GENETIS endeavours.</p>
+</section>
+<section id="paperclip-antenna-evolution">
+<h2>Paperclip Antenna Evolution<a class="headerlink" href="#paperclip-antenna-evolution" title="Permalink to this heading">#</a></h2>
+<p>As a subsequent proof-of-concept investigation, GENETIS member Suren Gourapura
+examined a simple, segmented wire antenna design modeled on the antenna design
+evolved for NASA satellite communications in 2006 <span id="id3">[<a class="reference internal" href="reference.html#id124" title="G. Hornby and others. Automated Antenna Design with Evolutionary Algorithms. American Institute of Aeronautics and Astronautics, 2006.">13</a>]</span>. The
+main goal of this investigation was to further develop the GA with a known type
+of antenna design and various types of fitness functions.</p>
+<p>The antenna geometry consists of multiple, unit-length segments of wire
+connected sequentially. Due to the segmented and bent nature of the resulting
+antenna, we call this design a “paperclip antenna.” Each segment can point
+toward any direction. Thus, the genes that define each individual are the three
+rotation angles between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(2\pi\)</span> about the three Cartesian axes for each
+segment. The final individual geometry consists of several randomly rotated
+unit vectors attached tip to tail. The Euler angles for each segment are
+initially uniformly distributed from <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(2\pi\)</span>.</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">more on paperclip: the governing fitness function </p>
+<p>While several different fitness functions were explored, one, in particular,
+directed the evolution of the antenna to arrive at a desired counterclockwise
+spiral shape, as illustrated in <a class="reference internal" href="#fig-paperclipresult1"><span class="std std-numref">Fig. 4</span></a>.
+This “curl” function was sensitive to changes in the initial parameters and
+complex in that all of the evolved rotations had to work together to produce
+the final shape, which made it a good test of the algorithm.</p>
+<p>The curl fitness function calculates the cross-product between adjacent
+vectors, <span class="math notranslate nohighlight">\( \vec{s_i}\)</span> and <span class="math notranslate nohighlight">\(\vec{s}_{i+1} \)</span>. The fitness score, <span class="math notranslate nohighlight">\(F\)</span>, defined by
+the equation below:</p>
+<div class="math notranslate nohighlight">
+\[F = \sum_{i=1}^{n-1} \vec{s_i}\times\vec{s}_{i+1}\]</div>
+<p>Defined this way, the angle between neighboring antenna segments is preferred
+to be 90<span class="math notranslate nohighlight">\(^\circ\)</span> and oriented counterclockwise in the x-y plane.</p>
+<figure class="align-default" id="fig-paperclipresult1">
+<img alt="../_images/Paperclip_Example.png" src="../_images/Paperclip_Example.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Example of a partially evolved paperclip antenna. Note the general
+counterclockwise spiral.</span><a class="headerlink" href="#fig-paperclipresult1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+<figure class="align-default" id="fig-paperclipresult2">
+<a class="reference internal image-reference" href="../_images/AntennaFitnessTests.png"><img alt="../_images/AntennaFitnessTests.png" src="../_images/AntennaFitnessTests.png" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">The best fitness score of 100 paperclip antennas
+over 200 generations improved as the antennas evolved to produce a
+counterclockwise curl. The GA was performed for various number of
+segments <span id="id4">[<a class="reference internal" href="reference.html#id156" title="J Rolla and others. Evolving antennas for ultra-high energy neutrino detection. In 36th International Cosmic Ray Conference. 2019.">27</a>]</span></span><a class="headerlink" href="#fig-paperclipresult2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The paperclip antennas evolved over 200 generations composed of 100 individuals
+using a tournament selection method and a combination of mutation and crossover
+operators.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">TODO</p>
+<p>Tournament selection method internal link or glossary here</p>
+</div>
+<p>Antennas with various numbers of segments were tested.
+<a class="reference internal" href="#fig-paperclipresult2"><span class="std std-numref">Fig. 5</span></a>
+presents the results of this analysis, which shows the highest scoring designs
+per generation for different segment lengths. As shown, fewer segments result
+in achieving a higher fitness score over fewer generations. Also, a higher
+quantity of segments increases the complexity of the antennas, thereby
+resulting in a slower approach to the desired solution.</p>
+<!-- Future investigations could include using XFdtd to evolve highly directional -->
+<!-- paperclip antennas. -->
+</section>
+<section id="ga-performance-test">
+<h2>GA Performance Test<a class="headerlink" href="#ga-performance-test" title="Permalink to this heading">#</a></h2>
+<p>Suren Gourapura was also the main contributer to the investigation that
+examines the performance of the algorithm in the presence of local and global
+maximums. Individuals were evolved with two genes called length and radius
+(although in this case the names are irrelevant as they just represent two
+parameters), where the fitness function is the sum of two displaced Gaussian
+distributions of different heights. The genes of the 20 generation-zero
+individuals (shown as red dots below) are scatter randomly in the parameter space,
+some at the local maximum.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/PAEA_Gen_0.png"><img alt="../_images/PAEA_Gen_0.png" src="../_images/PAEA_Gen_0.png" style="width: 400.0px; height: 400.0px;" /></a>
+</figure>
+<p>However, as shown in <a class="reference internal" href="#fig-paearesult"><span class="std std-numref">Fig. 6</span></a>, by the 20<sup>th</sup> generation,
+19 of the 20 individuals were within 2<span class="math notranslate nohighlight">\(\sigma\)</span> of the global maximum, despite
+some individuals finding the local maximum in earlier generations.</p>
+<figure class="align-default" id="fig-paearesult">
+<a class="reference internal image-reference" href="../_images/PAEA_Gen_20.png"><img alt="../_images/PAEA_Gen_20.png" src="../_images/PAEA_Gen_20.png" style="width: 400.0px; height: 400.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Example of PAEA algorithm results. The fitness score is shown in
+contour plot. Individuals, shown as red dots, began spread over a wide range,
+and evolved to group near the global maximum, despite some finding the local
+maximum initially <span id="id5">[<a class="reference internal" href="reference.html#id156" title="J Rolla and others. Evolving antennas for ultra-high energy neutrino detection. In 36th International Cosmic Ray Conference. 2019.">27</a>]</span>.</span><a class="headerlink" href="#fig-paearesult" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The initial investigation demonstrated the viability of using a GA to solve
+complex problems and laid the foundation for the evolution of antennas for UHE
+neutrino experiments.</p>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Rolla, Julie. Dissertation Chapter 3 Section 3.2
-<em>Early GENETIS Investigations</em></p>
+<dd><p>Rolla, Julie. Dissertation Chapter 3 Section 3.2 <em>Early GENETIS Investigations</em></p>
 </dd>
 </dl>
 </section>
@@ -524,7 +624,7 @@ antenna design and laid an initial foundation for future GENETIS endeavours.</p>
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="ch3.html"
@@ -560,6 +660,8 @@ antenna design and laid an initial foundation for future GENETIS endeavours.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarter-wavelength-dipole-antenna">Quarter-Wavelength Dipole Antenna</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paperclip-antenna-evolution">Paperclip Antenna Evolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ga-performance-test">GA Performance Test</a></li>
 </ul>
   </nav></div>
 
@@ -581,6 +683,7 @@ By OSU GENETIS Team
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -607,8 +710,8 @@ By OSU GENETIS Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

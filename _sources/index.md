@@ -36,8 +36,9 @@ It follows the [Diátaxis documentation guideline](https://diataxis.fr/):
 This documentation is still under active development. Pardon our mess!
 ```{admonition} Dissertation Excerpt
 :class: warning, dropdown
-+ [ ] **Figure out bibliography!!!**
++ [x] **Figure out bibliography!!!**
 + [ ] Evolutionary Computation and Machine Learning
++ [x] Early GENETIS Investigations
 + [x] Discussion: the Loop
 + [ ] Physical Antenna Evolution Algorithm
 + [ ] Antenna Response Evolution Algorithm
