@@ -40,9 +40,13 @@ This documentation is still under active development. Pardon our mess!
 + [ ] Evolutionary Computation and Machine Learning
 + [x] Early GENETIS Investigations
 + [x] Discussion: the Loop
-+ [ ] Physical Antenna Evolution Algorithm
++ [ ] Discussion: PAEA
+    + [ ] symmetric bicone evolution
+    + [ ] asymmetric bicone evolution
+    + [ ] nonlinear asymmetric bicone 
+    + [ ] future work
 + [ ] Antenna Response Evolution Algorithm
-+ [ ] Conclution
++ [ ] Conclusion
 ```
 ```{admonition} HPol Manual
 :class: warning, dropdown

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Antenna Response Evolution Algorithm &#8212; GENETIS Documentation</title>
+    <title>Symmetric Bicone &#8212; GENETIS Documentation</title>
   
   
   
@@ -62,11 +62,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'diss/ch3_5';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'diss/ch3_4_1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Conclusion" href="ch3_6.html" />
-    <link rel="prev" title="Future Work" href="ch3_4_4.html" />
+    <link rel="next" title="Asymmetric Bicone" href="ch3_4_2.html" />
+    <link rel="prev" title="Discussion: PAEA" href="ch3_4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -166,14 +168,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="ch3.html">Antenna Optimization with Genetic Algorithms </a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ch3_2.html">Early GENETIS Investigations </a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch3_3.html">⭐ Discussion: the Loop </a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="ch3_4.html">Discussion: PAEA </a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="ch3_4_1.html">Symmetric Bicone </a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="ch3_4.html">Discussion: PAEA </a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Symmetric Bicone </a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch3_4_2.html">Asymmetric Bicone</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch3_4_3.html">Nonlinear Asymmetric Bicone</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch3_4_4.html">Future Work</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Antenna Response Evolution Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch3_5.html">Antenna Response Evolution Algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch3_6.html">Conclusion</a></li>
 </ul>
 </li>
@@ -276,7 +278,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/edit/jbdoc/GENETIS_doc/jbook/diss/ch3_5.md" target="_blank"
+      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/edit/jbdoc/GENETIS_doc/jbook/diss/ch3_4_1.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +295,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/issues/new?title=Issue%20on%20page%20%2Fdiss/ch3_5.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/osu-particle-astrophysics/GENETIS_HPol/issues/new?title=Issue%20on%20page%20%2Fdiss/ch3_4_1.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +325,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/diss/ch3_5.md" target="_blank"
+      <li><a href="../_sources/diss/ch3_4_1.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -392,7 +394,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -403,11 +407,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Antenna Response Evolution Algorithm</h1>
+    <h1>Symmetric Bicone </h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-symmetric-bicone-loop">The Symmetric Bicone Loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-bicone-results">Symmetric Bicone Results</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -417,8 +430,146 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="antenna-response-evolution-algorithm">
-<h1>Antenna Response Evolution Algorithm<a class="headerlink" href="#antenna-response-evolution-algorithm" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="symmetric-bicone">
+<h1>Symmetric Bicone <a class="footnote-reference brackets" href="#f1" id="id1">1</a><a class="headerlink" href="#symmetric-bicone" title="Permalink to this heading">#</a></h1>
+<p>In this subsection we discuss the symmetric bicone evolution.</p>
+<p>The symmetric bicone antenna design was the most basic bicone evolution
+conducted. A notable contributor to this project was Alex Machtay.
+An individual in this case is fully defined by three genes (parameters):</p>
+<ul class="simple">
+<li><p>the inner radius (r)</p></li>
+<li><p>the length (L), and</p></li>
+<li><p>the opening angle (<span class="math notranslate nohighlight">\(\theta\)</span>)</p></li>
+</ul>
+<p>as seen in <a class="reference internal" href="#fig-biconedrawing"><span class="std std-numref">Fig. 8</span></a>.
+Because this run is symmetric, each of these values is used to make the top and
+bottom cones. A single individual in the GA is an antenna design given by these
+three parameters.</p>
+<figure class="align-default" id="fig-biconedrawing">
+<a class="reference internal image-reference" href="../_images/SymmetricBicone.png"><img alt="../_images/SymmetricBicone.png" src="../_images/SymmetricBicone.png" style="width: 40%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Geometry of bicone antenna showing the genes of length (l), opening angle theta
+(<span class="math notranslate nohighlight">\(\theta\)</span>), and minor radius (r). The separation distance (s) is held constant.</span><a class="headerlink" href="#fig-biconedrawing" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="the-symmetric-bicone-loop">
+<h2>The Symmetric Bicone Loop<a class="headerlink" href="#the-symmetric-bicone-loop" title="Permalink to this heading">#</a></h2>
+<p>The Symmetric Bicone Loop follows the procedure described in
+<a class="reference internal" href="ch3_3.html#genetisga"><span class="std std-ref">⭐ Discussion: the Loop 1</span></a>. The first generation is initialized by selecting
+values for the three genes for each individual from a uniform distribution with
+a mean at the gene values for the current ARA designs. The parameters for the
+initialization can be seen in <a class="reference internal" href="#tab-initialization"><span class="std std-numref">Table 1</span></a> below.</p>
+<table class="table" id="tab-initialization">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Range of uniform distributions used for each gene</span><a class="headerlink" href="#tab-initialization" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Gene</p></th>
+<th class="head"><p>Minimum</p></th>
+<th class="head"><p>Maximum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Length (cm)</p></td>
+<td><p>37.5</p></td>
+<td><p>140</p></td>
+</tr>
+<tr class="row-odd"><td><p>Radius (cm)</p></td>
+<td><p>0.0</p></td>
+<td><p>7.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Opening Angle (degrees)</p></td>
+<td><p>0.0</p></td>
+<td><p>11.3</p></td>
+</tr>
+</tbody>
+</table>
+<p>Instead of a hard-coded restriction on the diameter, this GA penalizes the
+fitness score of individuals with an outer radius larger than the borehole
+size.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">More on the fitness score calculation</p>
+<p>As seen below, the penalty was implemented by making the fitness score a
+piecewise function, where <span class="math notranslate nohighlight">\(R_{\rm max} = 7.5\,\rm cm\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rm Fitness \ Score= \left\{
+        \begin{array}{ll}
+            V_{\rm eff}\, 
+            e^{-(R_{\rm max}-R)^2} \quad&amp; {\rm if} \ R &gt; R_{\rm max} \\
+            V_{\rm eff} &amp; {\rm if}\  R\leq R_{\rm max} \\
+        \end{array}
+    \right.\end{split}\]</div>
+<p>If the outer radius were smaller than the radius of the borehole, the fitness
+score would be equal to the effective volume produced by AraSim. However, if
+the outer radius were larger than the radius of the borehole, then the fitness
+score would be penalized by multiplying the effective volume by an
+exponentially decreasing function, which would lower the fitness score relative
+to the amount the radius exceeds the borehole size. This ensured that potential
+solutions would become much less dense in the region of the parameter space
+where the value for this gene was large.</p>
+</div>
+<p>Once the fitness scores were calculated, the GA selected parents and children
+in a two-step process. The first step uses roulette selection, whereby pairs of
+individuals are selected as parents. Genes for the children are randomly
+selected using uniform crossover to create two offspring. Once genes for the
+children were selected, they went through a second step before the evolution
+continued. The second step improved genetic diversity by introducing mutations
+to <span class="math notranslate nohighlight">\(60\)</span>% of the offspring generated in the first step. This was done by
+modifying the values of each gene by a small perturbation drawn from a Gaussian
+distribution.</p>
+</section>
+<section id="symmetric-bicone-results">
+<h2>Symmetric Bicone Results<a class="headerlink" href="#symmetric-bicone-results" title="Permalink to this heading">#</a></h2>
+<p>No significant evolution.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">More on why</p>
+<figure class="align-default" id="fig-symmetricviolin">
+<img alt="../_images/Violin_Plot_sym_go.png" src="../_images/Violin_Plot_sym_go.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Initial results for the evolution of the symmetric bicone. The current ARA
+bicone fitness is shown as the horizontal dotted line. The width of the line
+represents the probability density of the population. The solid red line shows
+the population’s mean, and the dashed green line shows the population’s median.
+This figure illustrates that although the loop was functioning correctly, the
+solution was not evolving over generations (Figure by Alex Machtay).</span><a class="headerlink" href="#fig-symmetricviolin" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The simulation involved 50 individuals over 11 generations, simulating 30k
+neutrinos per individual, and the results are presented in the violin plot in
+<a class="reference internal" href="#fig-symmetricviolin"><span class="std std-numref">Fig. 9</span></a>.
+There are a few potential reasons for this occurring.</p>
+<ul class="simple">
+<li><p>First, the solution could already be optimized without much room for
+improvement, as the geometry does not allow for more diversity than ARA’s
+design.</p></li>
+<li><p>Second, the GA may not be adequately searching the parameter space, as it was
+not further optimized. A non-optimized GA evolves less efficiently, causing
+the use of excess generations prior to showing improvements.</p></li>
+</ul>
+</div>
+<p>The GENETIS team consequently decided to improve the GA further in the next
+iteration of the loop, as discussed in the <a class="reference internal" href="ch3_4_2.html#sec-asym"><span class="std std-ref">asymmetric bicone section</span></a>.</p>
+<hr class="docutils" />
+<p>✂
+.
+.
+.
+✂ <a class="footnote-reference brackets" href="#f2" id="id2">2</a></p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Rolla, Julie. Dissertation Chapter 3 Section 3.4.1
+<em>The Symmetric Bicone Evolution</em></p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Rolla, Julie. Dissertation Chapter 3 Section 3.4.1.2
+<em>Symmetric Bicone Results</em> (second half)</p>
+</dd>
+</dl>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -452,20 +603,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ch3_4_4.html"
+       href="ch3_4.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Future Work</p>
+        <p class="prev-next-title">Discussion: PAEA </p>
       </div>
     </a>
     <a class="right-next"
-       href="ch3_6.html"
+       href="ch3_4_2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Conclusion</p>
+        <p class="prev-next-title">Asymmetric Bicone</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -475,6 +626,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-symmetric-bicone-loop">The Symmetric Bicone Loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-bicone-results">Symmetric Bicone Results</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

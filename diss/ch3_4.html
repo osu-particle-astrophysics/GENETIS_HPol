@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Physical Antenna Evolution Algorithm &#8212; GENETIS Documentation</title>
+    <title>Discussion: PAEA &#8212; GENETIS Documentation</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'diss/ch3_4';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Antenna Response Evolution Algorithm" href="ch3_5.html" />
+    <link rel="next" title="Symmetric Bicone" href="ch3_4_1.html" />
     <link rel="prev" title="⭐ Discussion: the Loop" href="ch3_3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -139,11 +139,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="../index.html">
-  
   
   
   
@@ -168,7 +166,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="ch3.html">Antenna Optimization with Genetic Algorithms </a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ch3_2.html">Early GENETIS Investigations </a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch3_3.html">⭐ Discussion: the Loop </a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Physical Antenna Evolution Algorithm</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Discussion: PAEA </a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch3_4_1.html">Symmetric Bicone </a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_4_2.html">Asymmetric Bicone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_4_3.html">Nonlinear Asymmetric Bicone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_4_4.html">Future Work</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="ch3_5.html">Antenna Response Evolution Algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch3_6.html">Conclusion</a></li>
 </ul>
@@ -183,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">HPol Manual</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../guide/A3/A3.html">Physical Antenna Evolution Algorithm (PAEA) </a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/A3/A3_1.html">HPol Reference Guide </a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/A3/A3_1.html">HPol Reference Guide </a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../guide/A3/A3_1_1.html">Part (A): genetic algorithm </a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/A3/A3_1_2.html">Part (B1) &amp; (B2): XFdtd </a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/A3/A3_1_3.html">Part (C): XFdtd output conversion code</a></li>
@@ -371,7 +375,6 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -381,7 +384,6 @@ document.write(`
   </button>
 `);
 </script>
-
 
 <script>
 document.write(`
@@ -401,7 +403,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Physical Antenna Evolution Algorithm</h1>
+    <h1>Discussion: PAEA </h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -415,8 +417,38 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="physical-antenna-evolution-algorithm">
-<h1>Physical Antenna Evolution Algorithm<a class="headerlink" href="#physical-antenna-evolution-algorithm" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="discussion-paea">
+<h1>Discussion: PAEA <a class="footnote-reference brackets" href="#f1" id="id1">1</a><a class="headerlink" href="#discussion-paea" title="Permalink to this heading">#</a></h1>
+<p>In this section we introduce the Physical Antenna Evolution Algorithm (PAEA).</p>
+<p>These GAs all involve the integration of XFdtd and AraSim to obtain the fitness
+scores, as shown in <a class="reference internal" href="#fig-ga-diagram"><span class="std std-numref">Fig. 7</span></a>.</p>
+<figure class="align-default" id="fig-ga-diagram">
+<a class="reference internal image-reference" href="../_images/GA_Loop_2.png"><img alt="../_images/GA_Loop_2.png" src="../_images/GA_Loop_2.png" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">A diagram of the PAEA GA used to evolve antennas.
+The fitness calculation steps are shown in blue,
+and the generation creation steps are in red.</span><a class="headerlink" href="#fig-ga-diagram" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The results presented in this section involve the evolution of a bicone-based
+antenna. A bicone antenna consists of two cones with the openings facing
+opposite directions, as illustrated in <a class="reference internal" href="ch3_4_2.html#fig-asymmetric-bicone"><span class="std std-numref">Fig. 10</span></a>. This
+shape was selected for an initial evolution because it is the same geometry as
+antennas currently deployed in the ARA experiment.</p>
+<p>In addition to the initial symmetric bicone evolution, there have been multiple
+other versions of the physical antenna evolution, each with increasing
+complexity. The following are the iterations that will be discussed in this
+section: (1) The symmetric bicone antenna, (2) the asymmetric bicone evolution,
+and (3) the asymmetric bicone with nonlinear sides.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Rolla, Julie. Dissertation Chapter 3 Section 3.4
+<em>Physical Antenna Evolution Algorithm (PAEA)</em></p>
+</dd>
+</dl>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -447,7 +479,7 @@ document.write(`
               
               
                 <footer class="prev-next-footer">
-                  
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="ch3_3.html"
@@ -459,11 +491,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="ch3_5.html"
+       href="ch3_4_1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Antenna Response Evolution Algorithm</p>
+        <p class="prev-next-title">Symmetric Bicone </p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -490,7 +522,6 @@ By OSU GENETIS Team
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
       © Copyright 2022.
@@ -517,8 +548,8 @@ By OSU GENETIS Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>
