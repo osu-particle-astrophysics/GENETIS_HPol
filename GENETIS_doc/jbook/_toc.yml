@@ -13,6 +13,11 @@ parts:
         - file: diss/ch3_2
         - file: diss/ch3_3
         - file: diss/ch3_4
+          sections:
+            - file: diss/ch3_4_1
+            - file: diss/ch3_4_2
+            - file: diss/ch3_4_3
+            - file: diss/ch3_4_4
         - file: diss/ch3_5
         - file: diss/ch3_6
     - file: diss/reference.md
