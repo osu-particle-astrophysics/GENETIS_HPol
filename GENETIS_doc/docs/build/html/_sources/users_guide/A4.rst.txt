@@ -1,5 +1,0 @@
-The AREA Software
-=================
-
-..  image:: ../under_construction.png
-    :width: 200

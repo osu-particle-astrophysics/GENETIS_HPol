@@ -1,0 +1,46 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+parts:
+  # DO NOT PUT COLONS INSIDE CAPTION!!
+  - caption: Dissertation Excerpt
+    chapters:
+    - file: diss/ch2
+    - file: diss/ch3
+      sections:
+        - file: diss/ch3_2
+        - file: diss/ch3_3
+        - file: diss/ch3_4
+          sections:
+            - file: diss/ch3_4_1
+            - file: diss/ch3_4_2
+            - file: diss/ch3_4_3
+            - file: diss/ch3_4_4
+        - file: diss/ch3_5
+        - file: diss/ch3_6
+    - file: diss/reference.md
+  - caption: New GENETIS Members
+    chapters:
+    - file: guide/A1
+    - file: guide/A2
+
+  - caption: HPol Manual
+    chapters:
+    - file: guide/A3/A3
+    - file: guide/A3/A3_1
+      sections:
+      - file: guide/A3/A3_1_1
+      - file: guide/A3/A3_1_2
+      - file: guide/A3/A3_1_3
+      - file: guide/A3/A3_1_4
+      - file: guide/A3/A3_1_5
+      - file: guide/A3/A3_1_6
+    - file: guide/A3/A3_2
+  - caption: AREA Manual
+    chapters:
+    - file: guide/A4
+  - caption: Genetic Algorithm Reference Guide
+    chapters:
+    - file: ga_ref/ga_doc_temp

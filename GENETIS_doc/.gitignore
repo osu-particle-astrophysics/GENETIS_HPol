@@ -1,4 +1,6 @@
 __pycache__/
 .venv/
+sphinx_docs/*
 *DS_Store
-docs/.vscode/
+*.vscode/
+*_build/

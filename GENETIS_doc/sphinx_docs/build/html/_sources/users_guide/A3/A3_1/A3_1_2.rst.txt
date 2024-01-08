@@ -1,0 +1,68 @@
+.. _a312:
+
+Part (B1) & (B2): XFdtd [#f1]_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Part (B) pertains to :ref:`XFdtd <a2xfdtd>`.
+
+Part (B1)
+---------
+
+..  todo::
+
+    exactly what information are we talking about here (in docstring?)
+
+    should be more specific.
+
+
+..  currentmodule:: part_b_job1
+
+..  automodule:: part_b_job1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. **Part (B1)** 
+
+.. ..  note::
+
+..     simulation_PEC.xmacro is an XFdtd script that builds an antenna, creates an
+..     waveform, queues and runs each simulation.
+
+.. **Part (B2)**
+
+.. ..  note::
+
+..     output.xmacro is an XFdtd script that writes the XFdtd simulation data to
+..     an output ``.uan`` file.
+
+
+
+
+
+..  rubric:: reference
+..  [#f1] Rolla, Julie. Dissertation Appendix A. Section A.3.1.2
